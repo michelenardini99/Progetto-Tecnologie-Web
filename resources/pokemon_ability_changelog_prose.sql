@@ -1,0 +1,55 @@
+-- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
+--
+-- Host: localhost    Database: pokemon
+-- ------------------------------------------------------
+-- Server version	8.0.27
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ability_changelog_prose`
+--
+
+DROP TABLE IF EXISTS `ability_changelog_prose`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ability_changelog_prose` (
+  `ability_changelog_id` int NOT NULL,
+  `local_language_id` int NOT NULL,
+  `effect` text NOT NULL,
+  PRIMARY KEY (`ability_changelog_id`,`local_language_id`),
+  KEY `local_language_id` (`local_language_id`),
+  CONSTRAINT `ability_changelog_prose_ibfk_1` FOREIGN KEY (`ability_changelog_id`) REFERENCES `ability_changelog` (`id`),
+  CONSTRAINT `ability_changelog_prose_ibfk_2` FOREIGN KEY (`local_language_id`) REFERENCES `languages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ability_changelog_prose`
+--
+
+LOCK TABLES `ability_changelog_prose` WRITE;
+/*!40000 ALTER TABLE `ability_changelog_prose` DISABLE KEYS */;
+INSERT INTO `ability_changelog_prose` VALUES (1,6,'Hat im Kampf keinen Effekt.'),(1,9,'Has no effect in battle.'),(1,10,'Nemá žádný účinek při zápasu.'),(2,6,'Verhindert keine regulären K.O. bei vollen []{mechanic:hp}.'),(2,9,'Does not prevent regular KOs from full [HP]{mechanic:hp}.'),(2,10,'Funguje jen proti útokům, které vždy omráčí na jeden úder. (Ne proti těm, které jsou prostě příliš silné.)'),(3,6,'Hat außerhalb vom Kampf keinen Effekt.'),(3,9,'Has no overworld effect.'),(3,10,'Nemá žádný účinek v poli.'),(4,6,'[]{type:electric}-Attacken die keinen Schaden anrichten, wie []{move:thunder-wave}, werden nicht absorbiert.'),(4,9,'Does not absorb non-damaging []{type:electric} moves, i.e. []{move:thunder-wave}.'),(4,10,'Neabsorbuje nezraňující [elektrické]{type:electric} útoky, např. []{move:thunder-wave}.'),(5,6,'Löst bei Attacken die mehrmals Treffen bei jedem Treffer aus.'),(5,9,'Triggers on every hit of multiple-hit moves.'),(6,6,'[]{move:will-o-wisp} triggert die Fähigkeit nicht bei Pokémon die immun gegen []{mechanic:burn} sind.'),(6,9,'[]{move:will-o-wisp} does not trigger this ability for Pokémon immune to [burns]{mechanic:burn}.'),(7,6,'Hat außerhalb vom Kampf keinen Effekt.'),(7,9,'Has no overworld effect.'),(7,10,'Nemá žádný účinek v poli.'),(8,6,'Hat außerhalb vom Kampf keinen Effekt.'),(8,9,'Has no overworld effect.'),(8,10,'Nemá žádný účinek v poli.'),(9,6,'Hat keinen Effekt, wenn die Fähigkeit nach Kampfbeginn erlangt wurde.'),(9,9,'Does not take effect if acquired after entering battle.'),(10,6,'Betrifft andere Pokémon mit dieser Fähigkeit.'),(10,9,'Affects other Pokémon with this ability.'),(10,10,'Nemá žádný účinek v poli.'),(11,6,'Verursacht nur 1/16 der maximalen []{mechanic:hp} des Angreifers Schaden.'),(11,9,'Inflicts only 1/16 of the attacker\'s maximum [HP]{mechanic:hp} in damage.'),(12,6,'[]{move:fire-fang} und Attacken die [typenlosen Schaden]{mechanic:typeless-damage} verursachen, ignorieren diese Fähigkeit unabhängig von ihrem Typ.'),(12,9,'[]{move:fire-fang} and moves that inflict [typeless damage]{mechanic:typeless-damage} ignore this ability regardless of type.'),(13,6,'Hat außerhalb vom Kampf keinen Effekt.'),(13,9,'Has no overworld effect.'),(13,10,'Nemá žádný účinek v poli.'),(14,6,'Kann das Wesen von Pokémon mit denen in der Spielwelt interagiert wird nicht verändern.'),(14,9,'Cannot influence the natures of Pokémon encountered by interacting with them on the overworld.'),(15,6,'Gibt schwere []{mechanic:poison} als normale []{mechanic:poison} zurück.'),(15,9,'Passes back bad [poison]{mechanic:poison} as regular poison.'),(16,6,'Hat außerhalb vom Kampf keinen Effekt.'),(16,9,'Has no overworld effect.'),(16,10,'Nemá žádný účinek v poli.'),(17,6,'Betrifft keine []{type:electric}-Attacken die keinen Schaden anrichten, wie []{move:thunder-wave}. Erhöht die Anzahl an Trainer-Anrufen wenn irgendein Pokémon im Team diese Fähigkeit hat.'),(17,9,'Does not affect non-damaging []{type:electric} moves, i.e. []{move:thunder-wave}.  Increases the frequency of Match Call calls on the overworld if any party Pokémon has this ability.'),(18,6,'Leitet []{type:electric}-Attacken um, ohne ihre Effekte zu deaktivieren oder einen []{mechanic:special-attack} Bonus zu gewähren. Leitet []{move:hidden-power} nicht um.'),(18,9,'Redirects []{type:electric} moves without negating them or granting any [Special Attack]{mechanic:special-attack} boost.  Does not redirect []{move:hidden-power}.'),(19,6,'Hat außerhalb vom Kampf keinen Effekt.'),(19,9,'Has no overworld effect.'),(19,10,'Nemá žádný účinek v poli.'),(20,6,'Hat außerhalb vom Kampf keinen Effekt.'),(20,9,'Has no overworld effect.'),(20,10,'Nemá žádný účinek v poli.'),(21,6,'Hindert []{move:heal-bell} daran, das Pokémon zu heilen, auch außerhalb vom Kampf.'),(21,9,'Prevents []{move:heal-bell} from curing the Pokémon, whether or not it is in battle.'),(22,6,'Hat außerhalb vom Kampf keinen Effekt.'),(22,9,'Has no overworld effect.'),(22,10,'Nemá žádný účinek v poli.'),(23,6,'Betrifft keine Attacken von Teammitgliedern die alle anderen Pokémon als Ziel haben. Diese Fähigkeit wird im Kampf nicht angekündigt.'),(23,9,'Does not affect friendly Pokémon\'s moves that target all other Pokémon.  This ability\'s presence is not announced upon entering battle.'),(24,6,'Hat außerhalb vom Kampf keinen Effekt.'),(24,9,'Has no overworld effect.'),(24,10,'Nemá žádný účinek v poli.'),(25,6,'Hat außerhalb vom Kampf keinen Effekt.'),(25,9,'Has no overworld effect.'),(25,10,'Nemá žádný účinek v poli.'),(26,6,'Hat außerhalb vom Kampf keinen Effekt.'),(26,9,'Has no overworld effect.'),(26,10,'Nemá žádný účinek v poli.'),(27,6,'Verdoppelt den Radius in dem []{move:cut} Gras entfernt, wenn irgendein Pokémon im Team diese Fähigkeit hat.'),(27,9,'Doubles []{move:cut}\'s grass-cutting radius on the overworld if any party Pokémon has this ability.'),(28,6,'Hat im Kampf keinen Effekt.'),(28,9,'Has no effect in battle.'),(28,10,'Nemá žádný účinek při zápasu.'),(29,6,'Hat außerhalb vom Kampf keinen Effekt.'),(29,9,'Has no overworld effect.'),(29,10,'Nemá žádný účinek v poli.'),(30,6,'Hat außerhalb vom Kampf keinen Effekt.'),(30,9,'Has no overworld effect.'),(30,10,'Nemá žádný účinek v poli.'),(31,6,'Hat außerhalb vom Kampf keinen Effekt.'),(31,9,'Has no overworld effect.'),(31,10,'Nemá žádný účinek v poli.'),(32,6,'Hat keinen Effekt während das Pokémon [schläft]{mechanic:sleep}.'),(32,9,'Does not take effect during [sleep]{mechanic:sleep}.'),(33,6,'Hat außerhalb vom Kampf keinen Effekt.'),(33,9,'Has no overworld effect.'),(33,10,'Nemá žádný účinek v poli.'),(34,6,'Erhöht die Anzahl an Rufen die man außerhalb vom Kampf hört, wenn irgendein Pokémon im Team diese Fähigkeit hat.'),(34,9,'Increases the frequency of cries heard on the overworld if any party Pokémon has this ability.'),(35,6,'Hat außerhalb vom Kampf keinen Effekt.'),(35,9,'Has no overworld effect.'),(35,10,'Nemá žádný účinek v poli.'),(36,6,'Hat außerhalb vom Kampf keinen Effekt.'),(36,9,'Has no overworld effect.'),(36,10,'Nemá žádný účinek v poli.'),(37,6,'Hat außerhalb vom Kampf keinen Effekt.'),(37,9,'Has no overworld effect.'),(37,10,'Nemá žádný účinek v poli.'),(38,6,'[]{mechanic:poison} schadet dem Pokémon außerhalb vom Kampf.'),(38,9,'[Poison]{mechanic:poison} still damages the Pokémon outside of battle.'),(39,6,'[]{mechanic:paralysis} hindert das Pokémon nicht daran sich zu bewegen, aber der []{mechanic:speed} Malus bleibt. []{mechanic:poison} schadet dem Pokémon außerhalb vom Kampf.'),(39,9,'[Paralysis]{mechanic:paralysis} cannot prevent the Pokémon from moving, though the [Speed]{mechanic:speed} cut is unaffected.  [Poison]{mechanic:poison} still damages the Pokémon outside of battle.'),(40,6,'Wegen eines Glitches haben Attacken die von dieser Fähigkeit beeinflusst sind eine (100 - Genauigkeit)% Chance durch den []{move:detect} oder []{move:protect} zu treffen.'),(40,9,'Due to a glitch, moves affected by this ability have a (100 - accuracy)% chance to hit through []{move:detect} or []{move:protect}.'),(41,6,'[]{move:rest} funktioniert normal bei [starkem Sonnenlicht]{mechanic:strong-sunlight}.'),(41,9,'[]{move:rest} works as usual during [strong sunlight]{mechanic:strong-sunlight}.'),(42,6,'[]{move:fling} kann normal benutzt werden.'),(42,9,'[]{move:fling} can be used as usual.'),(43,6,'Leitet []{type:water}-Attacken um ohne den []{mechanic:special-attack} Bonus zu gewähren. Leitet []{move:hidden-power} nicht um.'),(43,9,'Redirects []{type:water} moves without negating them or granting any [Special Attack]{mechanic:special-attack} boost.  Does not redirect []{move:hidden-power}.'),(44,6,'Kann []{ability:flower-gift} und []{ability:wonder-guard} kopieren.'),(44,9,'Can copy []{ability:flower-gift} and []{ability:wonder-guard}.'),(45,6,'Kann []{ability:forecast} und []{ability:trace} kopieren.'),(45,9,'Can copy []{ability:forecast} and []{ability:trace}.'),(46,6,'Funktioniert nur wenn es mit []{ability:minus} kombiniert wird.'),(46,9,'Powers up only when paired with []{ability:minus}.'),(47,6,'Funktioniert nur wenn es mit []{ability:plus} kombiniert wird.'),(47,9,'Powers up only when paired with []{ability:plus}.'),(48,6,'Die Chance, dass der Effekt eintritt, beträgt 30%.'),(48,9,'Chance of taking effect is 30%.'),(49,6,'[]{move:triple-kick} wird nicht beeinflusst.'),(49,9,'[]{move:triple-kick} is unaffected.'),(50,6,'[]{move:struggle} wird nicht beeinflusst. []{move:helping-hand} und []{move:defense-curl} werden nicht beachtet.'),(50,9,'[]{move:struggle} is unaffected.  []{move:helping-hand} and []{move:defense-curl} are not taken into account.'),(51,6,'Hat außerhalb vom Kampf keinen Effekt.'),(51,9,'Has no overworld effect.'),(52,6,'Die Chance, dass der Effekt eintritt, beträgt 33%.'),(52,9,'Chance of taking effect is 33%.');
+/*!40000 ALTER TABLE `ability_changelog_prose` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-01-17  1:24:16
