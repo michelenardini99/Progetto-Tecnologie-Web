@@ -28,9 +28,10 @@
 <ul class="pokeTable" >
     <?php 
             $pokeList = $dbh->pokeGetter();
-
-            foreach($pokeList as $pokemon):?>
-              
+            $cnt = 0;
+            foreach($pokeList as $pokemon):
+                if($cnt++ < 7) {
+    ?>
                 <li class="pokemon">
                     <figure>
                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
@@ -41,6 +42,22 @@
                         </h5>
                     </div>
                 </li>
-      <?php endforeach; ?>
+            <?php } 
+            else {
+                $cnt=1;
+                ?> 
+                <br></br>
+                <li class="pokemonBreak">
+                    <figure>
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
+                    </figure>
+                    <div>
+                        <h5 style="text-align: center;">
+                        <?php echo "".$pokemon['identifier']?>
+                        </h5>
+                    </div>
+                </li>
+      <?php  } 
+    endforeach; ?>
 </ul>
 </body>

@@ -26,22 +26,24 @@ body > header > div > input{
 }
 
 
-.pokemon{
+.pokemon, .pokemonBreak{
     display: inline-block;
     margin-left: 0px;
     padding-left: 0px;
-
-    content: "\a";
 }
 
+
+
+
 body > ul > li >img{
-    float: left;
+    float: center;
 }
 
 .pokeTable{
     height: auto;
     overflow-x: hidden;
     white-space: nowrap;
+    padding: 0 18%;
 
 }
 /* copia incolla */
