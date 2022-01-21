@@ -1,0 +1,134 @@
+body > header {
+    background-color: rgb(101, 212, 67);
+    color: black;
+    text-align: center;
+    padding: 2% 0;
+}
+
+body {
+    background-color: transparent;
+}
+
+body > header > div > a > img {
+    width: 5%;
+    height: 5%;
+    float: right;
+    margin-top: -1%;    
+}
+body > header > div > input{
+    padding: 0 5%;
+    float: left;
+    margin-top: .2%;
+}
+
+.login {
+    position: right;
+}
+
+
+.pokemon{
+    display: inline-block;
+    margin-left: 0px;
+    padding-left: 0px;
+
+    content: "\a";
+}
+
+body > ul > li >img{
+    float: left;
+}
+
+.pokeTable{
+    height: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+
+}
+/* copia incolla */
+
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: black;
+  font-size: 15px;
+  padding: 8px 12px;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}

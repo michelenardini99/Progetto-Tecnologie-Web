@@ -2,10 +2,10 @@
     require_once('handler/bootstrap.php');
 
 //Base Template
-$templateParams["titolo"] = "PokeZone";
+$templateParams["titolo"] = "Item List";
 //$templateParams["nome"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 
-require 'template/indexTemplate.php';
+require 'template/tablePage.php';
 ?>

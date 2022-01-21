@@ -10,7 +10,7 @@ class DatabaseHelper{
             }
 
             public function pokeGetter(){
-                $stmt = $this->db->prepare("SELECT identifier FROM pokemon;");
+                $stmt = $this->db->prepare("SELECT * FROM pokemon;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
