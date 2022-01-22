@@ -25,7 +25,7 @@ class DatabaseHelper{
             
             public function pokeItemCategoriesGet(){
                 $stmt = $this->db->prepare("
-                    SELECT identifier FROM `item_categories`
+                    SELECT id, identifier FROM `item_categories`
                     where  identifier = 'standard-balls'
                     or identifier = 'special-balls'
                     or identifier = 'all-machines'

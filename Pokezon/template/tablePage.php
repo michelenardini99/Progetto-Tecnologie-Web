@@ -25,39 +25,66 @@
             </a>
         </div> 
     </header> 
-<ul class="pokeTable" >
-    <?php 
-            $pokeList = $dbh->pokeGetter();
-            $cnt = 0;
-            foreach($pokeList as $pokemon):
-                if($cnt++ < 7) {
-    ?>
-                <li class="pokemon">
-                    <figure>
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
-                    </figure>
-                    <div>
-                        <h5 style="text-align: center;">
-                        <?php echo "".$pokemon['identifier']?>
-                        </h5>
-                    </div>
-                </li>
-            <?php } 
-            else {
-                $cnt=1;
-                ?> 
-                <br></br>
-                <li class="pokemonBreak">
-                    <figure>
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
-                    </figure>
-                    <div>
-                        <h5 style="text-align: center;">
-                        <?php echo "".$pokemon['identifier']?>
-                        </h5>
-                    </div>
-                </li>
-      <?php  } 
-    endforeach; ?>
-</ul>
+
+    <?php if($templateParams['titolo'] == "Pokemon List"){ ?>
+
+
+
+    <section>
+        <ul class="table" >
+            <?php 
+                    $pokeList = $dbh->pokeGetter();
+                    $cnt = 0;
+                    foreach($pokeList as $pokemon):
+            ?>
+                        <li class="pokemon">
+                            <figure>
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
+                            </figure>
+                            <div>
+                                <h5 style="text-align: center;">
+                                <?php echo "".$pokemon['identifier']?>
+                                </h5>
+                            </div>
+                        </li>
+              <?php   
+            endforeach; ?>
+        </ul>
+        </section>
+
+    <?php } elseif ($templateParams['titolo'] == "Item List"){  ?> 
+
+    <section>
+        <ul class="table">
+            <?php 
+                    $itemList = $dbh->pokeItemGetter();
+                    $cnt = 0;
+                    foreach($itemList as $pokeItem):
+            ?>
+                        <li class="item">
+                            <figure>
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
+                            </figure>
+                            <div>
+                                <h5 style="text-align: center;">
+                                <?php echo "".$pokeItem['identifier']?>
+                                </h5>
+                            </div>
+                        </li>
+              <?php   
+            endforeach; ?>
+        </ul>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+<?php }?>
 </body>
