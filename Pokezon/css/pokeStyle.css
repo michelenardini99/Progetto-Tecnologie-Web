@@ -33,6 +33,9 @@ body > header > div > input{
 }
 
 
+.pokemon > figure > img, .item> figure > img {
+   width: 120%;  /* some zoom on them */ 
+}
 
 
 body > ul > li >img{
