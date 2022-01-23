@@ -18,7 +18,8 @@ class DatabaseHelper{
             }
             
             public function pokeItemGetter(){
-                $stmt = $this->db->prepare("SELECT identifier FROM items;");
+                // $stmt = $this->db->prepare("SELECT identifier FROM items;");
+                $stmt = $this->db->prepare("SELECT identifier FROM items LIMIT 100;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
