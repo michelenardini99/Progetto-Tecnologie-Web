@@ -62,7 +62,6 @@
     </nav>
     <script src="navScript.js"></script>
     <main>
-
              <!-- Slideshow container -->
 
 			<div class="slideshow-container">

@@ -10,24 +10,10 @@
 	</script>
 </head>
 <body>
-    <header>
-        <div>
-            <input type="text" placeholder="Search..">
-            <a href="">
-                Logo
-            </a>
-            <a href="">
-                carrello
-            </a>
-            <a class='login' href="" > 
-                <img src="https://www.clipartmax.com/png/middle/354-3548499_pokemon-trainer-sprite-png-pokemon-trainer-sprite-art.png" alt="" >
-            </a>
-        </div> 
-    </header> 
 
-    <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
+ <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
 
-    <section> 
+    <section>
                 <!-- shit not working --> 
                 <script> 
                     $(document).ready(function(){
@@ -38,7 +24,7 @@
                 });
                 </script>
 
-        <div class="selPoke" style="width:200px;">
+        <div class="selPoke" style="width:200px;"> <!-- non piu visibile per non si sa quale motivo --> 
           <select>
               <?php 
                     $regionList = $dbh->getRegionNames();
@@ -97,16 +83,5 @@
             endforeach; ?>
         </ul>
         </section>
-
-
-
-
-
-
-
-
-
-
-
 <?php }?>
 </body>

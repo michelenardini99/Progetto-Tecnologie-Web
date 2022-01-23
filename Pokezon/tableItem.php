@@ -7,5 +7,6 @@ $templateParams["titolo"] = "Item List";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 
+require 'template/headerTemplate.php';
 require 'template/tablePage.php';
 ?>
