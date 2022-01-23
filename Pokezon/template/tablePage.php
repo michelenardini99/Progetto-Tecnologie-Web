@@ -10,13 +10,52 @@
 	</script>
 </head>
 <body>
-<ul class="pokeTable" >
-    <?php 
-            $pokeList = $dbh->pokeGetter();
-            $cnt = 0;
-            foreach($pokeList as $pokemon):
-                if($cnt++ < 7) {
-    ?>
+    <header>
+        <div>
+            <input type="text" placeholder="Search..">
+            <a href="">
+                Logo
+            </a>
+            <a href="">
+                carrello
+            </a>
+            <a class='login' href="" > 
+                <img src="https://www.clipartmax.com/png/middle/354-3548499_pokemon-trainer-sprite-png-pokemon-trainer-sprite-art.png" alt="" >
+            </a>
+        </div> 
+    </header> 
+
+    <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
+
+    <section> 
+                <!-- shit not working --> 
+                <script> 
+                    $(document).ready(function(){
+                    $("select.selPoke").change(function(){
+                    var selectedCountry = $(this).children("option:selected").val();
+                    alert("You have selected the country - " + selectedCountry);
+                    });
+                });
+                </script>
+
+        <div class="selPoke" style="width:200px;">
+          <select>
+              <?php 
+                    $regionList = $dbh->getRegionNames();
+            foreach($regionList as $region): ?> 
+                <option value=<?php echo "".$region['identifier']?> >
+                    <?php echo "".$region['identifier']?> 
+                </option>
+              <?php endforeach;?>
+          </select>
+        </div>
+
+        <ul class="table" >
+            <?php 
+                    $pokeList = $dbh->pokeGetter();
+                    $cnt = 0;
+                    foreach($pokeList as $pokemon):
+            ?>
                 <li class="pokemon">
                      <figure>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
