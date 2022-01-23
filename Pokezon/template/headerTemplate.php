@@ -40,16 +40,6 @@
                     </div>
                 </li>
             </a>
-            <a href="login.php">
-                <li class="nav-home">
-                    <div>
-                        <img src="../resources/pokeball.png" width="50" height="50" alt="">
-                    </div>
-                    <div>
-                        <p>Login</p>
-                    </div>
-                </li>
-            </a>
         </ul>
         <a href="login.php">
         <button class="login-button" id="login-btn">
