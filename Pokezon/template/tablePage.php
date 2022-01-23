@@ -25,24 +25,35 @@
                 </script>
 
         <div class="selPoke" style="width:200px;"> <!-- non piu visibile per non si sa quale motivo --> 
-          <select>
+                <form action="" method="get">
+            <p>Choose your region</p>
+          <select name="regions" id="regions">
               <?php 
+                    $name = $_GET["regions"];
                     $regionList = $dbh->getRegionNames();
+                    echo "".$name;
             foreach($regionList as $region): ?> 
                 <option value=<?php echo "".$region['identifier']?> >
                     <?php echo "".$region['identifier']?> 
                 </option>
               <?php endforeach;?>
           </select>
+          <input type="submit" value="Submit">
+        </form>
         </div>
 
         <ul class="table" >
-            <?php 
-                    $pokeList = $dbh->pokeGetter();
+            <?php
+                    if(isset($_GET["regions"])){
+                        $pokeList = $dbh->getPokemonFromRegionIdentifier($_GET["regions"]);
+                    } else { 
+                        $pokeList = $dbh->pokeGetter();
+                    }
                     $cnt = 0;
                     foreach($pokeList as $pokemon):
             ?>
                 <li class="pokemon">
+                    <a href=<?php echo "./pokemonDetail.php?id=".$pokemon["id"]?>> <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
                      </figure>
@@ -54,6 +65,7 @@
                          <?php echo "".$pokemon['identifier']?>
                          </h5>
                      </div>
+                    </a>
                  </li>
               <?php   
             endforeach; ?>
