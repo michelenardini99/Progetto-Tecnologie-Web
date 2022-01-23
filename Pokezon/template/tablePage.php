@@ -53,6 +53,7 @@
                     foreach($pokeList as $pokemon):
             ?>
                 <li class="pokemon">
+                    <a href=<?php echo "./pokemonDetail.php?id=".$pokemon["id"]?>> <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
                      </figure>
@@ -64,6 +65,7 @@
                          <?php echo "".$pokemon['identifier']?>
                          </h5>
                      </div>
+                    </a>
                  </li>
               <?php   
             endforeach; ?>
