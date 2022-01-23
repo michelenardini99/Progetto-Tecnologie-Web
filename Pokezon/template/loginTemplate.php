@@ -11,20 +11,6 @@
 	</script>
 </head>
 <body>
-    <header>
-        <div>
-            <input type="text" placeholder="Search..">
-            <a href="">
-                Logo
-            </a>
-            <a href="">
-                carrello
-            </a>
-            <a class='login' href="" > 
-                <img src="https://www.clipartmax.com/png/middle/354-3548499_pokemon-trainer-sprite-png-pokemon-trainer-sprite-art.png" alt="" >
-            </a>
-        </div> 
-    </header>
     <main>
         <div>
         <h1 style="text-align: center;">
@@ -32,7 +18,7 @@
             </h1>
         </div>
     <div class="wrapper">
-        <div class="logo">
+        <div class="loginLog">
             <img src="https://icon2.cleanpng.com/20171220/kqw/pokeball-png-5a3a4a7e247ce7.9167778215137695981495.jpg" alt=""> </div>
                 <div class="text-center mt-4 name"> PokeZone </div>
                 <form class="p-3 mt-3">
