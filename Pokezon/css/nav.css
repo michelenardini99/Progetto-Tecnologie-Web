@@ -1,0 +1,176 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar{
+  font-size: 18px;
+  background-color: white;
+  padding-bottom: 10px;
+  text-align: center;
+  width: 100vw;
+}
+
+.hb-button{
+  display: none;
+}
+
+.hb-button:hover{
+  background-color: orange;
+}
+
+.logo{
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+  padding: 0px 0px;
+  margin: -7px 20px;
+}
+
+.shop-button{
+  position: absolute;
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+    font-size: 25px;
+    border-style: none;
+}
+
+.logoRestrinct{
+  display: none;
+}
+
+.login-button{
+    position: absolute;
+    top: 5px;
+    right: 150px;
+    margin: 15px auto;
+    cursor: pointer;
+    font-size: 25px;
+    border-style: none;
+}
+
+.login-button:hover{
+  background-color: orange;
+}
+
+
+.shop-button:hover{
+  background-color: orange;
+}
+
+.nav-container{
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+}
+
+.nav-container a li{
+  margin: 15px auto;
+  display: inline-block;
+  transition: all 0.5s ease;
+  width: 183px;
+  margin: 20px -24px;
+}
+
+.nav-container a li img{
+  text-align: center;
+}
+
+.nav-poke{
+  transition: all 0.5s ease;
+  background-color: white;
+}
+
+.nav-poke:hover{
+  background-color: orange;
+}
+
+.nav-poke{
+  border-bottom: 5px solid orange;
+}
+
+.nav-item:hover{
+  background-color: palegreen;
+}
+
+.nav-item{
+  border-bottom: 5px solid palegreen;
+}
+
+.nav-home:hover{
+  background-color: red;
+}
+
+.nav-home{
+  border-bottom: 5px solid red;
+}
+
+@media screen and (max-width:1200px){
+  .nav-container a li{
+    display: none;
+  }
+
+  .navbar{
+    background-color: white;
+  }
+
+  .logo{
+    display: none;
+  }
+
+  .logoRestrinct{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .shop-button{
+    position: absolute;
+      top: 0px;
+      right: 0px;
+      cursor: pointer;
+      font-size: 25px;
+      border-style: none;
+      display: inline-block;
+  }
+
+  .login-button{
+    position: absolute;
+      top: -15px;
+      right: 95px;
+      cursor: pointer;
+      font-size: 25px;
+      border-style: none;
+      display: inline-block;
+  }
+
+  .hb-button{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 5px 8px;
+    border-style: none;
+    display: inline-block;
+  }
+}
+
+
+a{
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  letter-spacing: 2px;
+  padding: 5px 20px;
+}
+
+
+/* copia incolla login */
+
+
+/* copia incolla */
+

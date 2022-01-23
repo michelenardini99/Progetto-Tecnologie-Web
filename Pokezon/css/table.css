@@ -1,0 +1,26 @@
+.pokemon, .pokemonBreak{
+    display: inline-block;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.pokemon, .item{
+    display: inline-block;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.pokemon > figure > img, .item> figure > img {
+   width: 120%;  /* some zoom on them */ 
+}
+
+.table{
+   width: 50%;
+   height: 600px;
+   position: absolute;
+   margin: auto;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+}

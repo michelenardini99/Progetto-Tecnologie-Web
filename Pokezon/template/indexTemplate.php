@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
-    <link rel="stylesheet" type="text/css" href="./css/pokeStyle.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
 
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.min.js"

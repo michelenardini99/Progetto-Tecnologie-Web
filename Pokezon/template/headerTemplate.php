@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="./css/nav.css" />
 <nav class="navbar">
         <a class="logo" href="index.php">
             <img src="../resources/logo.png" width="187.5" height="150"alt="">
