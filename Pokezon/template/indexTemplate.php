@@ -11,28 +11,56 @@
 	</script>
 </head>
 <body>
-    <header>
-        <div>
-            <input type="text" placeholder="Search..">
-            <a href="">
-                Logo
+    <nav class="navbar">
+        <a class="logo" href="index.php">
+            <img src="../resources/logo.png" width="187.5" height="150"alt="">
+        </a>
+        <a class="logoRestrinct" href="index.php">
+            <img src="../resources/logoRestrinct.png" width="396,91" height="50"alt="">
+        </a>
+        <button class="hb-button" id="hb-btn">
+            <img src="../resources/navbtn.png" width="50" height="50" alt="">
+        </button>
+        <ul class="nav-container">
+            <a href="index.php">
+                <li class="nav-home">
+                    <div>
+                        <img src="../resources/pokeball.png" width="50" height="50" alt="">
+                    </div>
+                    <div>
+                        <p>Home</p>
+                    </div>
+                </li>
             </a>
-            <a href="">
-                carrello
-            </a>
-            <a class='login' href="" > 
-                <img src="https://www.clipartmax.com/png/middle/354-3548499_pokemon-trainer-sprite-png-pokemon-trainer-sprite-art.png" alt="" >
-            </a>
-        </div> 
-    </header>
-     <div>
             <a href="tablePokemon.php">
-                Pokemon
+                <li class="nav-poke">
+                    <div>
+                        <img src="../resources/pokemon.jpg" width="50" height="50" alt="">
+                    </div>
+                    <div>
+                        <p>Pokemon</p>
+                    </div>
+                </li>
             </a>
             <a href="tableItem.php">
-                Items
+                <li class="nav-item">
+                <div>
+                        <img src="../resources/item.png" width="50" height="50" alt="">
+                    </div>
+                    <div>
+                        <p>Item</p>
+                    </div>
+                </li>
             </a>
-        </div>
+        </ul>
+        <button class="login-button" id="login-btn">
+            <img src="../resources/login.png" width="50" height="50" alt="">
+        </button>
+        <button class="shop-button" id="shop-btn">
+            <img src="../resources/shopping.png" width="50" height="50" alt="">
+        </button>
+    </nav>
+    <script src="navScript.js"></script>
     <main>
 
              <!-- Slideshow container -->

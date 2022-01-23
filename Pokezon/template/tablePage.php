@@ -11,20 +11,6 @@
 	</script>
 </head>
 <body>
-    <header>
-        <div>
-            <input type="text" placeholder="Search..">
-            <a href="">
-                Logo
-            </a>
-            <a href="">
-                carrello
-            </a>
-            <a class='login' href="" > 
-                <img src="https://www.clipartmax.com/png/middle/354-3548499_pokemon-trainer-sprite-png-pokemon-trainer-sprite-art.png" alt="" >
-            </a>
-        </div> 
-    </header> 
 <ul class="pokeTable" >
     <?php 
             $pokeList = $dbh->pokeGetter();
