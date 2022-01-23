@@ -19,7 +19,7 @@
             <img src="../resources/logoRestrinct.png" width="396,91" height="50"alt="">
         </a>
         <button class="hb-button" id="hb-btn">
-            <img src="../resources/navbtn.png" width="50" height="50" alt="">
+            <img src="../resources/navbtn.png" width="60" height="60" alt="">
         </button>
         <ul class="nav-container">
             <a href="index.php">
@@ -54,10 +54,10 @@
             </a>
         </ul>
         <button class="login-button" id="login-btn">
-            <img src="../resources/login.png" width="50" height="50" alt="">
+            <img src="../resources/login1.png" width="75" height="75" alt="">
         </button>
         <button class="shop-button" id="shop-btn">
-            <img src="../resources/shopping.png" width="50" height="50" alt="">
+            <img src="../resources/shopping.png" width="75" height="75" alt="">
         </button>
     </nav>
     <script src="navScript.js"></script>

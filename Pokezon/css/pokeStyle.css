@@ -34,7 +34,6 @@
     right: 30px;
     cursor: pointer;
     font-size: 25px;
-    padding: 5px 8px;
     border-style: none;
 }
 
@@ -55,7 +54,6 @@
     margin: 15px auto;
     cursor: pointer;
     font-size: 25px;
-    padding: 5px 8px;
     border-style: none;
 }
 
@@ -144,7 +142,6 @@
       right: 0px;
       cursor: pointer;
       font-size: 25px;
-      padding: 5px 8px;
       border-style: none;
       display: inline-block;
   }
@@ -152,10 +149,9 @@
   .login-button{
     position: absolute;
       top: -15px;
-      right: 65px;
+      right: 95px;
       cursor: pointer;
       font-size: 25px;
-      padding: 5px 8px;
       border-style: none;
       display: inline-block;
   }
