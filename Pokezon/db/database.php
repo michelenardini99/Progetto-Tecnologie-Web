@@ -53,11 +53,14 @@ class DatabaseHelper{
 
             public function getPokemonFromRegionIdentifier($regionName){
                 $stmt = $this->db->prepare("
-                    SELECT p.id, p.identifier, px.identifier
+                    SELECT p.id, p.identifier, px.identifier as region
                     FROM pokemon p, pokemon_dex_numbers pn, pokedexes px  
                     where pn.pokedex_id = px.id
                     and px.identifier = ?
-                    and p.species_id = pn.species_id; 
+                    and p.species_id = pn.species_id
+                    and p.identifier not like '%-alola'
+                    and p.identifier not like '%-galar'
+                    limit 500; 
                 ");
                 $stmt->bind_param('s',$regionName);
                 $stmt->execute();
