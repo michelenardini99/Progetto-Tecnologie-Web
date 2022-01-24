@@ -8,6 +8,7 @@
     display: inline-block;
     margin-left: 0px;
     padding-left: 0px;
+    margin: auto 5px;
 }
 
 .pokemon > figure > img, .item> figure > img {
@@ -18,7 +19,7 @@
    width: 50%;
    height: 600px;
    position: absolute;
-   margin: auto;
+   margin: 17% auto;
    left: 0;
    right: 0;
    top: 0;
