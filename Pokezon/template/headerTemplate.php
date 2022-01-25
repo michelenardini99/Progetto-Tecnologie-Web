@@ -45,9 +45,14 @@
         <button class="login-button" id="login-btn">
             <img src="../resources/login1.png" width="75" height="75" alt="">
         </button>
+        </a><a href="login.php">
+        <button class="login-button" id="login-btn">
+            <img src="../resources/vera.jpg" width="75" height="75" alt="">
+        </button>
         </a>
         <button class="shop-button" id="shop-btn">
             <img src="../resources/shopping.png" width="75" height="75" alt="">
         </button>
+        
     </nav>
     <script src="navScript.js"></script>

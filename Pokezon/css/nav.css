@@ -44,8 +44,7 @@
 .login-button{
     position: absolute;
     top: 5px;
-    right: 150px;
-    margin: 15px auto;
+    margin: 15px 22%; /* TODO ho cambiato per fare vedere entrami i personaggi ma uno scompare */
     cursor: pointer;
     font-size: 25px;
     border-style: none;

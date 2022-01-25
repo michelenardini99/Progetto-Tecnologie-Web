@@ -60,6 +60,13 @@ class DatabaseHelper{
                     and p.species_id = pn.species_id
                     and p.identifier not like '%-alola'
                     and p.identifier not like '%-galar'
+                    and p.identifier not like 'minior%'
+                    and p.identifier not like 'mimikyu%'
+                    and p.identifier not like '%-mega'
+                    and p.identifier not like '%-mega-%'
+                    and p.identifier not like 'pikachu-%'
+                    and p.identifier not like 'eevee-starter'
+                    and p.identifier not like 'marowak-totem'
                     limit 500; 
                 ");
                 $stmt->bind_param('s',$regionName);
