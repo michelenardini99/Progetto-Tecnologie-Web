@@ -42,7 +42,7 @@
             </a>
         </ul>
         <a href="login.php">
-        <button class="login-button" id="login-btn">
+        <button class="login-button-Male" id="login-btn">
             <img src="../resources/login1.png" width="75" height="75" alt="">
         </button>
         </a><a href="login.php">

@@ -10,9 +10,38 @@
 	</script>
 </head>
 <body>
+    <section>
+
+    <div class="slideshow-container" style="margin-top: 200px; margin-right: 43%">
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext"></div>
+    <img src="../resources/1.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/2.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/3.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/4.png">
+  </div>
+                <div>
+                    <h2>
+                        GOTTA BUY 'EM ALL 
+                    </h2>
+                </div>
+        </div>
+        <br>
+    </div>
+    </section>
+  <script src="./js/fasterSlideShow.js" type="text/javascript"></script>
 
  <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
-
     <section>
                 <!-- shit not working --> 
                 <script> 
@@ -42,36 +71,7 @@
         </form>
         </div>
 
-
-    <div class="slideshow-container" style="margin-top: 200px">
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <div class="numbertext"></div>
-    <img src="../resources/1.png" >
-  </div>
-
-  <div class="mySlides fade">
-    <img src="../resources/2.png" >
-  </div>
-
-  <div class="mySlides fade">
-    <img src="../resources/3.png" >
-  </div>
-
-  <div class="mySlides fade">
-    <img src="../resources/4.png">
-  </div>
-                <div>
-                    <h2>
-                        GOTTA BUY 'EM ALL 
-                    </h2>
-                </div>
-        </div>
-        <br>
-    </div>
-  <script src="./js/fasterSlideShow.js" type="text/javascript"></script>
-
-        <ul class="table" >
+       <ul class="table" >
             <?php
                     if(isset($_GET["regions"])){
                         $pokeList = $dbh->getPokemonFromRegionIdentifier($_GET["regions"]);
