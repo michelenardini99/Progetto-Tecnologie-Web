@@ -84,6 +84,7 @@
                 <li class="pokemon">
                      <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
+                            
                          <a href=<?php echo "./pokemonDetail.php?id=".$pokemon["id"]?>>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
                      </figure>

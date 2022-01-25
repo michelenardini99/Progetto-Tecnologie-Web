@@ -19,7 +19,7 @@
         </div>
     <div class="wrapper">
         <div class="loginLogo">
-            <img src="https://icon2.cleanpng.com/20171220/kqw/pokeball-png-5a3a4a7e247ce7.9167778215137695981495.jpg" alt=""> </div>
+            <img src="./../resources/icon.png" alt=""> </div>
                 <div class="text-center mt-4 name"> PokeZone </div>
                 <form class="p-3 mt-3">
                 <div class="form-field d-flex align-items-center">
