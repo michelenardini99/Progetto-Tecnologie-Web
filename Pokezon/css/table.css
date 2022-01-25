@@ -12,7 +12,7 @@
 }
 
 .pokemon > figure > img, .item> figure > img {
-   width: 120%;  /* some zoom on them */ 
+   width: 180%;  /* some zoom on them */ 
 }
 
 .table{

@@ -59,6 +59,6 @@
 </body>
 <footer>
     <p style="text-align: center" >
-        CAZZO CULO
+        Serafino Pokemon Enjoyer
     </p>
 </footer>
