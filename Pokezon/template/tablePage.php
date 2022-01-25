@@ -43,7 +43,7 @@
         </div>
 
 
-    <div class="slideshow-container" style="margin-top: 200px">
+    <div class="slideshow-container" style="margin-top: 200px; margin-right: 43%">
   <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
     <div class="numbertext"></div>
