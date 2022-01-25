@@ -24,7 +24,7 @@
                 });
                 </script>
 
-        <div class="selPoke" style="width:200px;"> <!-- non piu visibile per non si sa quale motivo --> 
+        <div class="selPoke" style="width:200px;">  
                 <form action="" method="get">
             <p>Choose your region</p>
           <select name="regions" id="regions">
@@ -41,6 +41,35 @@
           <input type="submit" value="Submit">
         </form>
         </div>
+
+
+    <div class="slideshow-container" style="margin-top: 200px">
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext"></div>
+    <img src="../resources/1.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/2.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/3.png" >
+  </div>
+
+  <div class="mySlides fade">
+    <img src="../resources/4.png">
+  </div>
+                <div>
+                    <h2>
+                        GOTTA BUY 'EM ALL 
+                    </h2>
+                </div>
+        </div>
+        <br>
+    </div>
+  <script src="./js/fasterSlideShow.js" type="text/javascript"></script>
 
         <ul class="table" >
             <?php
