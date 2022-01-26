@@ -52,13 +52,29 @@ class DatabaseHelper{
 
             public function getInfoAbout($id){
                 $stmt = $this->db->prepare("
-                SELECT * FROM pokemon
-                where id = ?");
+                SELECT *,p.identifier as name, ph.identifier as habitat FROM `pokemon` p 
+                join pokemon_species ps on p.id = ps.id 
+                join pokemon_habitats ph on  ps.habitat_id = ph.id
+                where p.id = ?;
+                ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function getMovesFromID($id){
+                $stmt = $this->db->prepare("
+                SELECT * FROM `pokemon_abilities` pa 
+                join abilities a on pa.ability_id= a.id
+                where pokemon_id = ?;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
 
             public function getPokemonFromRegionIdentifier($regionName){
                 $stmt = $this->db->prepare("

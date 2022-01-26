@@ -17,3 +17,8 @@ https://stackoverflow.com/questions/42376900/how-to-show-live-preview-in-a-small
 
 
 https://colorlib.com/wp/template/
+
+
+risorsa immagini pokemon secondaria
+
+https://wiki.pokemoncentral.it/Ivysaur
