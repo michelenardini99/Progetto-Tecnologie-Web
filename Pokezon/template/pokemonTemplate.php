@@ -1,19 +1,32 @@
-<main>
+<link rel="stylesheet" type="text/css" href="./css/detail.css"/>
     <body>
-        <div>
-            <p>
+        <div class="container">
+            <div class="image">
                 <?php 
-                $pokemon = $_GET['id'];
-                $len = strlen($pokemon);
+                $pokemonID = $_GET['id'];
+                $len = strlen($pokemonID);
                 if($len == "1"){
-                    $pokemon = "00".$pokemon;
+                    $pokemonID = "00".$pokemonID;
                 }
                 elseif ($len == "2"){
-                       $pokemon = "0".$pokemon;
+                       $pokemonID = "0".$pokemonID;
                 }
+                $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
                 ?>
-            </p>
-            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/".$pokemon.".png" ?> alt="">
+                <img src=<?php echo "https://assets.pokemonID.com/assets/cms2/img/pokedex/full/".$pokemonID.".png" ?> alt="">
+            </div>
+            <div class="name">
+                <?php echo "".$pokemon['identifier']?>
+                identifier
+            </div>
+            <div class="price">
+                prezzo
+            </div>
+            <div class="mosse">
+                mosse e stats
+            </div>
+            <div class="shopping-cart">
+            carrello
+            </div>
         </div>
     </body>
-</main>
