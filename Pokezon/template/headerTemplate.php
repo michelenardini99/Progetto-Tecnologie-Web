@@ -53,6 +53,4 @@
         <button class="shop-button" id="shop-btn">
             <img src="../resources/shopping.png" width="75" height="75" alt="">
         </button>
-        
     </nav>
-    <script src="navScript.js"></script>
