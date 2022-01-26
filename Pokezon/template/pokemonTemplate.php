@@ -4,6 +4,7 @@
             <div class="image">
                 <?php 
                 $pokemonID = $_GET['id'];
+                $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
                 $len = strlen($pokemonID);
                 if($len == "1"){
                     $pokemonID = "00".$pokemonID;
@@ -11,13 +12,11 @@
                 elseif ($len == "2"){
                        $pokemonID = "0".$pokemonID;
                 }
-                $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
                 ?>
                 <img src=<?php echo "https://assets.pokemonID.com/assets/cms2/img/pokedex/full/".$pokemonID.".png" ?> alt="">
             </div>
             <div class="name">
-                <?php echo "".$pokemon['identifier']?>
-                identifier
+                <?php echo "". ucfirst($pokemon['identifier'])?>
             </div>
             <div class="price">
                 prezzo

@@ -20,6 +20,8 @@ body{
 .container div{
     padding: 10px;
     border: 1px solid black; /* to see borders */
+
+    justify-self: center; /*center a div in grid */
 }
 
 .image {
@@ -31,6 +33,9 @@ body{
 
     width: 475px;
     height: 475px;
+}
 
-    justify-self: center; /*center a div in grid */
+.name {
+    font-family: fantasy;
+    font-size: large;
 }

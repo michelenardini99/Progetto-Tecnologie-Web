@@ -50,6 +50,15 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getInfoAbout($id){
+                $stmt = $this->db->prepare("
+                SELECT * FROM pokemon
+                where id = ?");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
 
             public function getPokemonFromRegionIdentifier($regionName){
                 $stmt = $this->db->prepare("
@@ -74,8 +83,6 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
-
-
 
         }
 ?>
