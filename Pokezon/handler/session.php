@@ -1,11 +1,9 @@
 <?php
 
-require_once('handler/bootstrap.php');
-
 
 function sec_session_start() {
         $session_name = 'sec_session_id'; // Imposta un nome di sessione
-        $secure = false; // Imposta il parametro a true se vuoi usare il protocollo 'https'.
+        $secure = true; // Imposta il parametro a true se vuoi usare il protocollo 'https'.
         $httponly = true; // Questo impedirà ad un javascript di essere in grado di accedere all'id di sessione.
         ini_set('session.use_only_cookies', 1); // Forza la sessione ad utilizzare solo i cookie.
         $cookieParams = session_get_cookie_params(); // Legge i parametri correnti relativi ai cookie.
@@ -52,6 +50,25 @@ function login($username, $password, $mysqli) {
       }
       } else {
          // L'utente inserito non esiste.
+         return false;
+      }
+   }
+}
+
+function checkbrute($user_id, $mysqli) {
+   // Recupero il timestamp
+   $now = time();
+   // Vengono analizzati tutti i tentativi di login a partire dalle ultime due ore.
+   $valid_attempts = $now - (2 * 60 * 60); 
+   if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > '$valid_attempts'")) { 
+      $stmt->bind_param('i', $user_id); 
+      // Eseguo la query creata.
+      $stmt->execute();
+      $stmt->store_result();
+      // Verifico l'esistenza di più di 5 tentativi di login falliti.
+      if($stmt->num_rows > 5) {
+         return true;
+      } else {
          return false;
       }
    }

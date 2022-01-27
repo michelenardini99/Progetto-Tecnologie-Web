@@ -31,7 +31,11 @@ if(isset($_GET['error'])) {
                 <img src="./../resources/icon.png" alt="">
             </div>
             <div class="text-center mt-4 name"> PokeZone </div>
-            <form method="post" action="handler/process_login.php" class="p-3 mt-3">
+            <form method="post" action="handler/registerSession.php" class="p-3 mt-3">
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                    <input name="email" id="email" type="text" placeholder="Email">
+                </div>
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
                     <input name="userName" id="userName" type="text" placeholder="Username">
@@ -42,7 +46,6 @@ if(isset($_GET['error'])) {
                 </div>
                     <input class="btn mt-3" type="button" value="Login" onclick="formhash(this.form, this.form.pwd);" >
             </form>
-            <div class="text-center fs-6"> <a href="register.php">Sign up</a> </div>
         </div>
     </main>
 </body>

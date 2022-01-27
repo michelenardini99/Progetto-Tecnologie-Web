@@ -46,7 +46,15 @@
                         <img src="../resources/vera.png" width="75" height="75" alt="">
                     </div>
                     <div>
-                        <p>Login</p>
+                        <p>
+                            <?php 
+                                if(isset($_GET['utente'])){
+                                    echo "".$_GET['utente'];
+                                }else{
+                                    echo "Login";
+                                }
+                            ?>    
+                        </p>
                     </div>
                 </li>
             </a>
