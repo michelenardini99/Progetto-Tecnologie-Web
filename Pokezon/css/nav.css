@@ -115,7 +115,23 @@
 }
 
 @media screen and (max-width:1200px){
+  .nav-container{
+    text-align: center;
+    list-style-type: none;
+    display: none;
+    background-color: white;
+  }
+
   .nav-container a li{
+    text-align: center;
+    margin: 2px auto;
+  }
+
+  .active{
+    display: grid;
+  }
+
+  .nav-home div img, .nav-item div img, .nav-poke div img{
     display: none;
   }
 
@@ -170,7 +186,7 @@
 }
 
 
-a{
+.navbar > a{
   text-decoration: none;
   font-size: 20px;
   color: black;

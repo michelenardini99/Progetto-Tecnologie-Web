@@ -9,6 +9,14 @@
   display: none;
 }
 
+.mySlides a img{
+  border-radius: 16px 16px 0px 0px;
+}
+
+.mySlides a {
+  text-decoration:none;
+}
+
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
@@ -38,14 +46,31 @@
 
 /* Caption text */
 .text {
-  color: black;
+  color: white;
   font-size: 15px;
   padding: 8px 12px;
   bottom: 8px;
   width: 100%;
   text-align: center;
+  margin-right:100vw;
+  border-radius: 0px 0px 16px 16px;
 }
 
+.text p{
+  animation:sliding 20s linear;
+}
+
+.text:last-child {
+  margin:0
+}
+
+@keyframes sliding  {
+  100% {
+     left:0;
+     transform:translateX(-100%);
+  }
+
+}
 
 /* The dots/bullets/indicators */
 .dot {
@@ -59,9 +84,6 @@
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
-  background-color: #717171;
-}
 
 /* Fading animation */
 .fade {

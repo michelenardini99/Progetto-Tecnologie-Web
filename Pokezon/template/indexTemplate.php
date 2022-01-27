@@ -16,19 +16,34 @@
 
 			<div class="slideshow-container">
     <!-- Full-width images with number and caption text -->
-<div class="mySlides fade">
-  <img src="https://tcg.pokemon.com/assets/img/home/wallpapers/wallpaper-42.jpg" style="width:100%">
-  <div class="text">Caption Text</div>
+<div class="mySlides">
+<a href="pokemonDetail.php?id=145">
+<img src="../resources/slide1.jpg" id="img1" style="width:100%">
+  <div class="text" id="text1">
+      <h1>Zapdos is here!!!!</h1>
+      <p>Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+  </div>
+</a>
 </div>
 
-<div class="mySlides fade">
-  <img src="https://tcg.pokemon.com/assets/img/home/wallpapers/wallpaper-41.jpg" style="width:100%">
-  <div class="text">Caption Two</div>
+<div class="mySlides">
+<a href="pokemonDetail.php?id=146">
+   <img src="../resources/slide2.jpg" id="img2" style="width:100%">
+  <div class="text" id="text2">
+        <h1>Moltres is here!!!!</h1>
+      <p>Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+  </div>
+</a>
 </div>
 
-<div class="mySlides fade">
-  <img src="https://tcg.pokemon.com/assets/img/home/wallpapers/wallpaper-40.jpg" style="width:100%">
-  <div class="text">Caption Three</div>
+<div class="mySlides">
+<a href="pokemonDetail.php?id=147">
+    <img src="../resources/slide1.jpg" id="img3" style="width:100%">
+  <div class="text" id="text3">
+  <h1>Articuno is here!!!!</h1>
+      <p>Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+  </div>
+</a>
 </div>
 
 <!-- Next and previous buttons -->
@@ -44,6 +59,7 @@
 <span class="dot" onclick="currentSlide(3)"></span>
 </div>
 <script src="./js/slideShow.js" type="text/javascript"></script>
+<script src="./js/color.js" type="text/javascript"></script>
         <aside style="text-align: right">
             Carrello
         </aside>

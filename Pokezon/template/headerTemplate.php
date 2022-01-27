@@ -9,7 +9,7 @@
         <button class="hb-button" id="hb-btn">
             <img src="../resources/navbtn.png" width="60" height="60" alt="">
         </button>
-        <ul class="nav-container">
+        <ul class="nav-container" id="nav">
             <a href="index.php">
                 <li class="nav-home">
                     <div>
@@ -54,3 +54,4 @@
             <img src="../resources/shopping.png" width="75" height="75" alt="">
         </button>
     </nav>
+    <script src="./js/navScript.js"></script>
