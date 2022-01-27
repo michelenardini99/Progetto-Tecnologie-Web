@@ -42,7 +42,7 @@ if(isset($_GET['error'])) {
                 </div>
                     <input class="btn mt-3" type="button" value="Login" onclick="formhash(this.form, this.form.pwd);" >
             </form>
-            <div class="text-center fs-6"> <a href="#">Forget password?</a> or <a href="register.php">Sign up</a> </div>
+            <div class="text-center fs-6"> <a href="#">Forget password?</a> or <a href="#">Sign up</a> </div>
         </div>
     </main>
 </body>
