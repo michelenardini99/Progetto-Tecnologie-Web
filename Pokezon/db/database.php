@@ -41,6 +41,28 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getColor($id){
+                $stmt = $this->db->prepare("
+                    select color from types_color where types_color.name = ?
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getTypes($id){
+                $stmt = $this->db->prepare("
+                    select distinct identifier from types
+                    inner join pokemon_types on types.id = pokemon_types.type_id
+                    where pokemon_types.pokemon_id = ?;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function getName($id){
                 $stmt = $this->db->prepare("
                     select identifier from pokemon
