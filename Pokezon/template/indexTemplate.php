@@ -60,18 +60,22 @@
 </div>
 <script src="./js/slideShow.js" type="text/javascript"></script>
 <script src="./js/color.js" type="text/javascript"></script>
-        <aside style="text-align: right">
-            Carrello
-        </aside>
-
-		<aside style="text-align: left">
-            Pokemon casuali
-        </aside>
-
-		<aside style="text-align: left">
-            Item casuali
-        </aside>
-    </main>
+    <div class="RandomPokemon">
+        <?php
+            $id = $dbh->getRandomPokemon();
+            $name = $dbh->getName($id);
+            $len = strlen($id[0]['id']);
+            if ($len == "1") {
+                $id[0]['id'] = "00" . $id[0]['id'];
+            } elseif ($len == "2") {
+                $id[0]['id'] = "0" . $id[0]['id'];
+            }
+        ?>
+        <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id[0]['id'] . ".png" ?> alt="">
+        <p class="pokeId"><?php echo "N°".$id[0]['id']?></p>
+        <h2 class="namePok"><?php  echo $name ?></h2>
+    </div>
+</main>
 </body>
 <footer>
     <p style="text-align: center" >

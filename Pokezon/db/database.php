@@ -16,6 +16,41 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function getRandomPokemon(){
+                $stmt = $this->db->prepare("
+                SELECT p.id, p.identifier, px.identifier as region
+                    FROM pokemon p, pokemon_dex_numbers pn, pokedexes px  
+                    where pn.pokedex_id = px.id
+                    and px.identifier = 'national'
+                    and p.species_id = pn.species_id
+                    and p.identifier not like '%-alola'
+                    and p.identifier not like '%-galar'
+                    and p.identifier not like 'minior%'
+                    and p.identifier not like 'mimikyu%'
+                    and p.identifier not like '%-mega'
+                    and p.identifier not like '%-mega-%'
+                    and p.identifier not like 'pikachu-%'
+                    and p.identifier not like 'eevee-starter'
+                    and p.identifier not like 'marowak-totem'
+                    ORDER BY RAND()
+                    LIMIT 1" 
+                    );
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getName($id){
+                $stmt = $this->db->prepare("
+                    select identifier from pokemon
+                    where id = ?
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
             
             public function pokeItemGetter(){
                 // $stmt = $this->db->prepare("SELECT identifier FROM items;");

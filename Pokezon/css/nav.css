@@ -28,6 +28,7 @@
   margin: -7px 20px;
 }
 
+
 .shop-button{
   position: absolute;
     top: 20px;
@@ -139,11 +140,11 @@
     margin: 2px auto;
   }
 
-  .active{
+  .activeNav{
     display: grid;
   }
 
-  .nav-home div img, .nav-item div img, .nav-poke div img{
+  .nav-home div img, .nav-item div img, .nav-poke div img, .nav-login div img{
     display: none;
   }
 
