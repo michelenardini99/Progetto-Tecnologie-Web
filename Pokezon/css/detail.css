@@ -19,7 +19,7 @@ body{
 
 .container div{
     padding: 10px;
-    border: 1px solid black; /* to see borders */
+     /* border: 1px solid black; /* to see borders */
 
     justify-self: center; /*center a div in grid */
 }
@@ -30,12 +30,55 @@ body{
 
     grid-row-start: 1;
     grid-row-end: 3;
-
-    width: 475px;
-    height: 475px;
+    width: 355px;
+    height: 355px;
 }
 
 .name {
     font-family: fantasy;
     font-size: large;
 }
+
+
+/* table stuff */
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: black;
+}
+
+th {
+	text-align: left;
+    
+}
+
+thead > th{
+	    background-color: #55608f;
+}
+
+tbody > tr:hover {
+			background-color: rgba(255,255,255,0.3);
+}
+	
+    td {
+		position: relative;
+    }
+     td:hover::before{
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+	}

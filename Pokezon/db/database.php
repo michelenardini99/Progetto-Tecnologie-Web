@@ -63,18 +63,35 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function getMovesFromID($id){
+            public function getAbilitiesFromID($id){
                 $stmt = $this->db->prepare("
                 SELECT * FROM `pokemon_abilities` pa 
                 join abilities a on pa.ability_id= a.id
-                where pokemon_id = ?;
+               	join `ability_prose` ap on a.id = ap.ability_id
+                where pokemon_id = ?
+                and ap.local_language_id = 9;
                 ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
-
+            
+            public function getMovesFromID($id){
+                $stmt = $this->db->prepare("
+                SELECT *
+                FROM `pokemon_moves` pm, moves m
+                where m.id in(SELECT DISTINCT	id
+                FROM `pokemon_moves` pm, moves m
+                where pm.move_id = m.id 
+                and pokemon_id = ?)
+                LIMIT 4;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
 
             public function getPokemonFromRegionIdentifier($regionName){
                 $stmt = $this->db->prepare("

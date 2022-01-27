@@ -90,19 +90,19 @@
   background-color: white;
 }
 
-.nav-poke:hover{
+.nav-item:hover{
   background-color: orange;
 }
 
-.nav-poke{
+.nav-item{
   border-bottom: 5px solid orange;
 }
 
-.nav-item:hover{
+.nav-poke:hover{
   background-color: palegreen;
 }
 
-.nav-item{
+.nav-poke{
   border-bottom: 5px solid palegreen;
 }
 
@@ -114,6 +114,18 @@
   border-bottom: 5px solid red;
 }
 
+.nav-login:hover{
+  background-color:  rgb(152, 244, 251);
+}
+
+.nav-login{
+  border-bottom: 5px solid rgb(152, 244, 251);
+}
+
+.nav-login > div > img {
+  height: 50px;
+  width: 50px;
+}
 @media screen and (max-width:1200px){
   .nav-container{
     text-align: center;
@@ -185,6 +197,11 @@
   }
 }
 
+nav > a > img {
+  height: 128px;
+  width: 165px;
+  margin-top: 7px;
+}
 
 .navbar > a{
   text-decoration: none;
