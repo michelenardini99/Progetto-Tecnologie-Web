@@ -64,12 +64,6 @@
                 </b>
                 <?php echo "" . $pokemon['base_happiness'] ?>
             </p>
-            <p>
-                <b>
-                    Habitat:
-                </b>
-                <?php echo ucfirst("" . $pokemon['habitat']) ?>
-            </p>
             <?php if (!is_null($pokemon['evolves_from_species_id'])) { ?>
                 <p>
                     Evolves from: <?php echo "" . $dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'] ?>

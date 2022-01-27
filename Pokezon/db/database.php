@@ -52,9 +52,8 @@ class DatabaseHelper{
 
             public function getInfoAbout($id){
                 $stmt = $this->db->prepare("
-                SELECT *,p.identifier as name, ph.identifier as habitat FROM `pokemon` p 
+                SELECT *,p.identifier as name FROM `pokemon` p 
                 join pokemon_species ps on p.id = ps.id 
-                join pokemon_habitats ph on  ps.habitat_id = ph.id
                 where p.id = ?;
                 ");
                 $stmt->bind_param('s',$id);
