@@ -55,4 +55,23 @@ function login($username, $password, $mysqli) {
    }
 }
 
+function checkbrute($user_id, $mysqli) {
+   // Recupero il timestamp
+   $now = time();
+   // Vengono analizzati tutti i tentativi di login a partire dalle ultime due ore.
+   $valid_attempts = $now - (2 * 60 * 60); 
+   if ($stmt = $mysqli->prepare("SELECT time FROM login_attempts WHERE user_id = ? AND time > '$valid_attempts'")) { 
+      $stmt->bind_param('i', $user_id); 
+      // Eseguo la query creata.
+      $stmt->execute();
+      $stmt->store_result();
+      // Verifico l'esistenza di più di 5 tentativi di login falliti.
+      if($stmt->num_rows > 5) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+}
+
 ?> 
