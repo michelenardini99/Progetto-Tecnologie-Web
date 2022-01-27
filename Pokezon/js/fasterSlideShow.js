@@ -14,7 +14,7 @@ function showSlides() { // todo
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}
   slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 500); // Change image every 2 seconds
+  setTimeout(showSlides, 500); 
   } catch (error){
       console.error();
   }

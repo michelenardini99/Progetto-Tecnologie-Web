@@ -11,8 +11,12 @@
     margin: auto 5px;
 }
 
-.pokemon > figure > img, .item> figure > img {
+.pokemon > figure > img{
    width: 180%;  /* some zoom on them */ 
+}
+
+.item > figure > img {
+  width: 120%;  /* some zoom on them */
 }
 
 .table{
