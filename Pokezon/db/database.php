@@ -187,5 +187,18 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getValueFromName($name){
+                $stmt = $this->db->prepare("
+                SELECT * from `pokemon_value`
+                    where name = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+
+
         }
 ?>
