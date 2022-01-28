@@ -20,7 +20,7 @@
             if(isset($_GET['error'])):?>
 
             <h2 style="text-align: center; margin-top: 20px;">
-                <?php echo "".$_GET['error'];?>
+                <?php echo "".$_GET['error'];?> <!-- error Message -->
             </h2>
                 <?php endif ?>
         </div>
@@ -42,7 +42,7 @@
                     <span class="fas fa-key"></span> 
                     <input type="password" name="p" id="pwd" placeholder="Password">
                 </div>
-                    <input class="btn mt-3" type="button" value="Login" onclick="formhash(this.form, this.form.pwd);" >
+                    <input class="btn mt-3" type="button" value="Register" onclick="formhash(this.form, this.form.pwd);" >
             </form>
         </div>
     </main>
