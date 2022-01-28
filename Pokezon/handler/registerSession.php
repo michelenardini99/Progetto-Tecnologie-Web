@@ -8,7 +8,9 @@ sec_session_start(); // usiamo la nostra funzione per avviare una sessione php s
 
 echo "gonna log you bastard";
 
-if(isset($_POST['userName'], $_POST['p'], $_POST['email'])) { 
+if(isset($_POST['userName'], $_POST['p'], $_POST['email']) &&
+!(strlen($_POST['p']) == 0 || !(preg_match_all('/[a-z_]/i',$_POST['userName']) == strlen($_POST['userName'])) 
+ || !preg_match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/", $_POST['email']))) { 
    $username = $_POST['userName'];
    $password = $_POST['p']; // Recupero la password criptata.
    $email =$_POST['email']; 
@@ -31,5 +33,7 @@ if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password
    // Esegui la query ottenuta.
    $insert_stmt->execute();
 } 
+} else {
+   header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/register.php?error=Wrong data (￣︿￣) Use an email or insert a password or simply drink less poke-beer next time... ( ಠ_ಠ )");
 }
 ?>

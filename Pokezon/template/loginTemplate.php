@@ -22,8 +22,8 @@ if(isset($_GET['error'])) {
 <body>
     <main>
         <div>
-            <h1 style="text-align: center;">
-                Welcome you bastard
+            <h1 style="text-align: center; margin-top: 20px;">
+                Welcome
             </h1>
         </div>
         <div class="wrapper">

@@ -13,18 +13,16 @@
     <script type="text/javascript" src="js/forms.js"></script>
 </head>
 
-<?php
-if(isset($_GET['error'])) { 
-   echo 'Error Logging In!';
-}
-?>
-
 <body>
     <main>
         <div>
-            <h1 style="text-align: center;">
-                Welcome you bastard
-            </h1>
+            <?php 
+            if(isset($_GET['error'])):?>
+
+            <h2 style="text-align: center; margin-top: 20px;">
+                <?php echo "".$_GET['error'];?>
+            </h2>
+                <?php endif ?>
         </div>
         <div class="wrapper">
             <div class="loginLogo">
