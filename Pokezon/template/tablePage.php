@@ -15,6 +15,26 @@
 <body>
     <section>
 
+<?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
+
+<form action="" method="get">
+<nav class="region-nav"  id="region-nav">
+<ul>
+    <?php 
+            if(isset($_GET["region"])){
+                $name = $_GET["region"];
+            }
+            $regionList = $dbh->getRegionNames();
+            foreach($regionList as $region): ?> 
+            <li> 
+                <a class="region" id="region" href="./tablePokemon.php?region=<?php echo "".$region['identifier']?>">
+                <?php echo "".$region['identifier']?>
+            </a>
+            </li>
+            <?php endforeach;?>
+</ul> 
+</nav>
+</form>
     <div class="slideshow-container" style="margin-top: 200px; margin-right: 43%">
   <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
@@ -43,41 +63,12 @@
     </div>
     </section>
   <script src="./js/fasterSlideShow.js" type="text/javascript"></script>
-
- <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
     <section>
-                <!-- shit not working --> 
-                <script> 
-                    $(document).ready(function(){
-                    $("select.selPoke").change(function(){
-                    var selectedCountry = $(this).children("option:selected").val();
-                    alert("You have selected the country - " + selectedCountry);
-                    });
-                });
-                </script>
-
-        <div class="selPoke" style="width:200px;">  
-                <form action="" method="get">
-            <p>Choose your region</p>
-          <select name="regions" id="regions">
-              <?php 
-                    $name = $_GET["regions"];
-                    $regionList = $dbh->getRegionNames();
-                    echo "".$name;
-            foreach($regionList as $region): ?> 
-                <option value=<?php echo "".$region['identifier']?> >
-                    <?php echo "".$region['identifier']?> 
-                </option>
-              <?php endforeach;?>
-          </select>
-          <input type="submit" value="Submit">
-        </form>
         </div>
-
        <ul class="table" >
             <?php
-                    if(isset($_GET["regions"])){
-                        $pokeList = $dbh->getPokemonFromRegionIdentifier($_GET["regions"]);
+                    if(isset($_GET["region"])){
+                        $pokeList = $dbh->getPokemonFromRegionIdentifier($_GET["region"]);
                     } else { 
                         $pokeList = $dbh->pokeGetter();
                     }
@@ -87,7 +78,6 @@
                 <li class="pokemon">
                      <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
-                            
                          <a href=<?php echo "./pokemonDetail.php?id=".$pokemon["id"]?>>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
                      </figure>
@@ -107,6 +97,26 @@
         </section>
 
     <?php } elseif ($templateParams['titolo'] == "Item List"){  ?> <!-- Clicked on ITEM page -->
+
+<form action="" method="get">
+<nav class="item-nav">
+<ul>
+    <?php 
+            if(isset($_GET["category"])){
+                $name = $_GET["category"];
+            }
+            $categories = $dbh->pokeItemCategoriesGet();
+            foreach($categories as $category): ?> 
+            <li> 
+                <a href="./tablePokemon.php?region=<?php echo "".$region['identifier']?>">
+                <?php echo "".$category['identifier']?>
+            </a>
+            </li>
+            <?php endforeach;?>
+</ul> 
+</nav>
+</form>
+ 
 
     <section>
         <ul class="table">
@@ -130,4 +140,5 @@
         </ul>
         </section>
 <?php }?>
+<script src="./js/regionBar.js"></script>
 </body>

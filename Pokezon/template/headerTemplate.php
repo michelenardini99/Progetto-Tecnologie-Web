@@ -64,4 +64,4 @@
             <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
         </button>
     </nav>
-    <script src="./js/navScript.js"></script>
+<script src="./js/navScript.js"></script>

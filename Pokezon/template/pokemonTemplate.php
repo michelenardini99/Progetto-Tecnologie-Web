@@ -66,7 +66,10 @@
             </p>
             <?php if (!is_null($pokemon['evolves_from_species_id'])) { ?>
                 <p>
-                    Evolves from: <?php echo "" . $dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'] ?>
+                    Evolves from: 
+                    <a href=<?php echo "./pokemonDetail.php?id=".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['id']?>>
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'].".png" ?> alt="">
+                    </a> <?php  echo ucfirst("".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'])?>
                 </p>
             <?php } ?>
             <!-- evolution forward is complicated -->

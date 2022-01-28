@@ -6,10 +6,8 @@ function showSlides() { // todo
   var i;
   var slides = document.getElementsByClassName("mySlides");
   
-  console.log(slides.length);
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
-    console.log(slides.length);
   }
   slideIndex++;
   if (slideIndex > slides.length) {slideIndex = 1}
