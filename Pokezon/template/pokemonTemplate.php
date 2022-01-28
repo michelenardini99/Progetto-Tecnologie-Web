@@ -15,14 +15,14 @@
                 $pokemonID = "0" . $pokemonID;
             }
 
-            function toFloatDecim($value)
+            function toFloatDecim($value)           /* utilies to height and weight for pokemon */
             {
                 $num = floatval($value);
                 $num /= 10;
                 return number_format($num, 2, '.', '');
             }
 
-            function betterProse($str)
+            function betterProse($str)              /* prose on db sucks so need to be improved removing {} macro */
             {
                 $str = preg_replace("/\{[^}]+\}/", "", $str);
                 $str = str_replace(']', '', $str);
@@ -31,7 +31,7 @@
                 return $str;
             }
             ?>
-            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="">
+            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?>>
         </div>
         <div class="name">
             <?php echo "" . ucfirst($pokemon['name']) ?>
@@ -85,16 +85,16 @@
             <div class="abilityTable">
                 <table>
                     <tr>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Identifier
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             PP
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Accuracy
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Power
                         </th>
                     </tr>
@@ -102,7 +102,6 @@
                         <?php
                         foreach ($moves as $move) : ?>
                             <tr>
-
                                 <td>
                                     <?php echo "" . $move['identifier'] ?>
                                 </td>
@@ -120,7 +119,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
         <div class="shopping-cart">
             carrello
