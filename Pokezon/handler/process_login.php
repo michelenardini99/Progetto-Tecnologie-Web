@@ -9,15 +9,21 @@ if(isset($_POST['userName'], $_POST['p'])) {
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
                 }
+
+      if(userLogged($dbh, $username)){
+         header('Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/login.php?error=You\'re already logged ( ͡° ͜ʖ ͡°)');
+         exit();
+      }
+
    if(login($username, $password, $dbh) == true) {
     // Login success 
       echo 'Success: You have been logged in!';
-
       header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php?utente=".$username); // TODO usare template params
-      exit();
+     exit();
    } else {
       // Login fail 
-      header('Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/login.php?error=You\'re not logged, Identify yourself ! ( ͡° ͜ʖ ͡°)');
+     header('Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/login.php?error=You\'re not logged, Identify yourself ! ( ͡° ͜ʖ ͡°)');
+     exit();
    }
 } else { 
    // Post now working
