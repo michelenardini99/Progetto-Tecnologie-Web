@@ -15,11 +15,12 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
-public function logOut($username){
-   $stmt = $this-> db ->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
-   $stmt->bind_param('s', $username); 
-   $stmt -> execute();
-}
+            public function logOut($username){
+               $stmt = $this-> db ->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
+               $stmt->bind_param('s', $username); 
+               $stmt -> execute();
+            }
+
             public function pokeGetter(){
                 /*$stmt = $this->db->prepare("SELECT * FROM pokemon;");*/
                 $stmt = $this->db->prepare("SELECT * FROM pokemon LIMIT 898;");
@@ -44,6 +45,7 @@ public function logOut($username){
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
+                    and p.id < 10008
                     ORDER BY RAND()
                     LIMIT 1" 
                     );
@@ -176,6 +178,7 @@ public function logOut($username){
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
+                    and p.id < 10008
                     limit 500; 
                 ");
                 $stmt->bind_param('s',$regionName);
