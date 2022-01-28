@@ -21,7 +21,7 @@
 <img src="../resources/slide1.jpg" id="img1" style="width:100%">
   <div class="text" id="text1">
       <h1>Zapdos is here!!!!</h1>
-      <p>Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+      <p><span class="blink" >Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
   </div>
 </a>
 </div>
@@ -31,7 +31,7 @@
    <img src="../resources/slide2.jpg" id="img2" style="width:100%">
   <div class="text" id="text2">
         <h1>Moltres is here!!!!</h1>
-      <p>Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+      <p><span class="blink" >Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
   </div>
 </a>
 </div>
@@ -41,7 +41,7 @@
     <img src="../resources/slide1.jpg" id="img3" style="width:100%">
   <div class="text" id="text3">
   <h1>Articuno is here!!!!</h1>
-      <p>Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</p>
+      <p><span class="blink">Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
   </div>
 </a>
 </div>
@@ -58,20 +58,37 @@
 <span class="dot" onclick="currentSlide(2)"></span>
 <span class="dot" onclick="currentSlide(3)"></span>
 </div>
+<div class="pokemon">
+        <?php
+            $id = $dbh->getRandomPokemon();
+            $pokemon = ($dbh->getInfoAbout($id[0]['id']))[0];
+            $types = $dbh->getTypes($id[0]['id']);
+            $len = strlen($id[0]['id']);
+            if ($len == "1") {
+                $id[0]['id'] = "00" . $id[0]['id'];
+            } elseif ($len == "2") {
+                $id[0]['id'] = "0" . $id[0]['id'];
+            }
+        ?>
+        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id[0]['id'] . ".png" ?>" alt="">
+        <div class="pokeDescr" id="descr">
+            <p class="pokeId"><?php echo "N°".$id[0]['id']?></p>
+            <h2 class="namePok"><?php  echo "".ucfirst($pokemon['name']) ?></h2>
+            <ul class="types">
+                <?php
+                    foreach ($types as $type) {
+                        $color = $dbh->getColor($type['identifier']);
+                ?>
+                    <li class="types-name" style="list-style-type: none; background-color: <?php  echo $color[0]['color'] ?>"><p><?php echo $type['identifier'] ?></p></li>
+                <?php
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
 <script src="./js/slideShow.js" type="text/javascript"></script>
 <script src="./js/color.js" type="text/javascript"></script>
-        <aside style="text-align: right">
-            Carrello
-        </aside>
-
-		<aside style="text-align: left">
-            Pokemon casuali
-        </aside>
-
-		<aside style="text-align: left">
-            Item casuali
-        </aside>
-    </main>
+</main>
 </body>
 <footer>
     <p style="text-align: center" >
