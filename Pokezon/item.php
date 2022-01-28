@@ -1,5 +1,11 @@
 <?php 
     require_once('handler/bootstrap.php');
+
+    if(isset($dbh -> getActiveUser()[0]['username'])){
+    $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
+}
+
+
 ?>
     <body>
         <header>

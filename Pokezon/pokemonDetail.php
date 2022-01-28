@@ -3,7 +3,11 @@
 
 //Base Template
 $templateParams["titolo"] = $_GET["id"];
-//$templateParams["nome"] = "lista-articoli.php";
+if(isset($dbh -> getActiveUser()[0]['username'])){
+    $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
+}
+
+
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 

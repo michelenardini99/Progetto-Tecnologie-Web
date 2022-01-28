@@ -47,9 +47,9 @@
                     </div>
                     <div>
                         <p>
-                            <?php 
-                                if(isset($_GET['utente'])){
-                                    echo "".$_GET['utente'];
+                            <?php
+                                if(isset($templateParams['nome'])){
+                                    echo "".$templateParams['nome'];
                                 }else{
                                     echo "Login";
                                 }
@@ -62,6 +62,11 @@
         </a>
         <button class="shop-button" id="shop-btn">
             <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
+        </button>
+        <button>
+            <a href="./logOut.php">
+                LogOut
+            </a>
         </button>
     </nav>
 <script src="./js/navScript.js"></script>

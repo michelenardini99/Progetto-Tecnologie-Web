@@ -95,9 +95,5 @@ function logged($mysqli, $username){
    $stmt -> execute();
 }
 
-function logOut($mysqli, $username){
-   $stmt = $mysqli->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
-   $stmt->bind_param('s', $username); 
-   $stmt -> execute();
-}
+
 ?> 

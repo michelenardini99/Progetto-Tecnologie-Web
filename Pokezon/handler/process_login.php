@@ -18,8 +18,8 @@ if(isset($_POST['userName'], $_POST['p'])) {
    if(login($username, $password, $dbh) == true) {
     // Login success 
       echo 'Success: You have been logged in!';
-      header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php?utente=".$username); // TODO usare template params
-     exit();
+      header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php"); // TODO usare template params
+      exit();
    } else {
       // Login fail 
      header('Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/login.php?error=You\'re not logged, Identify yourself ! ( ͡° ͜ʖ ͡°)');
