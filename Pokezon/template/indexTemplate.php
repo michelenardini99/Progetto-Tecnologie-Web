@@ -58,9 +58,12 @@
 <span class="dot" onclick="currentSlide(2)"></span>
 <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-<div class="pokemon">
-        <?php
+<?php
             $id = $dbh->getRandomPokemon();
+?>
+<a class = "linkPok"href="pokemonDetail.php?id=<?php echo $id[0]['id'] ?>">
+    <div class="pokemon">
+        <?php
             $pokemon = ($dbh->getInfoAbout($id[0]['id']))[0];
             $types = $dbh->getTypes($id[0]['id']);
             $len = strlen($id[0]['id']);
@@ -86,12 +89,33 @@
             </ul>
         </div>
     </div>
+</a>
+<div class="shopping-cart">
+    <?php 
+        $userId = $dbh->getUserId($_GET['utente']);
+        $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
+        foreach($pokemonsOrder as $pokemon){
+            $len = strlen($pokemon['id']);
+            if ($len == "1") {
+                $pokemon['id'] = "00" . $pokemon['id'];
+            } elseif ($len == "2") {
+                $pokemon['id'] = "0" . $pokemon['id'];
+            }
+    ?>
+    <div>
+        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemon['id'] . ".png" ?>" alt="" width="250" height="250">
+        <div class="pokeShop" id="descr">
+            <p class="idPokeShop"><?php echo "N°".$pokemon['id']?></p>
+            <h2 class="namePokeShop"><?php  echo "".ucfirst($pokemon['identifier']) ?></h2>
+        </div>
+    </div>
+    <?php        
+        }
+    ?>
+</div>
 <script src="./js/slideShow.js" type="text/javascript"></script>
 <script src="./js/color.js" type="text/javascript"></script>
 </main>
 </body>
 <footer>
-    <p style="text-align: center" >
-        Serafino Pokemon Enjoyer
-    </p>
 </footer>

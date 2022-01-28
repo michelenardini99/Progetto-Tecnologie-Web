@@ -1,5 +1,5 @@
 CREATE TABLE `pokedb`.`members` (
-  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` VARCHAR(30) NOT NULL, 
   `email` VARCHAR(50) NOT NULL, 
   `password` CHAR(128) NOT NULL, 
@@ -10,6 +10,19 @@ CREATE TABLE `pokedb`.`login_attempts` (
   `user_id` INT(11) NOT NULL,
   `time` VARCHAR(30) NOT NULL 
 ) ENGINE=InnoDB;
+
+CREATE TABLE `pokedb`.`order`(
+  `id_order` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(30),
+  FOREIGN KEY (`username`) REFERENCES `pokedb`.`members`(`username`)
+) ENGINE=InnoDB;
+
+CREATE TABLE orders_pokemon(
+	orderId INT(11),
+    pokemonId INT(11),
+    FOREIGN KEY(orderId) REFERENCES orders(orders.orderId),
+    FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
+);
 
 CREATE TABLE `pokedb`.`types_color` (
   `name` VARCHAR(30) NOT NULL,

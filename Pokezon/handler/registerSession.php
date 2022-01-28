@@ -13,7 +13,7 @@ if(isset($_POST['userName'], $_POST['p'], $_POST['email'])) {
    $password = $_POST['p']; // Recupero la password criptata.
    $email =$_POST['email']; 
 
-    $dbh = new mysqli("localhost", "root", "", "pokedb", 3360); 
+    $dbh = new mysqli("localhost", "root", "", "pokedb", 3306); 
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
                 }
