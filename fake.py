@@ -10,7 +10,7 @@ def random_with_N_digits(n):
     
 
 cnx = mysql.connector.connect(user='root', password='',
-                              host='127.0.0.1', port=3360, 
+                              host='127.0.0.1', port=3306, 
                               database='pokedb')
 
 query = "SELECT DISTINCT p.identifier    FROM pokemon p where p.identifier not like '%-alola' and p.identifier not like '%-galar' and p.identifier not like 'minior%' and p.identifier not like 'mimikyu%' and p.identifier not like '%-mega' and p.identifier not like '%-mega-%' and p.identifier not like 'pikachu-%' and p.identifier not like 'eevee-starter' and p.identifier not like 'marowak-totem' and p.id < 10008;"

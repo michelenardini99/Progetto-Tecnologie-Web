@@ -12,7 +12,7 @@ setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"]
 // Cancella la sessione.
 session_destroy();
 
-$dbh = new DatabaseHelper("localhost", "root", "", "pokedb", 3360);
+$dbh = new DatabaseHelper("localhost", "root", "", "pokedb", 3306);
 
 $dbh ->logOut(($dbh->getActiveUser())[0]['username']);
 header('Location: ./index.php');
