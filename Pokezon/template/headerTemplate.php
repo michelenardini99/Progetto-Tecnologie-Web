@@ -60,8 +60,10 @@
             </a>
         </ul>
         </a>
-        <button class="shop-button" id="shop-btn">
-            <img src="../resources/shopping.png" width="75" height="75" alt="">
-        </button>
+        <a href="shop.php">
+            <button class="shop-button" id="shop-btn">
+                <img src="../resources/shopping.png" width="75" height="75" alt="">
+            </button>
+        </a>
     </nav>
     <script src="./js/navScript.js"></script>
