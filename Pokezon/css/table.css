@@ -37,6 +37,75 @@
 
 * {box-sizing:border-box}
 
+/* start of region nav */
+
+.region-nav {
+  text-align: center;
+}
+
+.region-nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: palegreen;
+  display: inline-block; /* remove padding on borders */
+}
+
+.region-nav > ul > li {
+  display: inline;
+}
+
+
+.region-nav li a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.region-nav li a:hover {
+  background-color: green;
+}
+
+/* end of region nav */
+
+/* start of item nav */
+
+.item-nav {
+  text-align: center;
+}
+
+.item-nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: orange;
+  display: inline-block; /* remove padding on borders */
+}
+
+.item-nav > ul > li {
+  display: inline;
+}
+
+
+.item-nav li a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.item-nav li a:hover {
+  background-color: yellow;
+}
+
+/* end of item nav */
+
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;

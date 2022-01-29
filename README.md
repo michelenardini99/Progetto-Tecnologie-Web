@@ -22,3 +22,19 @@ https://colorlib.com/wp/template/
 risorsa immagini pokemon secondaria
 
 https://wiki.pokemoncentral.it/Ivysaur
+
+
+SELECT DISTINCT p.identifier 
+                    FROM pokemon p
+                    where p.identifier not like '%-alola'
+                    and p.identifier not like '%-galar'
+                    and p.identifier not like 'minior%'
+                    and p.identifier not like 'mimikyu%'
+                    and p.identifier not like '%-mega'
+                    and p.identifier not like '%-mega-%'
+                    and p.identifier not like 'pikachu-%'
+                    and p.identifier not like 'eevee-starter'
+                    and p.identifier not like 'marowak-totem'
+                    and p.id < 10008;
+
+QUERY per selezionare i pokemon a cui va associato un prezzo con uno script o chesso io

@@ -2,7 +2,12 @@
     require_once('handler/bootstrap.php');
 
 //Base Template
-$templateParams["titolo"] = "Item List";
+$templateParams["titolo"] = "Item List"; 
+if(isset($dbh -> getActiveUser()[0]['username'])){
+    $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
+}
+
+
 //$templateParams["nome"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);

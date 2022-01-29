@@ -14,11 +14,12 @@
     <main>
              <!-- Slideshow container -->
 
-			<div class="slideshow-container">
+<div class="slideshow-container">
+
     <!-- Full-width images with number and caption text -->
 <div class="mySlides">
 <a href="pokemonDetail.php?id=145">
-<img src="../resources/slide1.jpg" id="img1" style="width:100%">
+<img src="../resources/slide1.jpg" id="img1" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text1">
       <h1>Zapdos is here!!!!</h1>
       <p><span class="blink" >Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
@@ -28,7 +29,7 @@
 
 <div class="mySlides">
 <a href="pokemonDetail.php?id=146">
-   <img src="../resources/slide2.jpg" id="img2" style="width:100%">
+   <img src="../resources/slide2.jpg" id="img2" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text2">
         <h1>Moltres is here!!!!</h1>
       <p><span class="blink" >Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
@@ -38,27 +39,31 @@
 
 <div class="mySlides">
 <a href="pokemonDetail.php?id=147">
-    <img src="../resources/slide1.jpg" id="img3" style="width:100%">
+    <img src="../resources/slide1.jpg" id="img3" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text3">
   <h1>Articuno is here!!!!</h1>
       <p><span class="blink">Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
   </div>
 </a>
 </div>
-
-<!-- Next and previous buttons -->
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
-<br>
 
-<!-- The dots/circles -->
-<div style="text-align:center">
+<!-- Not displaying Next and previous buttons -->
+<!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+<br> --> 
+
+<!-- Not displaying The dots/circles -->
+
+<!-- <div style="text-align:center">
 <span class="dot" onclick="currentSlide(1)"></span>
 <span class="dot" onclick="currentSlide(2)"></span>
 <span class="dot" onclick="currentSlide(3)"></span>
-</div>
-<?php
+</div> -->
+
+<div class="pokemon"> <!-- pokemon random cart -->
+        <?php
+
             $id = $dbh->getRandomPokemon();
 ?>
 <a class = "linkPok"href="pokemonDetail.php?id=<?php echo $id[0]['id'] ?>">
@@ -73,11 +78,11 @@
                 $id[0]['id'] = "0" . $id[0]['id'];
             }
         ?>
-        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id[0]['id'] . ".png" ?>" alt="">
-        <div class="pokeDescr" id="descr">
+        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id[0]['id'] . ".png" ?>" alt="image of random suggest pokemon to buy">
+        <div class="pokeDescr" id="descr"> 
             <p class="pokeId"><?php echo "N°".$id[0]['id']?></p>
             <h2 class="namePok"><?php  echo "".ucfirst($pokemon['name']) ?></h2>
-            <ul class="types">
+            <ul class="types">      
                 <?php
                     foreach ($types as $type) {
                         $color = $dbh->getColor($type['identifier']);
@@ -117,5 +122,6 @@
 <script src="./js/color.js" type="text/javascript"></script>
 </main>
 </body>
+
 <footer>
 </footer>

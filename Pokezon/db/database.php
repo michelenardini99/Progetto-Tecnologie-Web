@@ -8,6 +8,18 @@ class DatabaseHelper{
                     die("Connesione fallita al db");
                 }
             }
+            
+            public function getActiveUser(){
+            $stmt = $this->db->prepare("SELECT username FROM `members` where logged = 1;");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            public function logOut($username){
+               $stmt = $this-> db ->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
+               $stmt->bind_param('s', $username); 
+               $stmt -> execute();
+            }
 
             public function pokeGetter(){
                 /*$stmt = $this->db->prepare("SELECT * FROM pokemon;");*/
@@ -48,6 +60,7 @@ class DatabaseHelper{
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
+                    and p.id < 10008
                     ORDER BY RAND()
                     LIMIT 1" 
                     );
@@ -200,6 +213,7 @@ class DatabaseHelper{
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
+                    and p.id < 10008
                     limit 500; 
                 ");
                 $stmt->bind_param('s',$regionName);
@@ -207,6 +221,19 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function getValueFromName($name){
+                $stmt = $this->db->prepare("
+                SELECT * from `pokemon_value`
+                    where name = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+
 
         }
 ?>

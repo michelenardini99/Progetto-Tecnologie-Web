@@ -15,11 +15,11 @@ function sec_session_start() {
 
 function login($username, $password, $mysqli) {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if ($stmt = $mysqli->prepare("SELECT id, username, password, salt FROM members WHERE username = ? LIMIT 1")) { 
+   if ($stmt = $mysqli->prepare("SELECT id, username, password, salt, logged FROM members WHERE username = ? LIMIT 1")) { 
       $stmt->bind_param('s', $username); // esegue il bind del parametro '$email'.
       $stmt->execute(); // esegue la query appena creata.
       $stmt->store_result();
-      $stmt->bind_result($user_id, $username, $db_password, $salt); // recupera il risultato della query e lo memorizza nelle relative variabili.
+      $stmt->bind_result($user_id, $username, $db_password, $salt, $logged); // recupera il risultato della query e lo memorizza nelle relative variabili.
       $stmt->fetch();
       $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
       if($stmt->num_rows == 1) { // se l'utente esiste
@@ -39,6 +39,9 @@ function login($username, $password, $mysqli) {
                $_SESSION['username'] = $username;
                $_SESSION['login_string'] = hash('sha512', $password.$user_browser);
                // Login eseguito con successo.
+
+
+               logged($mysqli, $username);  
                return true;    
          } else {
             // Password incorretta.
@@ -73,5 +76,24 @@ function checkbrute($user_id, $mysqli) {
       }
    }
 }
+
+function userLogged($mysqli, $username){
+   $stmt = $mysqli->prepare("SELECT logged FROM `members` where username=?;");
+   $stmt->bind_param('s', $username); 
+   $stmt -> execute();
+   // Verifico l'esistenza di utenti connessi
+      if(($stmt->get_result())->fetch_all(MYSQLI_ASSOC)[0]['logged'] == 1){
+         return true;
+      } else {
+         return false;
+      }
+}
+
+function logged($mysqli, $username){
+   $stmt = $mysqli->prepare(" UPDATE `members` SET `logged` = '1' WHERE `members`.`username` = ?;");
+   $stmt->bind_param('s', $username); 
+   $stmt -> execute();
+}
+
 
 ?> 

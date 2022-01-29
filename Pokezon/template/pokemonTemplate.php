@@ -15,14 +15,14 @@
                 $pokemonID = "0" . $pokemonID;
             }
 
-            function toFloatDecim($value)
+            function toFloatDecim($value)           /* utilies to height and weight for pokemon */
             {
                 $num = floatval($value);
                 $num /= 10;
                 return number_format($num, 2, '.', '');
             }
 
-            function betterProse($str)
+            function betterProse($str)              /* prose on db sucks so need to be improved removing {} macro */
             {
                 $str = preg_replace("/\{[^}]+\}/", "", $str);
                 $str = str_replace(']', '', $str);
@@ -31,13 +31,18 @@
                 return $str;
             }
             ?>
-            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="">
+            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?>>
         </div>
         <div class="name">
             <?php echo "" . ucfirst($pokemon['name']) ?>
         </div>
         <div class="price">
-            prezzo
+            <h1>
+                <?php 
+                    echo "".$dbh->getValueFromName($pokemon['name'])[0]['value']; 
+                ?>
+                Dollars
+        </h1>
         </div>
         <div class="mosseStats">
             <p>
@@ -66,7 +71,10 @@
             </p>
             <?php if (!is_null($pokemon['evolves_from_species_id'])) { ?>
                 <p>
-                    Evolves from: <?php echo "" . $dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'] ?>
+                    Evolves from: 
+                    <a href=<?php echo "./pokemonDetail.php?id=".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['id']?>>
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'].".png" ?> alt="">
+                    </a> <?php  echo ucfirst("".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'])?>
                 </p>
             <?php } ?>
             <!-- evolution forward is complicated -->
@@ -85,16 +93,16 @@
             <div class="abilityTable">
                 <table>
                     <tr>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Identifier
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             PP
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Accuracy
                         </th>
-                        <th>
+                        <th scope="col">          <!-- col for accessibility -->
                             Power
                         </th>
                     </tr>
@@ -102,7 +110,6 @@
                         <?php
                         foreach ($moves as $move) : ?>
                             <tr>
-
                                 <td>
                                     <?php echo "" . $move['identifier'] ?>
                                 </td>
@@ -120,7 +127,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
         <div class="shopping-cart">
             carrello
