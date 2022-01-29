@@ -1,14 +1,3 @@
-var map = { normal: "#f2f2f2", fighting: "#d56722",
-    flying: "#f2f2f2", poison: "#b97fc9",
-    ground: "#f6de3e", rock: "#a38c22",
-    bug: "#729f40", ghost: "#7a61a2",
-    steel: "#9eb8b9", fire: "#fd7d24",
-    water: "#4593c4", grass: "#9bcc4f",
-    electric: "#efd435", psychic: "#f466ba",
-    ice: "#52c4e8", dragon: "#f16f56",
-    dark: "#707070", fairy: "#fdb9ea",
- }
-
 $( document ).ready(function() {
     
     var colors=["img1","img2","img3"];

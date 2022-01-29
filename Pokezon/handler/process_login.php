@@ -4,7 +4,9 @@ sec_session_start();
 
 if(isset($_POST['userName'], $_POST['p'])) { 
    $username= $_POST['userName'];
-   $password = $_POST['p']; 
+
+   $password = $_POST['p']; // Recupero la password criptata.
+
     $dbh = new mysqli("localhost", "root", "", "pokedb", 3306); 
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
