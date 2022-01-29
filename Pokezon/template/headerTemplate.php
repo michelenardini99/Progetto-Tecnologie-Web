@@ -60,9 +60,11 @@
             </a>
         </ul>
         </a>
-        <button class="shop-button" id="shop-btn">
-            <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
-        </button>
+        <a href="shop.php">
+            <button class="shop-button" id="shop-btn">
+                <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
+            </button>
+        </a>
         <button>
             <a href="./logOut.php">
                 LogOut

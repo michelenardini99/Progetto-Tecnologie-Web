@@ -11,7 +11,6 @@
 	</script>
 </head>
 <body>
-    <?php echo $_GET['utente'] ?>
     <div class="small-container cart-page">
         <table>
             <tr>
@@ -20,7 +19,8 @@
                 <th>Subtotal</th>
             </tr>
             <?php 
-                $userId = $dbh->getUserId($_GET['utente']);
+
+                $userId = $dbh->getUserId($templateParams["nome"]);
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
                 foreach($pokemonsOrder as $pokemon){
                     $len = strlen($pokemon['id']);
@@ -36,11 +36,12 @@
                         <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="" width="200" height="200">
                         <div>
                             <p><?php echo $pokemon['identifier'] ?></p>
-                            <small>Price: $50.00</small>
+                            <small>$<?php echo $pokemon['value']?>.00</small>
+                            <a href="">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="1"></td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>"></td>
                 <td>$50.00</td>
             </tr>
             <?php        

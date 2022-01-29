@@ -21,6 +21,26 @@ class DatabaseHelper{
                $stmt -> execute();
             }
 
+            public function getUserId($username){
+                $stmt = $this->db->prepare("SELECT id FROM `members` where logged = 1;");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getPokemonInShop($id){
+                $stmt = $this->db->prepare("SELECT pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
+                                            INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
+                                            INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
+                                            INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
+                                            where orders.userId = ? AND orders.is_Active = 1;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function pokeGetter(){
                 /*$stmt = $this->db->prepare("SELECT * FROM pokemon;");*/
                 $stmt = $this->db->prepare("SELECT * FROM pokemon LIMIT 898;");
