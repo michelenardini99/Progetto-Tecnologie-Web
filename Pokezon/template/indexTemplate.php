@@ -97,8 +97,11 @@
 </a>
 <div class="shopping-cart">
     <?php 
-        $userId = $dbh->getUserId($_GET['utente']);
+        if(isset($templateParams['name'])){
+        // $userId = $dbh->getUserId($_GET['utente']);
+        $userId = $dbh->getUserId($templateParams['name']);
         $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
+        }
         foreach($pokemonsOrder as $pokemon){
             $len = strlen($pokemon['id']);
             if ($len == "1") {

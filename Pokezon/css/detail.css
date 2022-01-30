@@ -3,8 +3,8 @@ body{
 }
 
 .container{
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 150%;
 
 
     display: grid;
@@ -15,6 +15,10 @@ body{
 
     padding: 10px 0; /* border to page top-bot*/
     box-sizing: border-box;
+
+    border-radius: 40px;
+
+    margin: auto;
 }
 
 .container div{
@@ -26,27 +30,57 @@ body{
 
 .image {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 1;
 
     grid-row-start: 1;
-    grid-row-end: 3;
-    width: 355px;
-    height: 355px;
+    grid-row-end: 1;
 }
 
 .name {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    
+    grid-row-start: 1;
+    grid-row-end: 1; 
+
     font-family: fantasy;
     font-size: large;
+
+    height: 50%;
+}
+
+.price{
+    grid-column-start: 2;
+    grid-column-end: 2;
+
+    grid-row-start: 1;
+    grid-row-end: 2; 
+
+    margin-top: 25%;
+}
+
+.abilityTable{
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+}
+
+.mosseStats {
+   /*  margin-top: 5%; */
 }
 
 
 /* table stuff */
 
+
+
 table {
-	width: 800px;
+	width: 900px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin-top: 10%;
+    margin-left: 4%;
 }
 
 th,

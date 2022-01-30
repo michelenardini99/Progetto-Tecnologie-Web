@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
     require_once('handler/bootstrap.php');
 ?>
     <body>
@@ -21,4 +21,4 @@
                
       <?php endforeach; ?>
        </header>
-    </body>
+    </body> -->

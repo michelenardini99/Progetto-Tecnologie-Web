@@ -4,24 +4,26 @@ CREATE TABLE `pokedb`.`members` (
   `email` VARCHAR(50) NOT NULL, 
   `password` CHAR(128) NOT NULL, 
   `salt` CHAR(128) NOT NULL,
+  `role` CHAR(90) NOT NULL check (`role` in ('Trainer', 'Trader', 'Merchant', 'Druid')),
   `logged` BOOLEAN NOT NULL
 ) ENGINE = InnoDB; 
 
 CREATE TABLE `pokedb`.`login_attempts` (
-  `user_id` INT(11) NOT NULL,
-  `time` VARCHAR(30) NOT NULL 
+  `user_id` INT(71) NOT NULL PRIMARY KEY,
+  `time` VARCHAR(30) NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES members(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `pokedb`.`order`(
+CREATE TABLE `pokedb`.`orders`(
   `id_order` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `username` VARCHAR(30),
-  FOREIGN KEY (`username`) REFERENCES `pokedb`.`members`(`username`)
+  `id` INT NOT NULL,
+  FOREIGN KEY (`id`) REFERENCES `pokedb`.`members`(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE orders_pokemon(
 	orderId INT(11),
     pokemonId INT(11),
-    FOREIGN KEY(orderId) REFERENCES orders(orders.orderId),
+    FOREIGN KEY(orderId) REFERENCES orders(orderId),
     FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
 );
 

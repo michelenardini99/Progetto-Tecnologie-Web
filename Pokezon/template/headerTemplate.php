@@ -40,7 +40,13 @@
                     </div>
                 </li>
             </a>
-            <a href="login.php">
+                <?php
+                                if(isset($templateParams['name'])){
+                                    echo "<a href=\"user.php\">";
+                                }else{
+                                    echo "<a href=\"login.php\">";
+                                }
+                            ?>
                 <li class="nav-login">
                 <div>
                         <img src="../resources/vera.png" width="75" height="75" alt="trainer image to link login page">
@@ -48,8 +54,8 @@
                     <div>
                         <p>
                             <?php
-                                if(isset($templateParams['nome'])){
-                                    echo "".$templateParams['nome'];
+                                if(isset($templateParams['name'])){
+                                    echo "".$templateParams['name'];
                                 }else{
                                     echo "Login";
                                 }

@@ -37,7 +37,7 @@ class DatabaseHelper{
             }
 
             public function getUserID($username){
-                $stmt = $this->db->prepare("select id from members where username = ?");
+                $stmt = $this->db->prepare("select * from members where username = ?");
                 $stmt->bind_param('s',$username);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -183,13 +183,15 @@ class DatabaseHelper{
             
             public function getMovesFromID($id){
                 $stmt = $this->db->prepare("
-                SELECT *
-                FROM `pokemon_moves` pm, moves m
-                where m.id in(SELECT DISTINCT	id
+              SELECT m.*, mep.* 
+                FROM `pokemon_moves` pm, moves m, `move_effect_prose` mep
+                where mep.move_effect_id = m.effect_id
+                and mep.local_language_id = 9
+                and m.id in(SELECT DISTINCT	id
                 FROM `pokemon_moves` pm, moves m
                 where pm.move_id = m.id 
                 and pokemon_id = ?)
-                LIMIT 4;
+                LIMIT 8;
                 ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
