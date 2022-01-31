@@ -43,10 +43,7 @@ body{
     grid-row-start: 1;
     grid-row-end: 1; 
 
-    font-family: fantasy;
-    font-size: large;
 
-    height: 50%;
 }
 
 .price{
