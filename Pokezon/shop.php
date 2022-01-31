@@ -1,9 +1,12 @@
 <?php 
     require_once('handler/bootstrap.php');
 
-//Base Template
-$templateParams["titolo"] = "Shopping Cart";
-//$templateParams["name"] = "lista-articoli.php";
+
+$templateParams["titolo"] = "Shop";
+if(isset($dbh -> getActiveUser()[0]['username'])){
+    $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
+}
+
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
             if(isset($dbh -> getActiveUser()[0]['username'])){
@@ -25,4 +28,6 @@ $templateParams["titolo"] = "Shopping Cart";
 
 
 require 'template/shopTemplate.php';
+
 ?>
+

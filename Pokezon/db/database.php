@@ -21,6 +21,26 @@ class DatabaseHelper{
                $stmt -> execute();
             }
 
+            public function getUserId($username){
+                $stmt = $this->db->prepare("SELECT id FROM `members` where logged = 1;");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getPokemonInShop($id){
+                $stmt = $this->db->prepare("SELECT pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
+                                            INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
+                                            INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
+                                            INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
+                                            where orders.userId = ? AND orders.is_Active = 1;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function pokeGetter(){
                 /*$stmt = $this->db->prepare("SELECT * FROM pokemon;");*/
                 $stmt = $this->db->prepare("SELECT * FROM pokemon LIMIT 898;");
@@ -38,11 +58,18 @@ class DatabaseHelper{
 
             public function getUserID($username){
                 $stmt = $this->db->prepare("select * from members where username = ?");
-                $stmt->bind_param('s',$username);
+                $stmt->bind_param('s',$username);$stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            public function removePokemon(){
+                $stmt = $this->db->prepare("DELETE FROM orders_pokemon WHERE pokemonId = 79
+                ");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
 
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
@@ -64,16 +91,6 @@ class DatabaseHelper{
                     ORDER BY RAND()
                     LIMIT 1" 
                     );
-                $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
-
-            public function getPokemonInShop($userId){
-                $stmt = $this->db->prepare("select pokemon.identifier, pokemon.id from pokemon INNER join orders_pokemon on pokemon.id = orders_pokemon.pokemonId 
-                                            INNER JOIN orders on orders_pokemon.orderId = orders.idOrder
-                                            WHERE orders.userId = ? AND orders.is_active = 1;");
-                $stmt->bind_param('s',$userId);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);

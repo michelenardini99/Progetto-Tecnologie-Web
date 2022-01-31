@@ -15,9 +15,10 @@ CREATE TABLE `pokedb`.`login_attempts` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE `pokedb`.`orders`(
-  `id_order` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `id` INT NOT NULL,
-  FOREIGN KEY (`id`) REFERENCES `pokedb`.`members`(`id`)
+  `idOrder` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `userId` INT,
+  `is_active` boolean,
+  FOREIGN KEY (`userId`) REFERENCES `pokedb`.`members`(`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE orders_pokemon(
@@ -25,6 +26,13 @@ CREATE TABLE orders_pokemon(
     pokemonId INT(11),
     FOREIGN KEY(orderId) REFERENCES orders(orderId),
     FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
+);
+
+CREATE TABLE orders_item(
+	orderId INT(11),
+    itemId INT(11),
+    FOREIGN KEY(orderId) REFERENCES orders(orders.orderId),
+    FOREIGN KEY(itemId) REFERENCES items(id)
 );
 
 CREATE TABLE `pokedb`.`types_color` (
