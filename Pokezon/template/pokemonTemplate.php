@@ -1,7 +1,8 @@
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
 <body>
 <?php
-            $pokemonID = $_GET['id'];
+            
+            $pokemonID = $dbh->getID($_GET['id'])[0]['id'];
             $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
             $abilities = $dbh->getAbilitiesFromID($pokemonID);
             $moves = $dbh->getMovesFromID($pokemonID);

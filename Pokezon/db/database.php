@@ -111,7 +111,17 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function getName($id){
+            public function getID($name){
+                $stmt = $this->db->prepare("
+                    select id from pokemon
+                    where identifier = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+             public function getName($id){
                 $stmt = $this->db->prepare("
                     select identifier from pokemon
                     where id = ?
