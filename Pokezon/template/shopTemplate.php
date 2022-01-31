@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="small-container cart-page">
-        <table>
+        <table id="myTable">
             <tr>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -22,6 +22,7 @@
 
                 $userId = $dbh->getUserId($templateParams["nome"]);
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
+                $i=0;
                 foreach($pokemonsOrder as $pokemon){
                     $len = strlen($pokemon['id']);
                     if ($len == "1") {
@@ -33,20 +34,36 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="" width="200" height="200">
+                        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="">
                         <div>
                             <p><?php echo $pokemon['identifier'] ?></p>
-                            <small>$<?php echo $pokemon['value']?>.00</small>
-                            <a href="">Remove</a>
+                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $pokemon['value']?>.00</p>
+                            <br>
+                            <?php
+                                if(isset($_POST['remove'.$i])){
+                                    echo "<script>console.log('Debug Objects: " . "ciao" . "' );</script>";
+                                }
+                            ?>
+                            <a href="" class="<?php echo 'remove'.$i ?>" onclick="deleteFunc()">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>"></td>
-                <td>$50.00</td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>"></td>
+                <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
-            <?php        
+            <?php       
+                    $i = $i +1; 
                 }
             ?>
         </table>
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td class="total"></td>
+                </tr>
+            </table>
+        </div>
     </div>
+    <script src="./js/shop.js" type="text/javascript"></script>
 </body>

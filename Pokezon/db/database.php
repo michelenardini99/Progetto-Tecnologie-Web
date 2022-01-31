@@ -56,6 +56,14 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function removePokemon(){
+                $stmt = $this->db->prepare("DELETE FROM orders_pokemon WHERE pokemonId = 79
+                ");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
                 SELECT p.id, p.identifier, px.identifier as region
