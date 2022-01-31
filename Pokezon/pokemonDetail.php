@@ -2,7 +2,7 @@
     require_once('handler/bootstrap.php');
 
 //Base Template
-$templateParams["titolo"] = $_GET["id"];
+$templateParams["titolo"] = strval($_GET["name"][0]); /* TODO non funziona il nome della pagina */
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
 }

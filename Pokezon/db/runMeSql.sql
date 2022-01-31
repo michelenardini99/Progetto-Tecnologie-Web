@@ -34,22 +34,22 @@ CREATE TABLE `pokedb`.`types_color` (
 
 INSERT INTO `pokedb`.`types_color` (`name`,`color`) 
 VALUES ("normal", "#f2f2f2"),
-("fighting", "#d56722"),
-("flying", "#f2f2f2"),
-("poison", "#b97fc9"),
+("fighting", "#E07C3E"),
+("flying", "#3DC7EF"),
+("poison", "#C07EC9"),
 ("ground", "#f6de3e"),
-("rock", "#a38c22"),
-("bug", "#729f40"),
-("ghost", "#7a61a2"),
+("rock", "#B19725"),
+("bug", "#79A843"),
+("ghost", "#A99BC5"),
 ("steel", "#9eb8b9"), 
 ("fire", "#fd7d24"),
-("water", "#4593c4"), 
+("water", "#5CA1CC"), 
 ("grass", "#9bcc4f"),
 ("electric", "#efd435"), 
 ("psychic", "#f466ba"),
 ("ice", "#52c4e8"), 
 ("dragon", "#f16f56"),
-("dark", "#707070"), 
+("dark", "#9E9E9E"), 
 ("fairy", "#fdb9ea");
 
 

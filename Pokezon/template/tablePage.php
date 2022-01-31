@@ -15,15 +15,8 @@
 <body>
     <section>
 
-    <form autocomplete="off" action="./pokemonDetail.php?" method="get">
-  <div class="autocomplete" style="width:300px;">
-    <input id="name" type="text" name="id" placeholder="pokemon name">
-  </div>
-  <input type="submit">
-</form>
-
-
 <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
+
 
 <form action="" method="get">
 <nav class="region-nav"  id="region-nav">
@@ -69,6 +62,14 @@
         </div>
         <br>
     </div>
+<form autocomplete="off" action="./pokemonDetail.php?" method="get">
+  <div class="autocomplete" style="width:300px;">
+    <input id="elInput" type="text" name="name" placeholder="pokemon name">
+  </div>
+  <input type="submit">
+</form>
+<script src="./js/searchBar.js">
+</script>
     </section>
   <script src="./js/fasterSlideShow.js" type="text/javascript"></script>
     <section>
@@ -86,7 +87,7 @@
                 <li class="pokemon" id= <?php echo "".$pokemon['identifier']?> >
                      <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
-                         <a href=<?php echo "./pokemonDetail.php?id=".$pokemon['identifier']?>>
+                         <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?>>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
                      </figure>
                      <div>
@@ -106,6 +107,9 @@
 
     <?php } elseif ($templateParams['titolo'] == "Item List"){  ?> <!-- Clicked on ITEM page -->
 
+
+<script src="./js/searchBar.js">
+</script>
 <form action="" method="get">
 <nav class="item-nav">
 <ul>
@@ -123,6 +127,12 @@
             <?php endforeach;?>
 </ul> 
 </nav>
+</form>
+<form autocomplete="off" action="./item.php?" method="get">
+  <div class="autocomplete" style="width:300px;">
+  <input id="elInput" type="text" name="name" placeholder="item name">
+  </div>
+  <input type="submit">
 </form>
     <section>
         <ul class="table">
@@ -157,5 +167,4 @@
         </ul>
         </section>
 <?php }?>
-<script src="./js/searchBar.js"></script>
 </body>

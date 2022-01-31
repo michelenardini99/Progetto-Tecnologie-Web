@@ -2,7 +2,7 @@
 <body>
 <?php
             
-            $pokemonID = $dbh->getID($_GET['id'])[0]['id'];
+            $pokemonID = $dbh->getID($_GET['name'])[0]['id'];
             $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
             $abilities = $dbh->getAbilitiesFromID($pokemonID);
             $moves = $dbh->getMovesFromID($pokemonID);
