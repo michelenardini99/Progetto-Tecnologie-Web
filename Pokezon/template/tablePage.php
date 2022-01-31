@@ -15,6 +15,14 @@
 <body>
     <section>
 
+    <form autocomplete="off" action="./pokemonDetail.php?" method="get">
+  <div class="autocomplete" style="width:300px;">
+    <input id="name" type="text" name="id" placeholder="pokemon name">
+  </div>
+  <input type="submit">
+</form>
+
+
 <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
 
 <form action="" method="get">
@@ -75,7 +83,7 @@
                     $cnt = 0;
                     foreach($pokeList as $pokemon):
             ?>
-                <li class="pokemon">
+                <li class="pokemon" id= <?php echo "".$pokemon['identifier']?> >
                      <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <a href=<?php echo "./pokemonDetail.php?id=".$pokemon["id"]?>>
@@ -108,7 +116,7 @@
             $categories = $dbh->pokeItemCategoriesGet();
             foreach($categories as $category): ?> 
             <li> 
-                <a href="./tablePokemon.php?region=<?php echo "".$region['identifier']?>">
+                <a href="./tableItem.php?category=<?php echo "".$category['identifier']?>">
                 <?php echo "".$category['identifier']?>
             </a>
             </li>
@@ -116,20 +124,29 @@
 </ul> 
 </nav>
 </form>
- 
-
     <section>
         <ul class="table">
+
             <?php 
-                    $itemList = $dbh->pokeItemGetter();
+                    if(isset($_GET["category"])){
+                        $itemList = $dbh->getItemFromCategory($_GET["category"]);
+                    } else { 
+                        $itemList = $dbh->pokeItemGetter();
+                    }
                     $cnt = 0;
                     foreach($itemList as $pokeItem):
             ?>
-                        <li class="item">
+                        <li class="item" id= <?php echo "".$pokeItem['identifier']?>>
                             <figure>
-                                <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
+                                <?php 
+                                    if(str_starts_with($pokeItem['identifier'], "tm") || str_starts_with($pokeItem['identifier'], "hm") || str_starts_with($pokeItem['identifier'], "tr")){ ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                <?php } else { ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
+                                <?php }?>
                             </figure>
                             <div>
+                                <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>></a>
                                 <h5 style="text-align: center;">
                                 <?php echo "".$pokeItem['identifier']?>
                                 </h5>
@@ -140,5 +157,5 @@
         </ul>
         </section>
 <?php }?>
-<script src="./js/regionBar.js"></script>
+<script src="./js/searchBar.js"></script>
 </body>

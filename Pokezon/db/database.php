@@ -124,12 +124,67 @@ class DatabaseHelper{
             
             public function pokeItemGetter(){
                 // $stmt = $this->db->prepare("SELECT identifier FROM items;");
-                $stmt = $this->db->prepare("SELECT identifier FROM items LIMIT 100;");
+                $stmt = $this->db->prepare("SELECT identifier FROM items 
+                    where identifier not like '%-mail' 
+                    and identifier not like 'data-card%' 
+                    and identifier not like '%-mail' 
+                    and identifier not like 'data-card'
+                    and identifier not like '%-sweet'
+                    and identifier not like '%-apple'
+                    and identifier not like '%-pot'
+                    and identifier not like 'throat-spray'
+                    and identifier not like 'eject-pack'                  
+                    and identifier not like 'heavy-duty-boots'
+                    and identifier not like 'blunder-policy'
+                    and identifier not like 'room-service'
+                    and identifier not like 'utility-umbrella'
+                    and identifier not like 'tr%'
+                    LIMIT 475;
+                    ");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function getInfoAboutItem($name){
+                $stmt = $this->db->prepare("
+                SELECT * 
+                from items i, item_prose ip
+                where i.id = ip.item_id
+                and ip.local_language_id = 9
+                and i.identifier = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getItemFromCategory($category){
+                $stmt = $this->db->prepare("
+                SELECT  i.identifier, ic.identifier as category FROM items i join item_categories ic on (i.category_id = ic.id)
+                    where i.identifier not like '%-mail' 
+                    and i.identifier not like 'data-card%'
+                    and i.identifier not like '%-sweet'
+                    and i.identifier not like '%-apple'
+                    and i.identifier not like '%-pot'
+                    and i.identifier not like 'throat-spray'
+                    and i.identifier not like 'eject-pack'                  
+                    and i.identifier not like 'heavy-duty-boots'
+                    and i.identifier not like 'blunder-policy'
+                    and i.identifier not like 'room-service'
+                    and i.identifier not like 'utility-umbrella'
+                    and i.identifier not like 'tr%'
+                    and ic.identifier = ?
+                    LIMIT 600;
+                ");
+                $stmt->bind_param('s',$category);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } 
             
+    
             public function pokeItemCategoriesGet(){
                 $stmt = $this->db->prepare("
                     SELECT id, identifier FROM `item_categories`
@@ -137,8 +192,9 @@ class DatabaseHelper{
                     or identifier = 'special-balls'
                     or identifier = 'all-machines'
                     or identifier = 'evolution'
-                    or identifier = 'medicine';
-                ");
+                    or identifier = 'medicine'
+                    or identifier = 'held-items'
+                ;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
