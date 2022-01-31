@@ -21,6 +21,14 @@ class DatabaseHelper{
                $stmt -> execute();
             }
 
+            public function getUserIdNotLogged($username){
+                $stmt = $this->db->prepare("SELECT * FROM `members` where username = ?;");
+                $stmt->bind_param('s', $username); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function getUserId($username){
                 $stmt = $this->db->prepare("SELECT * FROM `members` where logged = 1;");
                 $stmt->execute();
