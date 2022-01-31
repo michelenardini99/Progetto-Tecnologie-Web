@@ -42,6 +42,16 @@
                     <span class="fas fa-key"></span> 
                     <input type="password" name="p" id="pwd" placeholder="Password" aria-label="password placeholder">
                 </div>
+                <div class="dropdown form-field d-flex align-items-center">
+                    <input class="submit" list="roles" name="role" id="role" placeholder="Role" aria-label="role placeholder">
+                        <datalist id="roles">
+                            <option value="Trainer"></option>
+                            <option value="Trader"></option>
+                            <option value="Merchant"></option>
+                            <option value="Druid"></option>
+                        </datalist>
+                    <span class="fas fa-key"></span> 
+                </div>
                     <input class="btn mt-3" type="button" value="Register" aria-label="register button" onclick="formhash(this.form, this.form.pwd);" >
             </form>
         </div>

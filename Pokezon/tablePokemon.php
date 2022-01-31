@@ -4,9 +4,9 @@
 //Base Template
 $templateParams["titolo"] = "Pokemon List";
 if(isset($dbh -> getActiveUser()[0]['username'])){
-    $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
+    $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
 }
-//$templateParams["nome"] = "lista-articoli.php";
+//$templateParams["name"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 

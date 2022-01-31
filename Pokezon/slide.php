@@ -3,7 +3,7 @@
 
 //Base Template
 $templateParams["titolo"] = "PokeZone";
-//$templateParams["nome"] = "lista-articoli.php";
+//$templateParams["name"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
             
