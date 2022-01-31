@@ -24,6 +24,7 @@
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
                 $i=0;
                 foreach($pokemonsOrder as $pokemon){
+                    $pokemonid=$pokemon['id'];
                     $len = strlen($pokemon['id']);
                     if ($len == "1") {
                     $pokemon['id'] = "00" . $pokemon['id'];
@@ -36,15 +37,11 @@
                     <div class="cart-info">
                         <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="">
                         <div>
+                            <p><?php echo $pokemon['id'] ?></p>
                             <p><?php echo $pokemon['identifier'] ?></p>
                             <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $pokemon['value']?>.00</p>
                             <br>
-                            <?php
-                                if(isset($_POST['remove'.$i])){
-                                    echo "<script>console.log('Debug Objects: " . "ciao" . "' );</script>";
-                                }
-                            ?>
-                            <a href="" class="<?php echo 'remove'.$i ?>" onclick="deleteFunc()">Remove</a>
+                            <a href="" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
                         </div>
                     </div>
                 </td>

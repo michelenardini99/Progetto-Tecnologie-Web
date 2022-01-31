@@ -17,9 +17,20 @@ function calc(){
     $(".total").text("$".concat(total).concat(".00"));
 }
 
-function deleteFunc(){
-    $.ajax({url:"handler/deletePokemon.php", success: function(result){
-        alert(result);
-    }})
+function removePokemon(pokemonId, orderId){
+
+    var order = orderId;
+    var pokemon = pokemonId;
+    console.log(order);
+    console.log(pokemon);
+
+    $.ajax({
+        url: './removePokemon.php',
+        type: 'POST',
+        data: {order: order, pokemon: pokemon},
+        success: function(data) {
+            console.log(data); // Inspect this in your console
+        }
+    });
 }
 
