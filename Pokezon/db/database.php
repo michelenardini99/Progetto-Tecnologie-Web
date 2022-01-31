@@ -56,25 +56,10 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function removePokemon($pokemon){
-                $stmt = $this->db->prepare("DELETE FROM orders_pokemon where orders_pokemon.pokemonID = ?
+            public function removePokemon($pokemon, $order){
+                $stmt = $this->db->prepare("DELETE FROM orders_pokemon where orders_pokemon.pokemonID = ? AND orders_pokemon.orderId = ?
                 ");
-                $stmt->bind_param('s',$pokemon);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
-
-            public function getUserID($username){
-                $stmt = $this->db->prepare("select * from members where username = ?");
-                $stmt->bind_param('s',$username);$stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
-            public function removePokemon(){
-                $stmt = $this->db->prepare("DELETE FROM orders_pokemon WHERE pokemonId = 79
-                ");
-                $stmt->bind_param('s',$pokemon);
+                $stmt->bind_param('ss',$pokemon,$order);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
