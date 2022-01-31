@@ -10,7 +10,7 @@ class DatabaseHelper{
             }
             
             public function getActiveUser(){
-            $stmt = $this->db->prepare("SELECT username FROM `members` where logged = 1;");
+            $stmt = $this->db->prepare("SELECT * FROM `members` where logged = 1;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
@@ -22,7 +22,7 @@ class DatabaseHelper{
             }
 
             public function getUserId($username){
-                $stmt = $this->db->prepare("SELECT id FROM `members` where logged = 1;");
+                $stmt = $this->db->prepare("SELECT * FROM `members` where logged = 1;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
@@ -56,12 +56,7 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function getUserID($username){
-                $stmt = $this->db->prepare("select * from members where username = ?");
-                $stmt->bind_param('s',$username);$stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
+            
             public function removePokemon(){
                 $stmt = $this->db->prepare("DELETE FROM orders_pokemon WHERE pokemonId = 79
                 ");

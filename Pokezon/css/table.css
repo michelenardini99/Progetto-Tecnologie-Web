@@ -250,3 +250,33 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+@media screen and (max-width: 1400px) {
+  
+.region-nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: palegreen;
+  display: inline-block; /* remove padding on borders */
+}
+
+.region-nav > ul > li {
+  display: inline-block;
+}
+
+.table{
+  display: inline-block ;
+  margin: 510px auto 0 auto;
+}
+
+.autocomplete, input {
+  display: flex;
+  margin: 0 auto;
+}
+
+.slideshow-container {
+  display: none;
+}
+}
