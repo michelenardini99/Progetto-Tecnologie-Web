@@ -1,4 +1,8 @@
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
+<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		type="text/javascript">
+	</script>
 <body>
 <?php
             
@@ -139,8 +143,15 @@
                         <?php endforeach ?>
                     </tbody>
                 </table>
-            </div>        <div class="shopping-cart">
-            carrello
+            </div>        
+            <div class="shopping-cart">
+                <?php
+                     $userId = $dbh->getUserId($templateParams['name']);
+                     $orderId = $dbh->getCurrentOrder($userId[0]['id']);
+                     $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+                ?>
+            <button class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>)">Add to shopping-cart</button>
         </div>
     </div>
+    <script src="./js/addPokemon.js" type="text/javascript"></script>
 </body>

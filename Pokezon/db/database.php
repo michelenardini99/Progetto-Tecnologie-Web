@@ -49,6 +49,15 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getCurrentOrder($userId){
+                $stmt = $this->db->prepare("SELECT orders.idOrder from orders where orders.userId = ? AND is_active = 1;
+                ");
+                $stmt->bind_param('s',$userId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function pokeGetter(){
                 /*$stmt = $this->db->prepare("SELECT * FROM pokemon;");*/
                 $stmt = $this->db->prepare("SELECT * FROM pokemon LIMIT 898;");
@@ -68,6 +77,15 @@ class DatabaseHelper{
                 $stmt = $this->db->prepare("DELETE FROM orders_pokemon where orders_pokemon.pokemonID = ? AND orders_pokemon.orderId = ?
                 ");
                 $stmt->bind_param('ss',$pokemon,$order);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function addPokemon($order, $pokemon){
+                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity) VALUES (?,?,1)
+                ");
+                $stmt->bind_param('ii',$order,$pokemon);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);

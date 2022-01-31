@@ -11,7 +11,6 @@ if(isset($_POST['userName'], $_POST['p'], $_POST['email'], $_POST['role']) &&
    $password = $_POST['p']; 
    $email =$_POST['email']; 
    $role = $_POST['role'];
-
     $dbh = new mysqli("localhost", "root", "", "pokedb", 3306); 
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
@@ -22,7 +21,7 @@ $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
 // password using random key
 $password = hash('sha512', $password.$random_salt);
 
-if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role) VALUES (?, ?, ?, ?, ?)")) {    
+if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role, logged) VALUES (?, ?, ?, ?, ?, 0)")) {    
    $insert_stmt->bind_param('sssss', $username, $email, $password, $random_salt, $role); 
    $insert_stmt->execute();
 }
