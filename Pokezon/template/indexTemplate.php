@@ -63,31 +63,30 @@
 
 <div class="pokemon"> <!-- pokemon random cart -->
         <?php
-
-            $id = $dbh->getRandomPokemon();
+            $id = $dbh->getRandomPokemon()[0];
 ?>
-<a class = "linkPok"href="pokemonDetail.php?id=<?php echo $id[0]['id'] ?>">
+<a class = "linkPok"href="pokemonDetail.php?name=<?php echo $id['identifier'] ?>">
     <div class="pokemon">
         <?php
-            $pokemon = ($dbh->getInfoAbout($id[0]['id']))[0];
-            $types = $dbh->getTypes($id[0]['id']);
-            $len = strlen($id[0]['id']);
+            $pokemon = ($dbh->getInfoAbout($id['id']))[0];
+            $types = $dbh->getTypes($id['id']);
+            $len = strlen($id['id']);
             if ($len == "1") {
-                $id[0]['id'] = "00" . $id[0]['id'];
+                $id['id'] = "00" . $id['id'];
             } elseif ($len == "2") {
-                $id[0]['id'] = "0" . $id[0]['id'];
+                $id['id'] = "0" . $id['id'];
             }
         ?>
-        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id[0]['id'] . ".png" ?>" alt="image of random suggest pokemon to buy">
+        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id['id'] . ".png" ?>" alt="image of random suggest pokemon to buy">
         <div class="pokeDescr" id="descr"> 
-            <p class="pokeId"><?php echo "N°".$id[0]['id']?></p>
+            <p class="pokeId"><?php echo "N°".$id['id']?></p>
             <h2 class="namePok"><?php  echo "".ucfirst($pokemon['name']) ?></h2>
             <ul class="types">      
                 <?php
                     foreach ($types as $type) {
-                        $color = $dbh->getColor($type['identifier']);
+                        $color = $dbh->getColor($type['identifier'])[0];
                 ?>
-                    <li class="types-name" style="list-style-type: none; background-color: <?php  echo $color[0]['color'] ?>"><p><?php echo $type['identifier'] ?></p></li>
+                    <li class="types-name" style="list-style-type: none; background-color: <?php  echo $color['color'] ?>"><p><?php echo $type['identifier'] ?></p></li>
                 <?php
                     }
                 ?>
@@ -97,8 +96,11 @@
 </a>
 <div class="shopping-cart">
     <?php 
-        $userId = $dbh->getUserId($_GET['utente']);
+        if(isset($templateParams['name'])){
+        // $userId = $dbh->getUserId($_GET['utente']);
+        $userId = $dbh->getUserId($templateParams['name']);
         $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
+        }
         foreach($pokemonsOrder as $pokemon){
             $len = strlen($pokemon['id']);
             if ($len == "1") {

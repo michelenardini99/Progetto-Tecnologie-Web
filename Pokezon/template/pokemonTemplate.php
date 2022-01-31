@@ -1,13 +1,13 @@
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
-
 <body>
-    <div class="container">
-        <div class="image">
-            <?php
-            $pokemonID = $_GET['id'];
+<?php
+            
+            $pokemonID = $dbh->getID($_GET['name'])[0]['id'];
             $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
             $abilities = $dbh->getAbilitiesFromID($pokemonID);
             $moves = $dbh->getMovesFromID($pokemonID);
+            $types = $dbh->getTypes($pokemonID);
+            $color = $dbh->getColor($types[0]['identifier']);
             $len = strlen($pokemonID);
             if ($len == "1") {
                 $pokemonID = "00" . $pokemonID;
@@ -31,7 +31,10 @@
                 return $str;
             }
             ?>
-            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?>>
+            
+    <div class="container" style= <?php echo "background-color:".$color[0]['color']?> >
+        <div class="image">
+           <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?>>
         </div>
         <div class="name">
             <?php echo "" . ucfirst($pokemon['name']) ?>
@@ -90,9 +93,11 @@
                 </p>
             <?php endforeach ?>
 
+        </div> <!-- here -->
+
             <div class="abilityTable">
                 <table>
-                    <tr>
+                <tr style="filter: brightness(25%);">
                         <th scope="col">          <!-- col for accessibility -->
                             Identifier
                         </th>
@@ -104,6 +109,9 @@
                         </th>
                         <th scope="col">          <!-- col for accessibility -->
                             Power
+                        </th>
+                        <th scope="col">
+                            Description
                         </th>
                     </tr>
                     <tbody>
@@ -122,13 +130,14 @@
                                 <td>
                                     <?php echo "" . $move['power'] ?>
                                 </td>
+                                <td>
+                                    <?php echo "" . betterProse($move['short_effect'])?>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="shopping-cart">
+            </div>        <div class="shopping-cart">
             carrello
         </div>
     </div>

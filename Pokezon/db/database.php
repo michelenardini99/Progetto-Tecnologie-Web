@@ -56,6 +56,12 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getUserID($username){
+                $stmt = $this->db->prepare("select * from members where username = ?");
+                $stmt->bind_param('s',$username);$stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
             public function removePokemon(){
                 $stmt = $this->db->prepare("DELETE FROM orders_pokemon WHERE pokemonId = 79
                 ");
@@ -63,6 +69,7 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
 
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
@@ -121,7 +128,17 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function getName($id){
+            public function getID($name){
+                $stmt = $this->db->prepare("
+                    select id from pokemon
+                    where identifier = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+             public function getName($id){
                 $stmt = $this->db->prepare("
                     select identifier from pokemon
                     where id = ?
@@ -134,12 +151,67 @@ class DatabaseHelper{
             
             public function pokeItemGetter(){
                 // $stmt = $this->db->prepare("SELECT identifier FROM items;");
-                $stmt = $this->db->prepare("SELECT identifier FROM items LIMIT 100;");
+                $stmt = $this->db->prepare("SELECT identifier FROM items 
+                    where identifier not like '%-mail' 
+                    and identifier not like 'data-card%' 
+                    and identifier not like '%-mail' 
+                    and identifier not like 'data-card'
+                    and identifier not like '%-sweet'
+                    and identifier not like '%-apple'
+                    and identifier not like '%-pot'
+                    and identifier not like 'throat-spray'
+                    and identifier not like 'eject-pack'                  
+                    and identifier not like 'heavy-duty-boots'
+                    and identifier not like 'blunder-policy'
+                    and identifier not like 'room-service'
+                    and identifier not like 'utility-umbrella'
+                    and identifier not like 'tr%'
+                    LIMIT 475;
+                    ");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function getInfoAboutItem($name){
+                $stmt = $this->db->prepare("
+                SELECT * 
+                from items i, item_prose ip
+                where i.id = ip.item_id
+                and ip.local_language_id = 9
+                and i.identifier = ?;
+                ");
+                $stmt->bind_param('s',$name);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function getItemFromCategory($category){
+                $stmt = $this->db->prepare("
+                SELECT  i.identifier, ic.identifier as category FROM items i join item_categories ic on (i.category_id = ic.id)
+                    where i.identifier not like '%-mail' 
+                    and i.identifier not like 'data-card%'
+                    and i.identifier not like '%-sweet'
+                    and i.identifier not like '%-apple'
+                    and i.identifier not like '%-pot'
+                    and i.identifier not like 'throat-spray'
+                    and i.identifier not like 'eject-pack'                  
+                    and i.identifier not like 'heavy-duty-boots'
+                    and i.identifier not like 'blunder-policy'
+                    and i.identifier not like 'room-service'
+                    and i.identifier not like 'utility-umbrella'
+                    and i.identifier not like 'tr%'
+                    and ic.identifier = ?
+                    LIMIT 600;
+                ");
+                $stmt->bind_param('s',$category);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            } 
             
+    
             public function pokeItemCategoriesGet(){
                 $stmt = $this->db->prepare("
                     SELECT id, identifier FROM `item_categories`
@@ -147,8 +219,9 @@ class DatabaseHelper{
                     or identifier = 'special-balls'
                     or identifier = 'all-machines'
                     or identifier = 'evolution'
-                    or identifier = 'medicine';
-                ");
+                    or identifier = 'medicine'
+                    or identifier = 'held-items'
+                ;");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
@@ -193,13 +266,15 @@ class DatabaseHelper{
             
             public function getMovesFromID($id){
                 $stmt = $this->db->prepare("
-                SELECT *
-                FROM `pokemon_moves` pm, moves m
-                where m.id in(SELECT DISTINCT	id
+              SELECT m.*, mep.* 
+                FROM `pokemon_moves` pm, moves m, `move_effect_prose` mep
+                where mep.move_effect_id = m.effect_id
+                and mep.local_language_id = 9
+                and m.id in(SELECT DISTINCT	id
                 FROM `pokemon_moves` pm, moves m
                 where pm.move_id = m.id 
                 and pokemon_id = ?)
-                LIMIT 4;
+                LIMIT 8;
                 ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
