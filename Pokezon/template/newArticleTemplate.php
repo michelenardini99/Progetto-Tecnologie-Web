@@ -10,13 +10,22 @@
 	</script>
 </head>
 <body>
-    <div class="container">
+<form autocomplete="off" action="./newArticle.php?name  " method="get">
+  <div class="autocomplete" style="width:300px;">
+    <input id="elInput" type="text" name="name" placeholder="pokemon name">
+  </div>
+  <input type="submit">
+</form> 
+<script src="./js/searchBar.js"> </script> 
+    <div class="container" style=<?php if(!isset($_GET["name"])) { echo "display:none;";}; ?> >
         <div class="title">Add new article</div>
         <form action="./addNewArticleInDb.php" method="get">
             <div class="pokemon-detail">
-                <div class="input-box">
+                <div class="input-box autocomplete">
                     <span class="details">Pokemon name</span>
-                    <input type="text" placeholder="Enter name of pokemon" name="pokemon" required>
+                    <input id=elInput type="text" placeholder="Enter name of pokemon" required >
+                    <script src="./js/searchBar.js"></script>
+
                 </div>
                 <div class="input-box">
                     <span class="details">Price</span>
@@ -36,5 +45,4 @@
             </div>
         </form>
     </div>
-    <script src="./js/searchBar.js">
 </body>
