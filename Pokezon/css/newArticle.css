@@ -79,7 +79,7 @@ form .button input{
     letter-spacing: 1px;
 }
 
-@media (max-width: 584px){
+@media (max-width: 1100px){
     .container{
         max-width: 100%;
     }
@@ -87,6 +87,15 @@ form .button input{
     form .pokemon-detail .input-box{
         margin-bottom: 15px;
         width: 100%;
+    }
+
+    .container form .pokemon-detail{
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    .pokemon-detail::-webkit-scrollbar{
+        width: 0;
     }
 }
 
