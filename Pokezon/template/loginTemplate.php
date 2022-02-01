@@ -40,7 +40,13 @@
                 </div>
                     <input class="btn mt-3" type="button" value="Login"  aria-label="login button" onclick="formhash(this.form, this.form.pwd);"> <!-- aria label is for accessability form -->
             </form>
-            <div class="text-center fs-6"> <a href="register.php">Sign up</a> </div>
+                <div>
+                    <br>
+                    <p>
+                        Or join this site and <a class="btn mt-3"  href="register.php"> Register</a>
+                    </p> 
+                        
+                </div>
         </div>
     </main>
 </body>
