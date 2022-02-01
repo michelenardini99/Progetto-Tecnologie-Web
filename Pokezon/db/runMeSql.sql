@@ -1458,11 +1458,20 @@ public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
 public function getMerchantsFromPokemon($id){
               $stmt = $this->db->prepare("SELECT m.* FROM used_pokemon up
                 join merchant m on(up.codV = m.codV)
-               where pokemonId = ?");
-               $stmt->bind_param('ssss', $merchantid, $id, $quantity, $price); 
+               where up.pokemonId = ?");
+               $stmt->bind_param('s', $id); 
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
               }
 
+
+public function getPokemonFromMerchant($codV){
+              $stmt = $this->db->prepare("SELECT id FROM used_pokemon up               
+               where  codV = ? ");
+               $stmt->bind_param('s', $codV); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+              }
 
