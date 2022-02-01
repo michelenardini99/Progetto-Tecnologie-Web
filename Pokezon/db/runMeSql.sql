@@ -22,19 +22,20 @@ CREATE TABLE `pokedb`.`orders`(
 ) ENGINE=InnoDB;
 
 CREATE TABLE orders_pokemon(
-	orderId INT(11),
+  	orderId INT(11),
     pokemonId INT(11),
-    quantity INT(11) NOT NULL,
-    FOREIGN KEY(orderId) REFERENCES orders(orderId),
+    quantity INT DEFAULT 1,
+    FOREIGN KEY(orderId) REFERENCES orders(idOrder),
     FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
 );
 
 CREATE TABLE orders_item(
-	orderId INT(11),
+	  orderId INT(11),
     itemId INT(11),
-    FOREIGN KEY(orderId) REFERENCES orders(orders.orderId),
+    quantity INT DEFAULT 1,
+    FOREIGN KEY(orderId) REFERENCES orders(idOrder),
     FOREIGN KEY(itemId) REFERENCES items(id)
-);
+);  
 
 CREATE TABLE `pokedb`.`types_color` (
   `name` VARCHAR(30) NOT NULL,
