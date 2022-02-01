@@ -24,6 +24,7 @@ CREATE TABLE `pokedb`.`orders`(
 CREATE TABLE orders_pokemon(
 	orderId INT(11),
     pokemonId INT(11),
+    quantity INT(11) NOT NULL,
     FOREIGN KEY(orderId) REFERENCES orders(orderId),
     FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
 );
