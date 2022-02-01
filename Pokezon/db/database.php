@@ -339,7 +339,8 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function insertMerchant($name, $IBAN, $imageName){
+
+public function insertMerchant($name, $IBAN, $imageName){
             $stmt = $this->db->prepare("INSERT INTO merchant(name, IBAN, avatar) values (?, ?, ?)");
                $stmt->bind_param('sss', $name, $IBAN, $imageName); 
                 $stmt->execute();
@@ -374,8 +375,6 @@ public function getPokemonFromMerchant($codV){
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
               }
-
-
 
 
         }
