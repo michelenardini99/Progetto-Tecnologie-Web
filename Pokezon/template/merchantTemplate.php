@@ -16,7 +16,7 @@
                     Pokemon
                 </th>
                 <th>
-                    ID
+                    Name
                 </th>
                 <th>
                     Price
@@ -39,12 +39,12 @@
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon['pokemonId']?>
+                                <?php echo "".$name[0]['identifier']?>
                             </p> 
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon['price']?>
+                                <?php echo "$".$pokmeon['price'].".00"?>
                             </p>
                         </td>
                         <td>
