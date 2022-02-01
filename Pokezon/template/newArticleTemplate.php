@@ -12,23 +12,23 @@
 <body>
     <div class="container">
         <div class="title">Add new article</div>
-        <form action="#">
+        <form action="./addNewArticleInDb.php" method="get">
             <div class="pokemon-detail">
                 <div class="input-box">
                     <span class="details">Pokemon name</span>
-                    <input type="text" placeholder="Enter name of pokemon" required>
+                    <input type="text" placeholder="Enter name of pokemon" name="pokemon" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Price</span>
-                    <input type="text" placeholder="Enter price for pokemon" required>
+                    <input type="text" placeholder="Enter price for pokemon" name="price" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Quantity</span>
-                    <input type="number" max="1194" required>
+                    <input type="number" max="1194" name="quantity" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Description</span>
-                    <textarea rows="4" cols="50" name="comment">Description here...</textarea>
+                    <textarea rows="4" cols="50" name="description">Description here...</textarea>
                 </div>
             </div>
             <div class="button">

@@ -4,10 +4,8 @@
     <div class="box">
         <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar" class="box-img">
         <h1><?php echo "".$templateParams['name']?></h1>
-        <a href="newArticle.php">Add article</button>
-    </div>
-        
-    <div class="table">
+        <a href="newArticle.php">Add article</a>
+        <div class="table">
         <?php 
             $usedPokemonList = $dbh -> getPokemonFromMerchant("1");
            /*  $usedPokemonList = $dbh -> getPokemonFromMerchant($cod); */
@@ -65,5 +63,5 @@
             </tbody>
         </table>
     </div>
-
+    </div>
 </body>
