@@ -1419,3 +1419,50 @@ UPDATE `items` SET `cost` = '715' WHERE `items`.`id` = 1652;
 UPDATE `items` SET `cost` = '870' WHERE `items`.`id` = 1653;
 UPDATE `items` SET `cost` = '471' WHERE `items`.`id` = 1654;
 UPDATE `items` SET `cost` = '866' WHERE `items`.`id` = 1658;
+
+CREATE TABLE `pokedb`.`merchant` (
+  `codV` INT(11) AUTO_INCREMENT PRIMARY KEY,
+  `name` CHAR(50) NOT NULL,
+  `IBAN` CHAR(50) NOT NULL,
+  `avatar` CHAR(50) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE `pokedb`.`used_pokemon` (
+  `codV` INT(11) NOT NULL,
+  `pokemonId` INT(11) NOT NULL,
+  `quantity` INT(4) NOT NULL,
+  `price` INT(5) NOT NULL,
+  `description` CHAR(200) NOT NULL,
+  FOREIGN KEY(`pokemonId`)  REFERENCES `pokedb`.`pokemon`(`id`),
+  FOREIGN KEY(`codV`) REFERENCES `pokedb`.`merchant`(`codV`)
+) ENGINE=InnoDB;
+
+
+-- for database.php 
+public function insertMerchant($name, $IBAN, $imageName){
+            $stmt = $this->db->prepare("INSERT INTO merchant(name, IBAN, avatar) values (?, ?, ?)");
+               $stmt->bind_param('sss', $name, $IBAN, $imageName); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+              }
+
+public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
+              $stmt = $this->db->prepare("INSERT INTO used_pokemon(codV, pokemonID, quantity, price, description) values (?, ?, ?, ?, ?)");
+               $stmt->bind_param('ssss', $merchantid, $id, $quantity, $price, $descr); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+              }
+
+public function getMerchantsFromPokemon($id){
+              $stmt = $this->db->prepare("SELECT m.* FROM used_pokemon up
+                join merchant m on(up.codV = m.codV)
+               where pokemonId = ?");
+               $stmt->bind_param('ssss', $merchantid, $id, $quantity, $price); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+              }
+
+
