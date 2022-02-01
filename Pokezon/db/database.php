@@ -348,12 +348,18 @@ public function insertMerchant($name, $IBAN, $imageName){
                 return $result->fetch_all(MYSQLI_ASSOC);
               }
 
-public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
-              $stmt = $this->db->prepare("INSERT INTO used_pokemon(codV, pokemonID, quantity, price, description) values (?, ?, ?, ?, ?)");
-               $stmt->bind_param('ssss', $merchantid, $id, $quantity, $price, $descr); 
+              public function getIdMerchant($name){
+                $stmt = $this->db->prepare("SELECT codV FROM merchant where name = ?");
+                $stmt->bind_param('s', $name); 
+                 $stmt->execute();
+                 $result = $stmt->get_result();
+                 return $result->fetch_all(MYSQLI_ASSOC);
+              }
+
+            public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
+              $stmt = $this->db->prepare("INSERT INTO used_pokemon(codV, pokemonId, quantity, price, description) VALUES (?, ?, ?, ?, ?)");
+               $stmt->bind_param('iiiis', $merchantid, $id, $quantity, $price, $descr); 
                 $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
               }
 
 public function getMerchantsFromPokemon($id){
