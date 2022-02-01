@@ -9,7 +9,8 @@
         
     <div class="table">
         <?php 
-            $usedPokemonList = $dbh -> getPokemonFromMerchant($cod);
+            $usedPokemonList = $dbh -> getPokemonFromMerchant("1");
+           /*  $usedPokemonList = $dbh -> getPokemonFromMerchant($cod); */
         ?>
         <table>
             <thead>
@@ -23,35 +24,39 @@
                     Price
                 </th>
                 <th>
+                    quantity 
+                </th>
+                <th>
                     description
                 </th>
             </thead>
             <tbody>
                 <?php 
-                    foreach($pokemon as $usedPokemonList): 
-                        $name = $dbh-> getID($pokmeon[0]['pokemonId']) ?>
+                    foreach($usedPokemonList as $pokmeon): 
+                        $name = $dbh-> getName($pokmeon['pokemonId']);
+                        ?>
                     <tr>
                         <td>
-                            <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name.".png" ?> alt="">
+                            <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> alt="">
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon[0]['pokemonId']?>
+                                <?php echo "".$pokmeon['pokemonId']?>
                             </p> 
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon[0]['price']?>
+                                <?php echo "".$pokmeon['price']?>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon[0]['quantity']?>
+                                <?php echo "".$pokmeon['quantity']?>
                             </p>
                         </td>
                         <td>
                             <p>
-                                <?php echo "".$pokmeon[0]['descr']?>
+                                <?php echo "".$pokmeon['description']?>
                             </p>
                         </td>
                     </tr>

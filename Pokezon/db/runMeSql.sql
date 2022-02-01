@@ -1467,7 +1467,7 @@ public function getMerchantsFromPokemon($id){
 
 
 public function getPokemonFromMerchant($codV){
-              $stmt = $this->db->prepare("SELECT id FROM used_pokemon up               
+              $stmt = $this->db->prepare("SELECT * FROM used_pokemon up               
                where  codV = ? ");
                $stmt->bind_param('s', $codV); 
                 $stmt->execute();
