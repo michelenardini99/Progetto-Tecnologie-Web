@@ -1,15 +1,16 @@
-function addPokemon(merchant, orderId, info){
+function addPokemon(pokeId, orderId, merchant){
+    console.log("ciao");
     var order = orderId;
-    var pokemon = pokemonId;
-    var info = info;
+    var merchant = merchant;
+    var pokeid = pokeId;
     console.log(order);
-    console.log(pokemon);
-    console.log(info);
+    console.log(merchant);
+    console.log(pokeid);
 
     $.ajax({
         url: './addPokemon.php',
         type: 'POST',
-        data: {order: order, pokemon: pokemon},
+        data: {order: order, merchant: merchant, pokeid: pokeid},
         success: function(data) {
             console.log(data); // Inspect this in your console
         }

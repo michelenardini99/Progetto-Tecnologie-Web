@@ -1,8 +1,6 @@
 <?php
     require_once('handler/bootstrap.php');
-    if (isset($_POST['order']) && isset($_POST['pokemon'])) {
-        echo "<script>console.log('Debug Objects: " . $_POST['order'] . "' );</script>";
-        var_dump($_POST['order']);
+    if (isset($_POST['order']) && isset($_POST['pokeid']) && isset($_POST['merchant'])) {
         $dbh-> addPokemon($_POST['order'], $_POST['pokemon']);
         
     }
