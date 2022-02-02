@@ -142,20 +142,65 @@
                         <?php endforeach ?>
                     </tbody>
                 </table>
-            </div>        
-            <div class="shopping-cart">
-                <?php
-                     $userId = $dbh->getUserId($templateParams['name']);
-                     $orderId = $dbh->getCurrentOrder($userId[0]['id']);
-                     $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+            </div>
+            <div class="merchant">
+                <table>
+                <tr style="filter: brightness(25%);">
+                        <th scope="col">          <!-- col for accessibility -->
+                            Merchant
+                        </th>
+                        <th scope="col">          <!-- col for accessibility -->
+                            Price
+                        </th>
+                        <th scope="col">          <!-- col for accessibility -->
+                            Quantity
+                        </th>
+                        <th scope="col">          <!-- col for accessibility -->
+                            Description
+                        </th>
+                        <th scope="col">          <!-- col for accessibility -->
+                        </th>
+                    </tr>
+                    <tbody>
+                        <?php
+                        $id = $dbh->getID($_GET['name'])[0]['id'];
+                        $merchant=$dbh->getMerchantsFromPokemon($id);
+                         $pokeId = $dbh->getID($_GET['name'])[0]['id'];
                          foreach($dbh->getPokemonInShop($userId[0]['id']) as $p){
                             if($p['identifier'] == $pokemon['name']){
                                 $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", "mercante");
                             }
                          }
-                ?>
-                <button class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>); window.location.reload();">Add to shopping-cart</button>
-        </div>
+                        foreach ($merchant as $m):
+                            $info = $dbh->getSinglePokemonFromMerchant($m['codV'],$id);
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo "" . $m['name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo "" . $info[0]['price'] ?>
+                                </td>
+                                <td>
+                                    <?php echo "" . $info[0]['quantity'] ?>
+                                </td>
+                                <td>
+                                    <?php echo "" . $info[0]['description'] ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $userId = $dbh->getUserId($templateParams['name']);
+                                        $orderId = $dbh->getCurrentOrder($userId[0]['id']);
+                                        $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+                                    ?>
+                                    <a href="" class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>); window.location.reload();">Add to shopping-cart</button>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div> 
+
     </div>
     <script src="./js/addPokemon.js" type="text/javascript"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
