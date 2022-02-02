@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
-
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.min.js"
 		type="text/javascript">
@@ -126,4 +125,10 @@
 </body>
 
 <footer>
+
+ <!-- Jquery -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <!-- Notifikasi Script -->
+ <script src="./js/mynotif.js"></script>
+
 </footer>

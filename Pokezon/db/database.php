@@ -336,17 +336,17 @@ class DatabaseHelper{
                 $stmt->bind_param('s',$name);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
+                 return $result->fetch_all(MYSQLI_ASSOC);
+             }
 
 
-public function insertMerchant($name, $IBAN, $imageName){
-            $stmt = $this->db->prepare("INSERT INTO merchant(name, IBAN, avatar) values (?, ?, ?)");
+                public function insertMerchant($name, $IBAN, $imageName){
+              $stmt = $this->db->prepare("INSERT INTO merchant(name, IBAN, avatar) values (?, ?, ?)");
                $stmt->bind_param('sss', $name, $IBAN, $imageName); 
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
-              }
+                }
 
               public function getIdMerchant($name){
                 $stmt = $this->db->prepare("SELECT codV FROM merchant where name = ?");
@@ -373,15 +373,48 @@ public function getMerchantsFromPokemon($id){
               }
 
 
-public function getPokemonFromMerchant($codV){
+            public function getPokemonFromMerchant($codV){
               $stmt = $this->db->prepare("SELECT * FROM used_pokemon up               
                where  codV = ? ");
                $stmt->bind_param('s', $codV); 
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
-              }
+            }
 
 
+            public function saveNotif($msg,$notifTime, $loop,$loop_every,$user){
+                $stmt = $this->db->prepare("insert into notif(notif_msg, notif_time, notif_repeat, notif_loop,username) values(?, ?,  ?, ?, ?);");
+                $stmt->bind_param('sssss', $msg, $notifTime, $loop, $loop_every, $user);
+                $stmt->execute();
+            }
+
+
+                
+            public function updateNotif($id,$nextime){
+            $stmt = $this -> db->prepare("update notif set notif_time = ?, publish_date=CURRENT_TIMESTAMP(), notif_loop = notif_loop-1 where id=?");
+            $stmt->bind_param('ss', $nextime, $id);
+            $stmt->execute();
+            }
+            
+
+            public function listNotifUser($user){
+            $stmt = $this -> db->prepare("SELECT * FROM notif
+            WHERE username= ? 
+            AND notif_loop > 0
+            AND notif_time <= CURRENT_TIMESTAMP()"); 
+            $stmt->bind_param('s', $user);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+            } 
+
+            public function listNotif(){
+            $db = $this->dblocal;
+            $stmt = $this -> db->prepare("SELECT * FROM notif");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+            }
         }
 ?>

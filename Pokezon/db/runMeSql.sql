@@ -1427,14 +1427,12 @@ CREATE TABLE `pokedb`.`merchant` (
   `avatar` CHAR(50) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE `pokedb`.`used_pokemon` (
-  `codV` INT(11) NOT NULL,
-  `pokemonId` INT(11) NOT NULL,
-  `quantity` INT(4) NOT NULL,
-  `price` INT(5) NOT NULL,
-  `description` CHAR(200) NOT NULL,
-  FOREIGN KEY(`pokemonId`)  REFERENCES `pokedb`.`pokemon`(`id`),
-  FOREIGN KEY(`codV`) REFERENCES `pokedb`.`merchant`(`codV`)
+CREATE TABLE `pokedb`.`notif` (
+  `id` int(11) AUTO_INCREMENT PRIMARY KEY ,
+  `notif_msg` VARCHAR(200),
+  `notif_time` datetime DEFAULT NULL,
+  `notif_repeat` int(11) DEFAULT 1,
+  `notif_loop` int(11) DEFAULT 1,
+  `publish_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `username` varchar(50) NOT NULL
 ) ENGINE=InnoDB;
-
-

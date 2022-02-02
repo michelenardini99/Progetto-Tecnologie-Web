@@ -7,4 +7,6 @@
         
     }
     echo "fatto";
+
+    $dbh->saveNotif("POPO IN MESSAGGIO", date('Y-m-d H:i:s'),"2", "2", "mercante");
 ?>
