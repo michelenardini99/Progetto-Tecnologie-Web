@@ -80,7 +80,7 @@
             <?php if (!is_null($pokemon['evolves_from_species_id'])) { ?>
                 <p>
                     Evolves from: 
-                    <a href=<?php echo "./pokemonDetail.php?id=".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['id']?>>
+                    <a href=<?php echo "./pokemonDetail.php?name=".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['identifier']?>>
                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'].".png" ?> alt="">
                     </a> <?php  echo ucfirst("".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'])?>
                 </p>
@@ -170,7 +170,7 @@
                              echo $pokemon['name'];
                              echo " ".$p['identifier'];
                             if($p['identifier'] == $pokemon['name']){
-                                $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", "mercante");
+                                $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
                             }
                          }
                         foreach ($merchant as $m):

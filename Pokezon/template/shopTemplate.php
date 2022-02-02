@@ -62,6 +62,13 @@
                 </tr>
             </table>
         </div>
+        <div>
+            <form action="./dataInsert.php">
+                <button type="submit">
+                    Go to checkout 
+                </button>
+            </form>
+        </div>
     </div>
     <script src="./js/shop.js" type="text/javascript"></script>
 </body>
