@@ -5,7 +5,6 @@
 	</script>
 <body>
 <?php
-            
             $pokemonID = $dbh->getID($_GET['name'])[0]['id'];
             $pokemon = ($dbh->getInfoAbout($pokemonID))[0];
             $abilities = $dbh->getAbilitiesFromID($pokemonID);
@@ -149,9 +148,16 @@
                      $userId = $dbh->getUserId($templateParams['name']);
                      $orderId = $dbh->getCurrentOrder($userId[0]['id']);
                      $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+                         foreach($dbh->getPokemonInShop($userId[0]['id']) as $p){
+                            if($p['identifier'] == $pokemon['name']){
+                                $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", "mercante");
+                            }
+                         }
                 ?>
-            <button class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>)">Add to shopping-cart</button>
+                <button class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>); window.location.reload();">Add to shopping-cart</button>
         </div>
     </div>
-    <script src="./js/addPokemon.js" type="text/javascript"></script>
+    <script src="./js/addPokemon.js" type="text/javascript"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="./js/mynotif.js"></script>
 </body>

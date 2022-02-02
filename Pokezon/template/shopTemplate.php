@@ -41,7 +41,7 @@
                             <p><?php echo $pokemon['identifier'] ?></p>
                             <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $pokemon['value']?>.00</p>
                             <br>
-                            <a href="" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
+                            <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
                         </div>
                     </div>
                 </td>

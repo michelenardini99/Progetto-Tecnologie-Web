@@ -5,7 +5,7 @@ $array=array();
 $rows=array(); 
 $listnotif = $sql->listNotifUser($sql -> getActiveUser()[0]['username']);
 foreach ($listnotif as $key) {
- $data['title'] = 'Notification Title';
+ $data['title'] = 'Shopping Cart notification';
  $data['msg'] = $key['notif_msg'];
  $data['icon'] = 'icon.png';
  $data['url'] = 'https://localhost/Progetto-Tecnologie-Web/Pokezon/shop.php';
