@@ -166,7 +166,9 @@
                         $id = $dbh->getID($_GET['name'])[0]['id'];
                         $merchant=$dbh->getMerchantsFromPokemon($id);
                          $pokeId = $dbh->getID($_GET['name'])[0]['id'];
-                         foreach($dbh->getPokemonInShop($userId[0]['id']) as $p){
+                         foreach($dbh->getPokemonInShop($dbh->getActiveUser()[0]['id']) as $p){
+                             echo $pokemon['name'];
+                             echo " ".$p['identifier'];
                             if($p['identifier'] == $pokemon['name']){
                                 $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", "mercante");
                             }
