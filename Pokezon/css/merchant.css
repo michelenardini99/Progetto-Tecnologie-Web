@@ -2,16 +2,30 @@ body{
     margin: 0;
     padding: 0;
     background-size: cover;
+    background-image: url('../../resources/wallpaper.jpg');
 }
 
 .box{
-    width: 700px;
+    width: 1000px;
     background: rgba(0, 0, 0, 0.4);
     padding: 40px;
     text-align: center;
     margin: auto;
     margin-top: 5%;
-    color: black;
+    color: white;
+    border-radius: 15px;
+}
+
+.box .link{
+    background: whitesmoke;
+    display: inline-block;
+    margin: 39px auto;
+    padding: 12px 0;
+    border-radius: 5px;
+}
+
+.box .link a:hover{
+    color: red;
 }
 
 .box img{
@@ -44,7 +58,7 @@ body{
 
 .table th,
 .table td {
-    padding: 12px 15px;
+    padding: 12px 37px;
 }
 
 .table tbody tr {

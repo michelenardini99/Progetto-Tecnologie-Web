@@ -4,7 +4,9 @@
     <div class="box">
         <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar" class="box-img">
         <h1><?php echo "".$templateParams['name']?></h1>
-        <a href="newArticle.php">Add article</a>
+        <div class="link">
+            <a href="newArticle.php">Add article</a>
+        </div>
         <div class="table">
         <?php 
             $usedPokemonList = $dbh -> getPokemonFromMerchant("1");
@@ -32,8 +34,10 @@
                 <?php 
                     foreach($usedPokemonList as $pokmeon): 
                         $name = $dbh-> getName($pokmeon['pokemonId']);
+                        $types = $dbh->getTypes($pokmeon['pokemonId']);
+                        $color = $dbh->getColor($types[0]['identifier']);
                         ?>
-                    <tr>
+                    <tr style="background-color: <?php echo $color[0]['color'] ?>">
                         <td>
                             <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> alt="">
                         </td>
