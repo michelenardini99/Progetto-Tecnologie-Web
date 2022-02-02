@@ -37,7 +37,7 @@ class DatabaseHelper{
             }
 
             public function getPokemonInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId, pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
+                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
                                             INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
                                             INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
@@ -82,10 +82,10 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function addPokemon($order, $pokemon){
-                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity) VALUES (?,?,1)
+            public function addPokemon($order, $pokemon, $merchant){
+                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity, codV) VALUES (?,?,1,?)
                 ");
-                $stmt->bind_param('ii',$order,$pokemon);
+                $stmt->bind_param('iii',$order,$pokemon,$merchant);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);

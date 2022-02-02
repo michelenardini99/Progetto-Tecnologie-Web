@@ -31,6 +31,7 @@
                 } elseif ($len == "2") {
                     $pokemon['id'] = "0" . $pokemon['id'];
                 }
+                $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
             ?>
             <tr>
                 <td>
@@ -39,13 +40,13 @@
                         <div>
                             <p><?php echo $pokemon['id'] ?></p>
                             <p><?php echo $pokemon['identifier'] ?></p>
-                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $pokemon['value']?>.00</p>
+                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $info[0]['price']?>.00</p>
                             <br>
                             <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>"></td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>"></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       

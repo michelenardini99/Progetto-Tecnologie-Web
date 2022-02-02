@@ -1,7 +1,7 @@
-function addPokemon(pokeId, orderId, merchant){
+function addPokemon(pokeId, orderId, m){
     console.log("ciao");
     var order = orderId;
-    var merchant = merchant;
+    var merchant = m;
     var pokeid = pokeId;
     console.log(order);
     console.log(merchant);

@@ -195,7 +195,7 @@
                                         $orderId = $dbh->getCurrentOrder($userId[0]['id']);
                                         $pokeId = $dbh->getID($_GET['name'])[0]['id'];
                                     ?>
-                                    <a href="" class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>, <?php $m['codV'] ?>); window.location.reload();">Add to shopping-cart</button>
+                                    <a class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>, <?php echo $m['codV'] ?>); window.location.reload();">Add to shopping-cart</button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
