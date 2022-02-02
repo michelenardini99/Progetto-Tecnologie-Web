@@ -21,12 +21,21 @@ CREATE TABLE `pokedb`.`orders`(
   FOREIGN KEY (`userId`) REFERENCES `pokedb`.`members`(`id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE `pokedb`.`merchant` (
+  `codV` INT(11) AUTO_INCREMENT PRIMARY KEY,
+  `name` CHAR(50) NOT NULL,
+  `IBAN` CHAR(50) NOT NULL,
+  `avatar` CHAR(50) NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE orders_pokemon(
   	orderId INT(11),
     pokemonId INT(11),
     quantity INT DEFAULT 1,
+    codV INT(11) NOT NULL,
     FOREIGN KEY(orderId) REFERENCES orders(idOrder),
-    FOREIGN KEY(pokemonId) REFERENCES pokemon(id)
+    FOREIGN KEY(pokemonId) REFERENCES pokemon(id),
+    FOREIGN KEY(codV) REFERENCES merchant(codV)
 );
 
 CREATE TABLE orders_item(
@@ -1420,12 +1429,6 @@ UPDATE `items` SET `cost` = '870' WHERE `items`.`id` = 1653;
 UPDATE `items` SET `cost` = '471' WHERE `items`.`id` = 1654;
 UPDATE `items` SET `cost` = '866' WHERE `items`.`id` = 1658;
 
-CREATE TABLE `pokedb`.`merchant` (
-  `codV` INT(11) AUTO_INCREMENT PRIMARY KEY,
-  `name` CHAR(50) NOT NULL,
-  `IBAN` CHAR(50) NOT NULL,
-  `avatar` CHAR(50) NOT NULL
-) ENGINE=InnoDB;
 
 CREATE TABLE `used_pokemon` (
   `codV` int(11) NOT NULL,
