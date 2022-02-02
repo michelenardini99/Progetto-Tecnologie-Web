@@ -1427,6 +1427,14 @@ CREATE TABLE `pokedb`.`merchant` (
   `avatar` CHAR(50) NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE `used_pokemon` (
+  `codV` int(11) NOT NULL,
+  `pokemonId` int(11) NOT NULL,
+  `quantity` int(4) NOT NULL,
+  `price` int(5) NOT NULL,
+  `description` char(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `pokedb`.`notif` (
   `id` int(11) AUTO_INCREMENT PRIMARY KEY ,
   `notif_msg` VARCHAR(200),

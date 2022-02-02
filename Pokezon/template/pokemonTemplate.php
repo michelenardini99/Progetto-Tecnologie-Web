@@ -167,8 +167,6 @@
                         $merchant=$dbh->getMerchantsFromPokemon($id);
                          $pokeId = $dbh->getID($_GET['name'])[0]['id'];
                          foreach($dbh->getPokemonInShop($dbh->getActiveUser()[0]['id']) as $p){
-                             echo $pokemon['name'];
-                             echo " ".$p['identifier'];
                             if($p['identifier'] == $pokemon['name']){
                                 $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", "mercante");
                             }
@@ -195,7 +193,7 @@
                                         $orderId = $dbh->getCurrentOrder($userId[0]['id']);
                                         $pokeId = $dbh->getID($_GET['name'])[0]['id'];
                                     ?>
-                                    <a href="" class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>); window.location.reload();">Add to shopping-cart</button>
+                                    <a href="" class="addPokemon" onClick="addPokemon(<?php echo $merchant ?>, <?php echo $orderId[0]['idOrder']?>, <?php echo $info ?>); window.location.reload();">Add to shopping-cart</button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
