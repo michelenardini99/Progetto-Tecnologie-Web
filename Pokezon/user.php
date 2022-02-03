@@ -23,6 +23,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
             break;
         default:
             require 'template/headerTemplate.php';
+            require 'template/userTemplate.php';
             break;
     }
 } else {

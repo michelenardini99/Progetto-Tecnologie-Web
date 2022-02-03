@@ -15,14 +15,18 @@ cnx = mysql.connector.connect(user='root', password='',
 
 query = "SELECT pv.*, p.id FROM `pokemon_value` pv join pokemon p on (pv.name = p.identifier);"
 
-cursor = cnx.cursor()
+#cursor = cnx.cursor()
 
-cursor.execute(query)
+#cursor.execute(query)
 
 query2 = "INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `description`) VALUES ('0', {}, {}, {}, '{} raised by PokeZone');"
 
-for row in cursor:
-    print(query2.format(row[2], random_with_N_digits(2), row[1], (row[0]).capitalize()))
+for i in range(77):
+    print("INSERT INTO images(name) VALUES ('../resources/Trainers/trainer0" + str(i) + ".png');")
 
-cursor.close()
-cnx.close()
+
+#for row in cursor:
+   # print(query2.format(row[2], random_with_N_digits(2), row[1], (row[0]).capitalize()))
+
+#cursor.close()
+#cnx.close()

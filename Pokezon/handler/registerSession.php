@@ -21,9 +21,9 @@ $password = $_POST['p'];
 $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
 // password using random key
 $password = hash('sha512', $password.$random_salt);
-
-if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role, logged) VALUES (?, ?, ?, ?, ?, 0)")) {    
-   $insert_stmt->bind_param('sssss', $username, $email, $password, $random_salt, $role); 
+$avatar = '../resources/Trainers/trainer00.png';
+if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role, logged, avatar) VALUES (?, ?, ?, ?, ?, 0, ?)")) {    
+   $insert_stmt->bind_param('ssssss', $username, $email, $password, $random_salt, $role, $avatar); 
    $insert_stmt->execute();
    $insert_stmt = $dbh->prepare("SELECT * FROM `members` where username = ?;");
    $insert_stmt->bind_param('s', $username); 
@@ -34,8 +34,8 @@ if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password
    $insert_stmt->bind_param('s', $userId[0]['id']); 
    $insert_stmt->execute();
    if($role == "Merchant"){
-      $insert_stmt = $dbh->prepare("INSERT INTO merchant(merchant.name, merchant.IBAN, merchant.avatar) VALUES(?,?,'no')");
-      $insert_stmt->bind_param('ss', $username, $iban); 
+      $insert_stmt = $dbh->prepare("INSERT INTO merchant(merchant.name, merchant.IBAN, merchant.avatar) VALUES(?,?,?)");
+      $insert_stmt->bind_param('sss', $username, $iban, $avatar); 
       $insert_stmt->execute();
    }
 }

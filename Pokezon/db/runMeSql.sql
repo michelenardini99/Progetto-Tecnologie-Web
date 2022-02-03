@@ -5,7 +5,8 @@ CREATE TABLE `pokedb`.`members` (
   `password` CHAR(128) NOT NULL, 
   `salt` CHAR(128) NOT NULL,
   `role` CHAR(90) NOT NULL check (`role` in ('Trainer', 'Trader', 'Merchant', 'Druid')),
-  `logged` BOOLEAN NOT NULL
+  `logged` BOOLEAN NOT NULL,
+  `avatar` VARCHAR(100) NOT NULL
 ) ENGINE = InnoDB; 
 
 CREATE TABLE `pokedb`.`login_attempts` (
@@ -2354,3 +2355,83 @@ INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `descripti
 INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `description`) VALUES ('1', 10005, 47, 2125, 'Wormadam-trash raised by PokeZone');
 INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `description`) VALUES ('1', 10006, 38, 8200, 'Shaymin-sky raised by PokeZone');
 INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `description`) VALUES ('1', 10007, 35, 9927, 'Giratina-origin raised by PokeZone');
+
+CREATE TABLE images(name VARCHAR(100) PRIMARY KEY);
+
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer00.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer01.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer02.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer03.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer04.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer05.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer06.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer07.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer08.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer09.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer010.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer011.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer012.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer013.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer014.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer015.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer016.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer017.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer018.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer019.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer020.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer021.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer022.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer023.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer024.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer025.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer026.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer027.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer028.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer029.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer030.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer031.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer032.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer033.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer034.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer035.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer036.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer037.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer038.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer039.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer040.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer041.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer042.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer043.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer044.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer045.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer046.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer047.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer048.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer049.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer050.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer051.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer052.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer053.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer054.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer055.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer056.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer057.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer058.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer059.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer060.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer061.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer062.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer063.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer064.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer065.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer066.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer067.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer068.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer069.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer070.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer071.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer072.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer073.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer074.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer075.png');
+INSERT INTO images(name) VALUES ('../resources/Trainers/trainer076.png');

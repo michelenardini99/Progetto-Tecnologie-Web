@@ -1,12 +1,15 @@
 <link rel="stylesheet" type="text/css" href="./css/user.css" />
 
 <body>
+    <?php 
+        $user = $dbh->getUserID($templateParams['name']);
+    ?>
     <div class="container">
         <div class="user-img">
-            <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar">
+            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
         </div>
         <div class="data">
-            <?php $user = $dbh->getUserID($templateParams['name']);
+            <?php 
                 var_dump($user);
             
             ?>
@@ -45,7 +48,10 @@
             </table>
         </div>
         <div class="notify">
-            Notification
+            <?php
+            var_dump($dbh->getNotifAbout($user[0]['username']));
+            ?>
+
         </div>
     </div>
 </body>
