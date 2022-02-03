@@ -200,16 +200,16 @@
             </table>
             <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
             Card Number
-            <input class='input-field'></input>
+            <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()"></input>
             Card Holder
             <input class='input-field'></input>
             <table class='half-input-table'>
               <tr>
                 <td> Expires
-                  <input class='input-field'></input>
+                  <input class='input-field' type="month"></input>
                 </td>
                 <td>CVC
-                  <input class='input-field'></input>
+                  <input class='input-field' type="password" maxlength="3"></input>
                 </td>
               </tr>
             </table>
