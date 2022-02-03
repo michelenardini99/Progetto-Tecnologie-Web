@@ -54,11 +54,12 @@ class DatabaseHelper{
             }
 
             public function getPokemonInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
+                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,count(*) as quantity FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
                                             INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
                                             INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
-                                            where orders.userId = ? AND orders.is_Active = 1;
+                                            where orders.userId = ? AND orders.is_Active = 1
+                                            group by orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value;
                 ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
