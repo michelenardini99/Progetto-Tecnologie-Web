@@ -157,13 +157,13 @@
                   <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" class='full-width'></img>
               </td>
               <td>
-                <br> <span class='thin'> Pokemon </span>
-                <br> <?php echo $pokemon['identifier'] ?> <br> 
+                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
+                <br> <p>Quantity: <?php echo $pokemon['quantity'] ?></p> <br>
               </td>
             </tr>
             <tr>
               <td>
-                <div class='price'><?php echo $info[0]['price']?> $ </div>
+                <div class='price'><?php echo "$ ".$info[0]['price']*$pokemon['quantity'].".00"?></div>
               </td>
             </tr>
            
@@ -181,7 +181,7 @@
           </span>
           <span style='float:right; text-align:right;'>
             <div class='thin dense'>$4.95</div>
-            $435.55
+            <div id="totalPrice"></div>
           </span>
         </div>
     </div>
@@ -219,4 +219,5 @@
       </div>
 </div>
 <script src="./js/recap.js"></script>
+<script src="./js/dataInsert.js"></script>
 </body>
