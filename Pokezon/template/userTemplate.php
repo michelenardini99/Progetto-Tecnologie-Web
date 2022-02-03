@@ -19,17 +19,44 @@
             <input type="submit">
             </form>
         </div>
-        <div class="data">
-            <?php 
-                var_dump($user);
-            
-            ?>
-            <p>
-                <?php echo "".$templateParams['name']?>
-            </p>
-        </div>
-        <div class="orderTable">
-            
+        <div class="orders">
+            <?php $orderList = ($dbh->getOrderFromId($user[0]['id']));?>
+            <table>
+                <thead>
+                    <th>
+                        IdOrder
+                    </th>
+                    <th> 
+                        PokemonId
+                    </th>
+                    <th> 
+                        Name
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <tbody>
+                        <?php 
+                            foreach($orderList as $order):
+                        ?>
+                            <tr>
+                               <td>
+                                    <?php echo "".$order['idOrder']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['pokemonId']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['identifier']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['quantity']?>
+                               </td>
+                            </tr>
+                        <?php endforeach; ?>
+                   </tbody>
+                </thead>
+            </table>
         </div>
         <div class="orderTable">
             <?php
