@@ -53,6 +53,34 @@
                     $i = $i +1; 
                 }
             ?>
+                <?php 
+                    $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
+                    foreach($itemOrderList as $itemOrder):
+                        var_dump($itemOrder);
+                    ?>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+                        <div>
+                            <p>
+                                <?php echo "".$itemOrder['itemId']?>
+                            </p>
+                            <p>
+                                <?php echo "".$itemOrder['identifier']?>
+                            </p>
+                            <p class="<?php echo "valuePokemon" ?>">$<?php echo $itemOrder['cost']?>.00</p> 
+                        </div>
+                    </div>
+                </td>
+                <td>  </td>    <!-- aggiungere la roba del modificare quantity e remove -->
+                <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
+            </tr>
+                <?php endforeach;?>
+
+
+
+
         </table>
         <div class="total-price">
             <table>

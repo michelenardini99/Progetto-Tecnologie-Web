@@ -67,6 +67,18 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function getItemInShop($id){
+                $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost, count(*) as quantity 
+                    FROM items i, orders   JOIN orders_item ON orders.idOrder = orders_item.orderId
+                    where orders.userId = ? AND orders.is_Active = 1
+                    and i.id = orders_item.itemId
+                    GROUP BY orders_item.orderId, orders_item.itemId, i.identifier, i.cost;;
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
         public function getOrderFromId($id){
                 $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier ,count(*) as quantity FROM `orders` o 
 join orders_pokemon op on (o.idOrder = op.orderId)

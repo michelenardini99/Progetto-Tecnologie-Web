@@ -133,7 +133,7 @@
     <div class='order-info'>
       <div class='order-info-content'>
         <h2>Order Summary</h2>
-                <div class='line'></div>
+            <div class='line'></div>
             <?php 
                 $userId = $dbh->getUserId($templateParams["name"]);
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
@@ -151,8 +151,6 @@
          <table class='order-table'>
           <tbody>
            <tr>
-
-
               <td>
                   <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" class='full-width'></img>
               </td>
@@ -174,6 +172,38 @@
                     $i = $i +1; 
                 }
             ?>
+
+            <?php 
+                $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
+                $i=0;
+                    foreach($itemOrderList as $itemOrder):
+            ?>
+         <table class='order-table'>
+          <tbody>
+           <tr>
+              <td>
+                    <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+              </td>
+              <td>
+                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
+                <br> <p>Quantity: <?php echo $itemOrder['quantity'] ?></p> <br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class='price'><?php echo "$ ".number_format((float)($itemOrder['cost']*$itemOrder['quantity']), 2, '.', '')?></div>
+              </td>
+            </tr>
+           
+          </tbody>
+        </table>
+        <div class='line'></div>
+            <?php       
+            endforeach;
+            ?>
+
+
+
        <div class='total'>
           <span style='float:left;'>
             <div class='thin dense'>Delivery</div>
