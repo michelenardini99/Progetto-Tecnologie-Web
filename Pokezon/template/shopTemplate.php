@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>"></td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       
@@ -64,11 +64,24 @@
         </div>
         <div>
             <form action="./dataInsert.php">
-                <button type="submit">
+                <button type="submit" class="checkout">
                     Go to checkout 
                 </button>
             </form>
         </div>
     </div>
+    <script>
+        function updateQuantity(quantity, orderId, pokeId, codV){
+            var order = orderId;
+            var quantity = quantity;
+            var pokeid = pokeId;
+            var codV = codV;
+            $.ajax({
+                url: './updateQuantity.php',
+                type: 'POST',
+                data: {order: order, quantity: quantity, pokeid: pokeid, codV: codV},
+            });
+        }
+    </script>
     <script src="./js/shop.js" type="text/javascript"></script>
 </body>

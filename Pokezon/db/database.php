@@ -36,6 +36,14 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function updateQuantity($order, $quantity, $pokeId, $codV){
+                $stmt = $this->db->prepare("UPDATE orders_pokemon
+                                            SET quantity = ?
+                                            WHERE orderId = ? AND pokemonId = ? AND codV = ?");
+                $stmt->bind_param('ssss', $quantity, $order, $pokeId, $codV); 
+                $stmt->execute();
+            }
+
             public function getPokemonInShop($id){
                 $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
