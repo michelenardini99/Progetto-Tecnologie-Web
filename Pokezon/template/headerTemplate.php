@@ -54,7 +54,7 @@
                                 <img src= <?php echo "".$user[0]['avatar'] ?>  width="75" height="75" alt="trainer image to link login page">
                                 <?php
                             }else{ ?>
-                                <img src="../resources/vera.png" width="75" height="75" alt="trainer image to link login page">
+                                <img src="../resources/login1.png" width="75" height="75" alt="trainer image to link login page">
                             <?php }?>
                     </div>
                     <div>

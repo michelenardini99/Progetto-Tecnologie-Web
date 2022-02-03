@@ -6,7 +6,18 @@
     ?>
     <div class="container">
         <div class="user-img">
+            <?php 
+                if(isset($_GET['filename'])){
+                    $dbh->updateAvatar($user[0]['id'],$_GET['filename']);
+                    header("Location: ./user.php");
+                }
+            ?>
             <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
+            <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
+            <input type="file" id="myFile" name="filename">
+                
+            <input type="submit">
+            </form>
         </div>
         <div class="data">
             <?php 
@@ -18,40 +29,36 @@
             </p>
         </div>
         <div class="orderTable">
+            
+        </div>
+        <div class="orderTable">
+            <?php
+            $notificationList = ($dbh->getNotifAbout($user[0]['username']));
+            ?>
             <table>
                 <thead>
                     <th>
-                        Order number
+                        Message
                     </th>
                     <th> 
-                        total
+                        Time
                     </th>
                     <tbody>
-                        <tr>
-                            <td>
-                                19827958137491872374918374
-                            </td>
-                            <td>
-                                440$
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9804275923874928374092834
-                            </td>
-                            <td>
-                                69$
-                            </td>
-                        </tr>
+                        <?php 
+                            foreach($notificationList as $notification):
+                        ?>
+                            <tr>
+                               <td>
+                                    <?php echo "".$notification['notif_msg']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$notification['notif_time']?>
+                               </td>
+                            </tr>
+                        <?php endforeach; ?>
                    </tbody>
                 </thead>
             </table>
-        </div>
-        <div class="notify">
-            <?php
-            var_dump($dbh->getNotifAbout($user[0]['username']));
-            ?>
-
         </div>
     </div>
 </body>

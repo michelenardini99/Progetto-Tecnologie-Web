@@ -35,6 +35,15 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+                
+            public function updateAvatar($id, $filename){
+                $avatarPrefix = '../resources/Trainers/';
+                $avatarPrefix = $avatarPrefix.$filename;
+                $stmt = $this -> db->prepare("UPDATE `members` SET `avatar` = ?  WHERE `members`.`id` = ?;");
+                $stmt->bind_param('ss', $avatarPrefix, $id);
+                $stmt->execute();
+            }
+ 
 
             public function updateQuantity($order, $quantity, $pokeId, $codV){
                 $stmt = $this->db->prepare("UPDATE orders_pokemon
