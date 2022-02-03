@@ -177,6 +177,18 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            public function pokemonOutOfStock($id){
+                $stmt = $this->db->prepare("
+                    SELECT COUNT(*) as total FROM used_pokemon
+                    where pokemonId = ?
+                ");
+                $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             
             public function pokeItemGetter(){
                 // $stmt = $this->db->prepare("SELECT identifier FROM items;");

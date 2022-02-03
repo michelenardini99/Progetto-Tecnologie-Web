@@ -59,15 +59,23 @@
 <span class="dot" onclick="currentSlide(2)"></span>
 <span class="dot" onclick="currentSlide(3)"></span>
 </div> -->
-
+<div class="pokeList">
+<?php
+for ($x = 0; $x <= 4; $x++) {
+  
+?>
 <div class="pokemon"> <!-- pokemon random cart -->
         <?php
             $id = $dbh->getRandomPokemon()[0];
 ?>
 <a class = "linkPok"href="pokemonDetail.php?name=<?php echo $id['identifier'] ?>">
-    <div class="pokemon">
+    <div class="singlepokemon">
         <?php
             $pokemon = ($dbh->getInfoAbout($id['id']))[0];
+            $outOfStocks = $dbh->pokemonOutOfStock($id['id']);
+            if($outOfStocks[0]['total'] != 0){
+                $display = "display: none;";
+            }
             $types = $dbh->getTypes($id['id']);
             $len = strlen($id['id']);
             if ($len == "1") {
@@ -76,7 +84,10 @@
                 $id['id'] = "0" . $id['id'];
             }
         ?>
-        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id['id'] . ".png" ?>" alt="image of random suggest pokemon to buy">
+        <div class="parent">
+        <img class="imgpok" src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $id['id'] . ".png" ?>" alt="image of random suggest pokemon to buy">
+        <img class="sold-out"src="../resources\sold-out.png" alt="" style="<?php echo $display ?>">
+        </div>
         <div class="pokeDescr" id="descr"> 
             <p class="pokeId"><?php echo "N°".$id['id']?></p>
             <h2 class="namePok"><?php  echo "".ucfirst($pokemon['name']) ?></h2>
@@ -93,31 +104,10 @@
         </div>
     </div>
 </a>
-<div class="shopping-cart">
-    <?php 
-        if(isset($templateParams['name'])){
-        // $userId = $dbh->getUserId($_GET['utente']);
-        $userId = $dbh->getUserId($templateParams['name']);
-        $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
-        }
-        foreach($pokemonsOrder as $pokemon){
-            $len = strlen($pokemon['id']);
-            if ($len == "1") {
-                $pokemon['id'] = "00" . $pokemon['id'];
-            } elseif ($len == "2") {
-                $pokemon['id'] = "0" . $pokemon['id'];
-            }
-    ?>
-    <div>
-        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemon['id'] . ".png" ?>" alt="" width="250" height="250">
-        <div class="pokeShop" id="descr">
-            <p class="idPokeShop"><?php echo "N°".$pokemon['id']?></p>
-            <h2 class="namePokeShop"><?php  echo "".ucfirst($pokemon['identifier']) ?></h2>
-        </div>
-    </div>
-    <?php        
-        }
-    ?>
+</div>
+<?php
+    }
+?>
 </div>
 <script src="./js/slideShow.js" type="text/javascript"></script>
 <script src="./js/color.js" type="text/javascript"></script>
