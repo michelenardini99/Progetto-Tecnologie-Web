@@ -3,13 +3,27 @@
 <body>
     <div class="box">
         <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar" class="box-img">
-        <h1><?php echo "".$templateParams['name']?></h1>
-        <div class="link">
+        <h1><?php 
+            if(isset($_GET["name"])){
+                $mName = $_GET["name"];
+                echo "".$mName;
+            } else {
+                $mName = $templateParams['name'];
+                echo "".$mName;
+            }
+            ?></h1>
+        <div class="link" 
+            style=<?php 
+                if(isset($_GET["name"])){
+                    echo "display:none";
+                }
+            ?>
+        >
             <a href="newArticle.php">Add article</a>
         </div>
         <div class="table">
         <?php 
-            $usedPokemonList = $dbh -> getPokemonFromMerchant( $dbh -> getIdMerchant( $templateParams['name'])[0]['codV']);
+            $usedPokemonList = $dbh -> getPokemonFromMerchant( $dbh -> getIdMerchant( $mName)[0]['codV']);
            /*  $usedPokemonList = $dbh -> getPokemonFromMerchant($cod); */
         ?>
         <table>
