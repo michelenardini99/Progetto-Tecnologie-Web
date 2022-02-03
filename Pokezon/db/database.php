@@ -361,6 +361,7 @@ class DatabaseHelper{
                $stmt->bind_param('iiiis', $merchantid, $id, $quantity, $price, $descr); 
                 $stmt->execute();
               }
+              
 
             public function getMerchantsFromPokemon($id){
               $stmt = $this->db->prepare("SELECT m.name,m.codV FROM used_pokemon up
@@ -384,7 +385,7 @@ class DatabaseHelper{
 
             public function getPokemonFromMerchant($codV){
               $stmt = $this->db->prepare("SELECT * FROM used_pokemon up               
-               where  codV = ? ");
+               where codV = ? ");
                $stmt->bind_param('s', $codV); 
                 $stmt->execute();
                 $result = $stmt->get_result();

@@ -11,6 +11,7 @@ if(isset($_POST['userName'], $_POST['p'], $_POST['email'], $_POST['role']) &&
    $password = $_POST['p']; 
    $email =$_POST['email']; 
    $role = $_POST['role'];
+   $iban = $_POST['iban'];
     $dbh = new mysqli("localhost", "root", "", "pokedb", 3306); 
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
@@ -32,6 +33,11 @@ if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password
    $insert_stmt = $dbh->prepare("INSERT INTO orders (userId, is_active) VALUES (?, 1)");
    $insert_stmt->bind_param('s', $userId[0]['id']); 
    $insert_stmt->execute();
+   if($role == "Merchant"){
+      $insert_stmt = $dbh->prepare("INSERT INTO merchant(merchant.name, merchant.IBAN, merchant.avatar) VALUES(?,?,'no')");
+      $insert_stmt->bind_param('ss', $username, $iban); 
+      $insert_stmt->execute();
+   }
 }
   header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php");
 } else {

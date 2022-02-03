@@ -36,5 +36,4 @@
             </div>
         </form>
     </div>
-    <script src="./js/searchBar.js"></script> 
 </body>

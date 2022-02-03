@@ -9,7 +9,7 @@
         </div>
         <div class="table">
         <?php 
-            $usedPokemonList = $dbh -> getPokemonFromMerchant("1");
+            $usedPokemonList = $dbh -> getPokemonFromMerchant( $dbh -> getIdMerchant( $templateParams['name'])[0]['codV']);
            /*  $usedPokemonList = $dbh -> getPokemonFromMerchant($cod); */
         ?>
         <table>

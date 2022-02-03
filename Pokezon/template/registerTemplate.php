@@ -52,6 +52,10 @@
                         </datalist>
                     <span class="fas fa-key"></span> 
                 </div>
+                <div class="form-field d-flex align-items-center" id="hidden">
+                    <span class="fas fa-iban"></span> 
+                    <input name="iban" id="iban" placeholder="Iban(for merchant)" aria-label="iban placeholder">
+                </div>
                     <input class="btn mt-3" type="button" value="Register" aria-label="register button" onclick="formhash(this.form, this.form.pwd);" >
             </form>
         </div>
