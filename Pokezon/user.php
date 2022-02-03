@@ -3,6 +3,9 @@
 
 //Base Template
 $templateParams["titolo"] = "Personal Area";
+
+if(!isset($_GET["name"])){
+
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
 }
@@ -23,12 +26,16 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
             break;
         default:
             require 'template/headerTemplate.php';
+            require 'template/userTemplate.php';
             break;
     }
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-
+} else {
+    require 'template/headerTemplate.php';
+    require 'template/merchantTemplate.php';
+}
 
 //$templateParams["name"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();

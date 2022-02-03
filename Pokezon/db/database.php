@@ -35,6 +35,15 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+                
+            public function updateAvatar($id, $filename){
+                $avatarPrefix = '../resources/Trainers/';
+                $avatarPrefix = $avatarPrefix.$filename;
+                $stmt = $this -> db->prepare("UPDATE `members` SET `avatar` = ?  WHERE `members`.`id` = ?;");
+                $stmt->bind_param('ss', $avatarPrefix, $id);
+                $stmt->execute();
+            }
+ 
 
             public function updateQuantity($order, $quantity, $pokeId, $codV){
                 $stmt = $this->db->prepare("UPDATE orders_pokemon
@@ -45,11 +54,12 @@ class DatabaseHelper{
             }
 
             public function getPokemonInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,orders_pokemon.quantity FROM orders
+                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,count(*) as quantity FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
                                             INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
                                             INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
-                                            where orders.userId = ? AND orders.is_Active = 1;
+                                            where orders.userId = ? AND orders.is_Active = 1
+                                            group by orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value;
                 ");
                 $stmt->bind_param('s',$id);
                 $stmt->execute();
@@ -57,6 +67,17 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+        public function getOrderFromId($id){
+                $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier ,count(*) as quantity FROM `orders` o 
+join orders_pokemon op on (o.idOrder = op.orderId)
+join pokemon p on (op.pokemonId = p.id)
+where o.userId = ?
+group by o.idOrder, op.pokemonId;");
+                $stmt->bind_param('s', $id); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
             public function getCurrentOrder($userId){
                 $stmt = $this->db->prepare("SELECT orders.idOrder from orders where orders.userId = ? AND is_active = 1;
                 ");
@@ -445,6 +466,17 @@ class DatabaseHelper{
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            
+            public function getNotifAbout($username){
+                $stmt = $this->db->prepare("
+                SELECT n.notif_msg, n.notif_time FROM `notif` n 
+                WHERE n.username = ?;
+                ");
+                $stmt->bind_param('s',$username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
             }
         }
 ?>
