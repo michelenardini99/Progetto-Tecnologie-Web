@@ -13,16 +13,16 @@ cnx = mysql.connector.connect(user='root', password='',
                               host='localhost', port=3306, 
                               database='pokedb')
 
-query = "SELECT identifier FROM pokemon LIMIT 898;"
+query = "SELECT pv.*, p.id FROM `pokemon_value` pv join pokemon p on (pv.name = p.identifier);"
 
 cursor = cnx.cursor()
 
 cursor.execute(query)
 
-query2 = "UPDATE `items` SET `cost` = '{}' WHERE `items`.`id` = {};"
+query2 = "INSERT INTO `used_pokemon` (`codV`, `pokemonId`, `quantity`, `price`, `description`) VALUES ('0', {}, {}, {}, '{} raised by PokeZone');"
 
 for row in cursor:
-    print(row[0] + ",")
+    print(query2.format(row[2], random_with_N_digits(2), row[1], (row[0]).capitalize()))
 
 cursor.close()
 cnx.close()
