@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="./css/detail.css" />
+<link rel="stylesheet" type="text/css" href="./css/item.css" />
 <script
 		src="https://code.jquery.com/jquery-3.4.1.min.js"
 		type="text/javascript">
@@ -37,10 +37,19 @@
                 $userId = $dbh->getUserId($templateParams['name']);
                 $orderId = $dbh->getCurrentOrder($userId[0]['id']);
             ?>
+            
+        </div>
+        <div class="vendor">
+            <p>
+                PokeZone
+            </p>
+        </div>
+        <div>
             <p>
                 <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);">Add to shopping-cart</button>
             </p>
         </div>
     </div>
+    
     <script src="./js/addItem.js" type="text/javascript"></script> 
 </body>

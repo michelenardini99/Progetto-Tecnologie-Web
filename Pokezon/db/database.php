@@ -429,7 +429,15 @@ group by o.idOrder, op.pokemonId;");
                 $stmt->execute();
               }
               
-
+            public function getMerchantsFromItem($id){
+              $stmt = $this->db->prepare("SELECT m.name,m.codV FROM used_pokemon up
+                join merchant m on(up.codV = m.codV)
+               where up.pokemonId = ?");
+               $stmt->bind_param('s', $id); 
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+              }
             public function getMerchantsFromPokemon($id){
               $stmt = $this->db->prepare("SELECT m.name,m.codV FROM used_pokemon up
                 join merchant m on(up.codV = m.codV)

@@ -202,8 +202,6 @@
             endforeach;
             ?>
 
-
-
        <div class='total'>
           <span style='float:left;'>
             <div class='thin dense'>Delivery</div>

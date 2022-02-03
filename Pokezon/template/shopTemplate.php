@@ -56,7 +56,6 @@
                 <?php 
                     $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
                     foreach($itemOrderList as $itemOrder):
-                        var_dump($itemOrder);
                     ?>
             <tr>
                 <td>
