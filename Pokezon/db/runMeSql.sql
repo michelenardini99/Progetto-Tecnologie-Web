@@ -43,6 +43,7 @@ CREATE TABLE orders_item(
 	  orderId INT(11),
     itemId INT(11),
     quantity INT DEFAULT 1,
+    codV INT(11) NOT NULL,
     FOREIGN KEY(orderId) REFERENCES orders(idOrder),
     FOREIGN KEY(itemId) REFERENCES items(id)
 );  

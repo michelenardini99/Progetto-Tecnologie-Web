@@ -121,6 +121,19 @@ group by o.idOrder, op.pokemonId;");
             }
 
 
+            public function addItem($order, $item, $codV ){
+                $stmt = $this->db->prepare("INSERT INTO orders_item(orderId, itemId , quantity, codV) VALUES (?,?,1, ?)
+                ");
+                $stmt->bind_param('iii',$order,$item, $codV);
+                $stmt->execute();
+            }
+            
+            public function removeItem($itemId, $order){
+                $stmt = $this->db->prepare("DELETE FROM orders_item where itemId = ? AND orderId = ?
+                ");
+                $stmt->bind_param('ss',$itemId,$order);
+                $stmt->execute();
+            }
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
                 SELECT p.id, p.identifier, px.identifier as region
@@ -238,7 +251,8 @@ group by o.idOrder, op.pokemonId;");
             public function getInfoAboutItem($name){
                 $stmt = $this->db->prepare("
                 SELECT * 
-                from items i, item_prose ip
+                from  item_prose ip, items i
+                left join orders_item oi on (i.id = oi.orderId)
                 where i.id = ip.item_id
                 and ip.local_language_id = 9
                 and i.identifier = ?;
