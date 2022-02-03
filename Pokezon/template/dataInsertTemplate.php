@@ -163,7 +163,7 @@
             </tr>
             <tr>
               <td>
-                <div class='price'><?php echo "$ ".$info[0]['price']*$pokemon['quantity'].".00"?></div>
+                <div class='price'><?php echo "$ ".number_format((float)($info[0]['price']*$pokemon['quantity']), 2, '.', '')?></div>
               </td>
             </tr>
            
@@ -180,7 +180,7 @@
             TOTAL
           </span>
           <span style='float:right; text-align:right;'>
-            <div class='thin dense'>$4.95</div>
+            <div id='thin dense'>$4.95</div>
             <div id="totalPrice"></div>
           </span>
         </div>

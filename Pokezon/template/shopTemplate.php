@@ -64,7 +64,7 @@
         </div>
         <div>
             <form action="./dataInsert.php">
-                <button type="submit" style= <?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>>
+                <button type="submit" style= "<?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>" class="checkout">
                     Go to checkout 
                 </button>
             </form>
