@@ -39,7 +39,7 @@ if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password
       $insert_stmt->execute();
    }
 }
-  header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php");
+  header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/login.php");
 } else {
    header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/register.php?error=Wrong data (￣︿￣) Use an email or insert a password or simply drink less poke-beer next time... ( ಠ_ಠ )");
 }
