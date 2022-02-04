@@ -17,7 +17,7 @@
 
     <!-- Full-width images with number and caption text -->
 <div class="mySlides">
-<a href="pokemonDetail.php?id=145">
+<a href="pokemonDetail.php?name=zapdos">
 <img src="../resources/slide1.jpg" id="img1" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text1">
       <h1>Zapdos is here!!!!</h1>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="mySlides">
-<a href="pokemonDetail.php?id=146">
+<a href="pokemonDetail.php?name=moltres">
    <img src="../resources/slide2.jpg" id="img2" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text2">
         <h1>Moltres is here!!!!</h1>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="mySlides">
-<a href="pokemonDetail.php?id=147">
+<a href="pokemonDetail.php?name=articuno">
     <img src="../resources/slide1.jpg" id="img3" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text3">
   <h1>Articuno is here!!!!</h1>

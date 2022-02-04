@@ -16,8 +16,6 @@
     <section>
 
 <?php if($templateParams['titolo'] == "Pokemon List"){ ?> <!-- Clicked on POKEMON page -->
-
-
 <form action="" method="get">
 <nav class="region-nav"  id="region-nav">
 <ul>
@@ -135,8 +133,38 @@
   <input type="submit">
 </form>
     <section>
+        <div>
+        <p>
+        <?php 
+            if (isset($_GET["category"])) {
+                switch ($_GET["category"]) {
+                    case 'medicine':
+                        echo "Treat your wound pokemon";
+                        break;
+                    case 'evolution':
+                        echo "Give some help to your friend, make it evolve faster";
+                        break;
+                    case 'held-items':
+                        echo "Your pokemon need some sustain in the battle, buy it here";
+                        break;
+                    case 'special-balls':
+                        echo "If you gonna go to some places you may need these";
+                        break;
+                    case 'standard-balls':
+                        echo "Make more friends!";
+                        break;
+                    case 'all-machines':
+                        echo "Your pokemon is a sloth? Buy machines to help him learning new awesome moves!";
+                        break;                               
+                    default:
+                        # code...
+                        break;
+                }       
+            }
+        ?>
+        </p>    
+        </div>  
         <ul class="table">
-
             <?php 
                     if(isset($_GET["category"])){
                         $itemList = $dbh->getItemFromCategory($_GET["category"]);

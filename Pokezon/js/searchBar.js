@@ -1,7 +1,7 @@
 $( document ).ready(function() {
    //var elements = $(this).getElementById("table");
 
-if(document.title == "Pokemon List"){
+if(document.title == "Pokemon List" || document.title == "Item List"){
 identifiers  = [];
 var elements = document.getElementsByClassName("table")[0].children;
     for(let child of elements){
@@ -908,7 +908,6 @@ var elements = document.getElementsByClassName("table")[0].children;
 "calyrex"];
   }
     autocomplete(document.getElementById("elInput"), identifiers);
-
 });
 
 
