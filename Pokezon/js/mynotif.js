@@ -1,5 +1,5 @@
 $(document).ready(function() {
-		checknotif();
+	checknotif();
 	setInterval(function(){ checknotif(); }, 10000);
 });
 function checknotif() {

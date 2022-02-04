@@ -20,7 +20,12 @@
         <?php 
         ?>
         <div class="image">
-            <img src= <?php echo "https://img.pokemondb.net/sprites/items/".$item[0]['identifier'].".png"?> alt="image of item">
+                                <?php 
+                                    if(str_starts_with($item[0]['identifier'], "tm") || str_starts_with($item[0]['identifier'], "hm") || str_starts_with($item[0]['identifier'], "tr")){ ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                <?php } else { ?>
+                                    <img src= <?php echo "https://img.pokemondb.net/sprites/items/".$item[0]['identifier'].".png"?> alt="image of item">
+                                <?php }?>
         </div>
         <div class="name">  
             <?php echo "".$item[0]['identifier'];?>
@@ -48,11 +53,20 @@
             </p>
         </div>
         <div>
+            <?php 
+                foreach($dbh->getItemInShop($dbh->getActiveUser()[0]['id']) as $p){
+                            if($p['identifier'] == $item[0]['identifier']){
+                                $dbh->saveNotif("Added a ".$item[0]['identifier']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
+                            }
+                }
+            ?>
             <p>
-                <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);">Add to shopping-cart</button>
+                <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);window.location.reload();  ">Add to shopping-cart</button>
             </p>
         </div>
     </div>
-    
     <script src="./js/addItem.js" type="text/javascript"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="./js/mynotif.js"></script>
+
 </body>
