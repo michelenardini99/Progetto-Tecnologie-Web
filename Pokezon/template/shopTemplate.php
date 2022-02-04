@@ -42,7 +42,7 @@
                             <p><?php echo $pokemon['identifier'] ?></p>
                             <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $info[0]['price']?>.00</p>
                             <br>
-                            <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
+                            <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>);"> Remove</a>
                         </div>
                     </div>
                 </td>
@@ -60,7 +60,13 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+
+                        <?php 
+                            if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" style="width:75px; height:75px;">
+                            <?php } else { ?>
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" style="width:75px; height:75px;>
+                            <?php }?>
                         <div>
                             <p>
                                 <?php echo "".$itemOrder['itemId']?>
@@ -94,6 +100,7 @@
                 <button type="submit" style= "<?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>" class="checkout">
                     Go to checkout 
                 </button>
+
             </form>
         </div>
     </div>
