@@ -12,77 +12,37 @@ body{
 
 .container{
     width: 95%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 1fr);
 
-    gap: 10px; /* space between boxes */
-
-    padding: 10px 0; /* border to page top-bot*/
-    box-sizing: border-box;
+    display: flex;
 
     border-radius: 40px;
 
     margin: auto;
 }
 
-.container div{
-    padding: 10px;
+div{
      /* border: 1px solid black; /* to see borders */
-
-    justify-self: center; /*center a div in grid */
+    margin-top: 15%;
+    margin-left: 5%;
 }
 
 .image {
-    grid-column-start: 1;
-    grid-column-end: 1;
-
-    grid-row-start: 1;
-    grid-row-end: 1;
-}
-.merchant {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    
-    grid-row-start: 2;
-    grid-row-end: 2; 
-
-
 }
 
 .name {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    
-    grid-row-start: 1;
-    grid-row-end: 1; 
 
 
 }
 
 .price{
-    grid-column-start: 2;
-    grid-column-end: 2;
 
-    grid-row-start: 1;
-    grid-row-end: 2; 
-
-    margin-top: 25%;
 }
-
-.abilityTable, .description {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    margin-top: -10%;
-}
-
-
 
 /* table stuff */
 
 
-
 table {
+	width: 900px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);

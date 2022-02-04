@@ -9,7 +9,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
-    switch ($dbh -> getUserID($templateParams['name'])[0]['role']) {
+    switch ($dbh -> getUserIdNotLogged($templateParams['name'])[0]['role']) {
         case 'Druid':
             require 'template/druidHeaderTemplate.php';
             break;

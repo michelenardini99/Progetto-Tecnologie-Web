@@ -1,6 +1,12 @@
 <?php 
     require_once('handler/bootstrap.php');
 
+    if(isset($_GET["name"])){
+        $templateParams["titolo"] = $_GET["name"];
+    } else {
+        $templateParams["titolo"] = "Item";
+    }
+
     if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
     }

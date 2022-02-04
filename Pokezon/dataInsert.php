@@ -2,10 +2,7 @@
     require_once('handler/bootstrap.php');
 
 //Base Template
-$templateParams["titolo"] = "Personal Area";
-
-if(!isset($_GET["name"])){
-
+$templateParams["titolo"] = "PokeZone Checkout";
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
 }
@@ -14,32 +11,24 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
     switch ($dbh -> getUserID($templateParams['name'])[0]['role']) {
         case 'Druid':
             require 'template/druidHeaderTemplate.php';
-            require 'template/userTemplate.php';
             break;
         case 'Trader':
             require 'template/druidHeaderTemplate.php';
-            require 'template/userTemplate.php';
-            break;
-        case 'Merchant':
-            require 'template/headerTemplate.php';
-            require 'template/merchantTemplate.php';
             break;
         default:
             require 'template/headerTemplate.php';
-            require 'template/userTemplate.php';
             break;
     }
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-} else {
-    require 'template/headerTemplate.php';
-    require 'template/merchantTemplate.php';
-}
+
 
 //$templateParams["name"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
+
+require 'template/dataInsertTemplate.php';
 
 ?>
 

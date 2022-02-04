@@ -11,7 +11,7 @@ if(isset($_POST['userName'], $_POST['p'], $_POST['email'], $_POST['role']) &&
    $password = $_POST['p']; 
    $email =$_POST['email']; 
    $role = $_POST['role'];
-
+   $iban = $_POST['iban'];
     $dbh = new mysqli("localhost", "root", "", "pokedb", 3306); 
                 if($dbh->connect_error){
                     die("Connesione fallita al db");
@@ -21,10 +21,23 @@ $password = $_POST['p'];
 $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
 // password using random key
 $password = hash('sha512', $password.$random_salt);
-
-if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role) VALUES (?, ?, ?, ?, ?)")) {    
-   $insert_stmt->bind_param('sssss', $username, $email, $password, $random_salt, $role); 
+$avatar = '../resources/Trainers/trainer00.png';
+if ($insert_stmt = $dbh->prepare("INSERT INTO members (username, email, password, salt, role, logged, avatar) VALUES (?, ?, ?, ?, ?, 0, ?)")) {    
+   $insert_stmt->bind_param('ssssss', $username, $email, $password, $random_salt, $role, $avatar); 
    $insert_stmt->execute();
+   $insert_stmt = $dbh->prepare("SELECT * FROM `members` where username = ?;");
+   $insert_stmt->bind_param('s', $username); 
+   $insert_stmt->execute();
+   $result = $insert_stmt->get_result();
+   $userId = $result->fetch_all(MYSQLI_ASSOC);
+   $insert_stmt = $dbh->prepare("INSERT INTO orders (userId, is_active) VALUES (?, 1)");
+   $insert_stmt->bind_param('s', $userId[0]['id']); 
+   $insert_stmt->execute();
+   if($role == "Merchant"){
+      $insert_stmt = $dbh->prepare("INSERT INTO merchant(merchant.name, merchant.IBAN, merchant.avatar) VALUES(?,?,?)");
+      $insert_stmt->bind_param('sss', $username, $iban, $avatar); 
+      $insert_stmt->execute();
+   }
 }
   header("Location: https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php");
 } else {

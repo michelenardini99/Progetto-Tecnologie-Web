@@ -22,12 +22,34 @@ body{
   padding: 0px 0px;
 }
 
+.pokeList{
+  margin-top: 174px;
+  margin-bottom: 175px;
+  width: 100%;
+  height: 760px;
+  background-color: black;
+}
+
 .pokemon{
   float: left;
-  margin: 100px 175px;
+  opacity : 0.5; 
+  transition:opacity 1s; 
+  margin: 15px 15px;
   position: relative;
   top: 0;
   left: 0;
+}
+
+.pokemon:hover{
+  opacity: 1;
+}
+
+.sold-out{
+  position: absolute;
+  height: 300px;
+  top: 3px;
+  left: 90px;
+  width: 300px;
 }
 
 .shopping-cart{
@@ -50,9 +72,18 @@ body{
   display: inline-block;
 }
 
-.pokemon img{
+.imgpok{
   background-color: #f2f2f2;
   border-radius: 20px 20px;
+  top:0px;
+  left: 0px;
+  position: relative;
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 

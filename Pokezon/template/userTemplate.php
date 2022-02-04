@@ -1,51 +1,97 @@
-<link rel="stylesheet" type="text/css" href="./css/user.css" />
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?php echo $templateParams["titolo"]."of ".ucfirst($templateParams['name']); ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/user.css" />
+</head>
 
 <body>
+    <?php 
+        $user = $dbh->getUserID($templateParams['name']);
+    ?>
     <div class="container">
         <div class="user-img">
-            <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar">
-        </div>
-        <div class="data">
-            <?php $user = $dbh->getUserID($templateParams['name']);
-                var_dump($user);
-            
+            <?php 
+                if(isset($_GET['filename'])){
+                    $dbh->updateAvatar($user[0]['id'],$_GET['filename']);
+                    header("Location: ./user.php");
+                }
             ?>
-            <p>
-                <?php echo "".$templateParams['name']?>
-            </p>
+            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
+            <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
+            <input type="file" id="myFile" name="filename">
+                
+            <input type="submit">
+            </form>
         </div>
-        <div class="orderTable">
+        <div class="orders">
+            <?php $orderList = ($dbh->getOrderFromId($user[0]['id']));?>
             <table>
                 <thead>
                     <th>
-                        Order number
+                        IdOrder
                     </th>
                     <th> 
-                        total
+                        PokemonId
+                    </th>
+                    <th> 
+                        Name
+                    </th>
+                    <th>
+                        Quantity
                     </th>
                     <tbody>
-                        <tr>
-                            <td>
-                                19827958137491872374918374
-                            </td>
-                            <td>
-                                440$
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9804275923874928374092834
-                            </td>
-                            <td>
-                                69$
-                            </td>
-                        </tr>
+                        <?php 
+                            foreach($orderList as $order):
+                        ?>
+                            <tr>
+                               <td>
+                                    <?php echo "".$order['idOrder']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['pokemonId']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['identifier']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$order['quantity']?>
+                               </td>
+                            </tr>
+                        <?php endforeach; ?>
                    </tbody>
                 </thead>
             </table>
         </div>
-        <div class="notify">
-            Notification
+        <div class="orderTable">
+            <?php
+            $notificationList = ($dbh->getNotifAbout($user[0]['username']));
+            ?>
+            <table>
+                <thead>
+                    <th>
+                        Message
+                    </th>
+                    <th> 
+                        Time
+                    </th>
+                    <tbody>
+                        <?php 
+                            foreach($notificationList as $notification):
+                        ?>
+                            <tr>
+                               <td>
+                                    <?php echo "".$notification['notif_msg']?>
+                               </td>
+                                <td>
+                                    <?php echo "".$notification['notif_time']?>
+                               </td>
+                            </tr>
+                        <?php endforeach; ?>
+                   </tbody>
+                </thead>
+            </table>
         </div>
     </div>
 </body>

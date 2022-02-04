@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="./css/nav.css" />
+<link rel="shortcut icon" type="image/x-icon" href="./../resources/favicon.png"/>
 <nav class="navbar">
         <a class="logo" href="index.php">
             <img src="../resources/logo.png" width="187.5" height="150" alt="logo picture of pokeZone">
@@ -49,7 +50,13 @@
                             ?>
                 <li class="nav-login">
                 <div>
-                        <img src="../resources/vera.png" width="75" height="75" alt="trainer image to link login page">
+                        <?php 
+                            if($user = $dbh->getActiveUser()){ ?>
+                                <img src= <?php echo "".$user[0]['avatar'] ?>  width="75" height="75" alt="trainer image to link login page">
+                                <?php
+                            }else{ ?>
+                                <img src="../resources/login1.png" width="75" height="75" alt="trainer image to link login page">
+                            <?php }?>
                     </div>
                     <div>
                         <p>

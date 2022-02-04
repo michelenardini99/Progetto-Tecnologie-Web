@@ -31,6 +31,7 @@
                 } elseif ($len == "2") {
                     $pokemon['id'] = "0" . $pokemon['id'];
                 }
+                $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
             ?>
             <tr>
                 <td>
@@ -39,19 +40,46 @@
                         <div>
                             <p><?php echo $pokemon['id'] ?></p>
                             <p><?php echo $pokemon['identifier'] ?></p>
-                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $pokemon['value']?>.00</p>
+                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $info[0]['price']?>.00</p>
                             <br>
-                            <a href="" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
+                            <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>)">Remove</a>
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>"></td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       
                     $i = $i +1; 
                 }
             ?>
+                <?php 
+                    $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
+                    foreach($itemOrderList as $itemOrder):
+                    ?>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+                        <div>
+                            <p>
+                                <?php echo "".$itemOrder['itemId']?>
+                            </p>
+                            <p>
+                                <?php echo "".$itemOrder['identifier']?>
+                            </p>
+                            <p class="<?php echo "valuePokemon" ?>">$<?php echo $itemOrder['cost']?>.00</p> 
+                        </div>
+                    </div>
+                </td>
+                <td>  </td>    <!-- aggiungere la roba del modificare quantity e remove -->
+                <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
+            </tr>
+                <?php endforeach;?>
+
+
+
+
         </table>
         <div class="total-price">
             <table>
@@ -61,6 +89,26 @@
                 </tr>
             </table>
         </div>
+        <div>
+            <form action="./dataInsert.php">
+                <button type="submit" style= "<?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>" class="checkout">
+                    Go to checkout 
+                </button>
+            </form>
+        </div>
     </div>
+    <script>
+        function updateQuantity(quantity, orderId, pokeId, codV){
+            var order = orderId;
+            var quantity = quantity;
+            var pokeid = pokeId;
+            var codV = codV;
+            $.ajax({
+                url: './updateQuantity.php',
+                type: 'POST',
+                data: {order: order, quantity: quantity, pokeid: pokeid, codV: codV},
+            });
+        }
+    </script>
     <script src="./js/shop.js" type="text/javascript"></script>
 </body>

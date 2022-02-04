@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-image: url('../../resources/wallpaper.jpg');
+}
+
+.box{
+    width: 1000px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    color: white;
+    border-radius: 15px;
+}
+
+.box .link{
+    background: whitesmoke;
+    display: inline-block;
+    margin: 39px auto;
+    padding: 12px 0;
+    border-radius: 5px;
+}
+
+.box .link a:hover{
+    color: red;
+}
+
+.box img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background: white
+}
+
+.box h1{
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: 100;
+}
+
+.table{
+    margin: 50px 75px;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 37px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
