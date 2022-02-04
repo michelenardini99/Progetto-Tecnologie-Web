@@ -53,16 +53,47 @@
             </p>
         </div>
         <div>
-            <?php 
-                foreach($dbh->getItemInShop($dbh->getActiveUser()[0]['id']) as $p){
-                            if($p['identifier'] == $item[0]['identifier']){
-                                $dbh->saveNotif("Added a ".$item[0]['identifier']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
-                            }
-                }
-            ?>
-            <p>
-                <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);window.location.reload();  ">Add to shopping-cart</button>
-            </p>
+               <button type="button">
+                <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);">Add to shopping-cart</button>
+                </button>
+               <script>
+                                        $(document).ready(function(){
+                                            var name = document.getElementsByClassName("name")[0].innerText;
+                                            $("button").click(function(){ 
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "./notification.php",
+                                                    data: {itemName: name},
+                                                    success: function(data, textStatus, jqXHR)
+			{
+                if(data[0] != "<"){ 
+				var data = jQuery.parseJSON(data);
+					var data_notif = data.notif;
+					for (var i = data_notif.length - 1; i >= 0; i--) {
+						var theurl = data_notif[i]['url'];
+						var notifikasi = new Notification(data_notif[i]['title'], {
+							icon: data_notif[i]['icon'],
+							body: data_notif[i]['msg'],
+						});
+						console.log(notifikasi);
+						notifikasi.onclick = function () {
+							window.open(theurl); 
+							notifikasi.close();     
+						};
+						setTimeout(function(){
+							notifikasi.close();
+						}, 5000);
+					};
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+
+			}
+                                                });
+                                            });
+                                        });
+                                    </script>
         </div>
     </div>
     <script src="./js/addItem.js" type="text/javascript"></script> 

@@ -187,7 +187,13 @@
           <tbody>
            <tr>
               <td>
-                    <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+
+                                <?php 
+                                    if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                <?php } else { ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+                                <?php }?>
               </td>
               <td>
                 <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
@@ -246,7 +252,44 @@
                 </td>
               </tr>
             </table>
-            <button class='pay-btn'>Confirm</button>
+            <button type="button" class='pay-btn'>Confirm</button>
+            <script>
+                                        $(document).ready(function(){
+                                            $("button").click(function(){ 
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "./notification.php",
+                                                    data: {checkout: "check"},
+                                                    success: function(data, textStatus, jqXHR)
+			{
+                if(data[0] != "<"){ 
+				var data = jQuery.parseJSON(data);
+					var data_notif = data.notif;
+					for (var i = data_notif.length - 1; i >= 0; i--) {
+						var theurl = data_notif[i]['url'];
+						var notifikasi = new Notification(data_notif[i]['title'], {
+							icon: data_notif[i]['icon'],
+							body: data_notif[i]['msg'],
+						});
+						console.log(notifikasi);
+						notifikasi.onclick = function () {
+							window.open(theurl); 
+							notifikasi.close();     
+						};
+						setTimeout(function(){
+							notifikasi.close();
+						}, 5000);
+					};
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+
+			}
+                                                });
+                                            });
+                                        });
+                                    </script>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="./css/detail.css" />
 <script
-		src="https://code.jquery.com/jquery-3.4.1.min.js"
-		type="text/javascript">
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
 	</script>
 <body>
 <?php
@@ -166,11 +165,6 @@
                         $id = $dbh->getID($_GET['name'])[0]['id'];
                         $merchant=$dbh->getMerchantsFromPokemon($id);
                          $pokeId = $dbh->getID($_GET['name'])[0]['id'];
-                         foreach($dbh->getPokemonInShop($dbh->getActiveUser()[0]['id']) as $p){
-                            if($p['identifier'] == $pokemon['name']){
-                                $dbh->saveNotif("Added a ".$pokemon['name']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
-                            }
-                         }
                         foreach ($merchant as $m):
                             $info = $dbh->getSinglePokemonFromMerchant($m['codV'],$id);
                             ?>
@@ -193,7 +187,48 @@
                                         $orderId = $dbh->getCurrentOrder($userId[0]['id']);
                                         $pokeId = $dbh->getID($_GET['name'])[0]['id'];
                                     ?>
-                                    <a class="addPokemon" onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>, <?php echo $m['codV'] ?>); window.location.reload();">Add to shopping-cart</button>
+                                    <button id="add" type="button">
+                                        <a class="addPokemon"  onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>, <?php echo $m['codV'] ?>);" >Add to shopping-cart</button>
+                                    </button>
+                                    <script>
+                                        $(document).ready(function(){
+                                            var name = document.getElementsByClassName("name")[0].innerText;
+                                            console.log(name);
+                                            $("button").click(function(){ 
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "./notification.php",
+                                                    data: {pokemonName: name},
+                                                    success: function(data, textStatus, jqXHR)
+			{
+                if(data[0] != "<"){ 
+				var data = jQuery.parseJSON(data);
+					var data_notif = data.notif;
+					for (var i = data_notif.length - 1; i >= 0; i--) {
+						var theurl = data_notif[i]['url'];
+						var notifikasi = new Notification(data_notif[i]['title'], {
+							icon: data_notif[i]['icon'],
+							body: data_notif[i]['msg'],
+						});
+						console.log(notifikasi);
+						notifikasi.onclick = function () {
+							window.open(theurl); 
+							notifikasi.close();     
+						};
+						setTimeout(function(){
+							notifikasi.close();
+						}, 5000);
+					};
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+
+			}
+                                                });
+                                            });
+                                        });
+                                    </script>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -203,6 +238,4 @@
 
     </div>
     <script src="./js/addPokemon.js" type="text/javascript"></script> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="./js/mynotif.js"></script>
 </body>

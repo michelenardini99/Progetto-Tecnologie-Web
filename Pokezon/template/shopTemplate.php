@@ -100,6 +100,7 @@
                 <button type="submit" style= "<?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>" class="checkout">
                     Go to checkout 
                 </button>
+
             </form>
         </div>
     </div>
