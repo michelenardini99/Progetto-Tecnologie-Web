@@ -24,20 +24,20 @@ body{
 
 .pokeList{
   margin-top: 174px;
-  margin-bottom: 175px;
-  width: 100%;
-  height: 760px;
-  background-color: black;
+    margin-bottom: 175px;
+    background-color: black;
+    overflow-x: hidden;
+    display: flex;
+    white-space: nowrap;
 }
 
 .pokemon{
-  float: left;
   opacity : 0.5; 
   transition:opacity 1s; 
   margin: 15px 15px;
-  position: relative;
-  top: 0;
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pokemon:hover{

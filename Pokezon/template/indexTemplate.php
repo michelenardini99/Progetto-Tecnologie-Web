@@ -109,6 +109,14 @@ for ($x = 0; $x <= 4; $x++) {
     }
 ?>
 </div>
+<script>
+    const scrollContainer = document.querySelector(".pokeList");
+
+    scrollContainer.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+});
+</script>
 <script src="./js/slideShow.js" type="text/javascript"></script>
 <script src="./js/color.js" type="text/javascript"></script>
 </main>
