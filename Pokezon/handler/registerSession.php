@@ -5,7 +5,7 @@ include 'session.php';
 sec_session_start(); 
 
 if(isset($_POST['userName'], $_POST['p'], $_POST['email'], $_POST['role']) &&
-!(strlen($_POST['p']) == 0 || !(preg_match_all('/[a-z_]/i',$_POST['userName']) == strlen($_POST['userName'])) 
+!(strlen($_POST['p']) == 0 || !(preg_match_all('/[a-zA-Z0-9]/i',$_POST['userName']) == strlen($_POST['userName'])) 
  || !preg_match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/", $_POST['email']))) { 
    $username = $_POST['userName'];
    $password = $_POST['p']; 
