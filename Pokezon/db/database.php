@@ -54,7 +54,7 @@ class DatabaseHelper{
             }
 
             public function getPokemonInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,count(*) as quantity FROM orders
+                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV,orders_pokemon.quantity, pokemon.id, pokemon.identifier,pokemon_value.value FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
                                             INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
                                             INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
@@ -198,6 +198,44 @@ group by o.idOrder, op.pokemonId;");
                     where pokemon_types.pokemon_id = ?;
                 ");
                 $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function removeQuantity($pokemonId, $quantity, $codV){
+                $stmt = $this->db->prepare("
+                    update used_pokemon
+                    set quantity = quantity - ?
+                    where codV = ? AND pokemonId = ?
+                ");
+                $stmt->bind_param('sss',$quantity, $codV, $pokemonId);
+                $stmt->execute();
+            }
+
+            public function disableOrder($orderId){
+                $stmt = $this->db->prepare("
+                    UPDATE orders
+                    SET orders.is_active = 0
+                    where orders.idOrder = ?;
+                ");
+                $stmt->bind_param('s',$orderId);
+                $stmt->execute();
+            }
+
+            public function newOrder($userId){
+                $stmt = $this->db->prepare("
+                    INSERT INTO orders(userId,is_active) VALUES(?,1)
+                ");
+                $stmt->bind_param('s',$userId);
+                $stmt->execute();
+            }
+
+            public function getIdFromOrder($orderId){
+                $stmt = $this->db->prepare("
+                    select userId from orders where idOrder = ?
+                ");
+                $stmt->bind_param('s',$orderId);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);

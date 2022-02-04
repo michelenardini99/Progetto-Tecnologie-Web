@@ -152,6 +152,7 @@
                     $pokemon['id'] = "0" . $pokemon['id'];
                 }
                 $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
+                echo $pokemon['quantity'];
             ?>
          <table class='order-table'>
           <tbody>
@@ -246,11 +247,12 @@
                 </td>
               </tr>
             </table>
-            <button class='pay-btn'>Confirm</button>
+            <button class='pay-btn' onClick='removeQuantity(<?php echo json_encode($pokemonsOrder); ?>);'>Confirm</button>
           </div>
         </div>
       </div>
 </div>
 <script src="./js/recap.js"></script>
 <script src="./js/dataInsert.js"></script>
+<script src="./js/removeQuantity.js"></script>
 </body>
