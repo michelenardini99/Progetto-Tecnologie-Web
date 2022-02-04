@@ -43,14 +43,6 @@
                 <?php echo "" . ucfirst($pokemon['name']) ?>
             </h2>
         </div>
-        <div class="price">
-            <h1>
-                <?php 
-                    echo "".$dbh->getValueFromName($pokemon['name'])[0]['value']; 
-                ?>
-                Dollars
-        </h1>
-        </div>
         <div class="mosseStats">
             <p>
                 <b>
