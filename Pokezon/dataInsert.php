@@ -2,7 +2,7 @@
     require_once('handler/bootstrap.php');
 
 //Base Template
-$templateParams["titolo"] = "PokeZone Register";
+$templateParams["titolo"] = "PokeZone Checkout";
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
 }

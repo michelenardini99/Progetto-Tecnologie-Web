@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="./css/nav.css" />
+<link rel="shortcut icon" type="image/x-icon" href="./../resources/favicon.png"/>
 <nav class="navbar">
         <a class="logo" href="index.php">
             <img src="../resources/logo.png" width="187.5" height="150" alt="logo picture of pokeZone">

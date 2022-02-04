@@ -1,15 +1,18 @@
-<link rel="stylesheet" type="text/css" href="./css/item.css" />
-<script
-		src="https://code.jquery.com/jquery-3.4.1.min.js"
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?php echo $templateParams["titolo"]; ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/item.css" />
+
+    <script
+		src="https://code.jquery.com/jquery-3.5.1.min.js"
 		type="text/javascript">
-</script>
+	</script>
+</head>
 
 <?php 
-    if(isset($_GET["name"])){
-        $item = $dbh->getInfoAboutItem($_GET["name"]);
-    }
-
-
+        $item = $dbh->getInfoAboutItem($templateParams["titolo"]);
 ?>
 
 <body>

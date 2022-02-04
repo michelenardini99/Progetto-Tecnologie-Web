@@ -253,6 +253,8 @@ group by o.idOrder, op.pokemonId;");
                     and identifier not like 'room-service'
                     and identifier not like 'utility-umbrella'
                     and identifier not like 'tr%'
+                    and identifier not like 'max-mushorooms'
+                    and identifier not like 'bicycle'
                     LIMIT 475;
                     ");
                 $stmt->execute();
@@ -290,6 +292,8 @@ group by o.idOrder, op.pokemonId;");
                     and i.identifier not like 'room-service'
                     and i.identifier not like 'utility-umbrella'
                     and i.identifier not like 'tr%'
+                    and i.identifier not like 'max-mushrooms'
+                    and i.identifier not like 'bicycle'
                     and ic.identifier = ?
                     LIMIT 600;
                 ");
@@ -309,6 +313,8 @@ group by o.idOrder, op.pokemonId;");
                     or identifier = 'evolution'
                     or identifier = 'medicine'
                     or identifier = 'held-items'
+                    or identifier = 'healing'
+                    or identifier = 'stat-boosts'
                 ;");
                 $stmt->execute();
                 $result = $stmt->get_result();

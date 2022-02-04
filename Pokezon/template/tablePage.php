@@ -139,7 +139,7 @@
             if (isset($_GET["category"])) {
                 switch ($_GET["category"]) {
                     case 'medicine':
-                        echo "Treat your wound pokemon";
+                        echo "Save your pokemon from poison or sleeping moves";
                         break;
                     case 'evolution':
                         echo "Give some help to your friend, make it evolve faster";
@@ -155,8 +155,14 @@
                         break;
                     case 'all-machines':
                         echo "Your pokemon is a sloth? Buy machines to help him learning new awesome moves!";
-                        break;                               
-                    default:
+                        break;
+                    case 'stat-boosts':
+                        echo "Your pokemon needs some help, buy more attack power or speed";
+                        break;                             
+                    case 'healing':
+                        echo "Treat your wound pokemon!";
+                        break;                             
+                        default:
                         # code...
                         break;
                 }       

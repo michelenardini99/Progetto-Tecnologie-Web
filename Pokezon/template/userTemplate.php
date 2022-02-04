@@ -1,4 +1,10 @@
-<link rel="stylesheet" type="text/css" href="./css/user.css" />
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?php echo $templateParams["titolo"]."of ".ucfirst($templateParams['name']); ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/user.css" />
+</head>
 
 <body>
     <?php 
