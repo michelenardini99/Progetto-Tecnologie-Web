@@ -53,6 +53,14 @@ class DatabaseHelper{
                 $stmt->execute();
             }
 
+            public function updateQuantityItem($order, $quantity, $itemId, $codV){
+                $stmt = $this->db->prepare("UPDATE orders_item
+                                            SET quantity = ?
+                                            WHERE orderId = ? AND itemId = ? AND codV = ?");
+                $stmt->bind_param('ssss', $quantity, $order, $itemId, $codV); 
+                $stmt->execute();
+            }
+
             public function getPokemonInShop($id){
                 $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV,orders_pokemon.quantity, pokemon.id, pokemon.identifier,pokemon_value.value FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
@@ -119,8 +127,13 @@ group by o.idOrder, op.pokemonId;");
                 ");
                 $stmt->bind_param('ss',$pokemon,$order);
                 $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function removeItem($itemId, $order){
+                $stmt = $this->db->prepare("DELETE FROM orders_item where orders_item.itemId = ? AND orders_item.orderId = ?
+                ");
+                $stmt->bind_param('ss',$itemId,$order);
+                $stmt->execute();
             }
 
             public function addPokemon($order, $pokemon, $merchant){
@@ -139,13 +152,7 @@ group by o.idOrder, op.pokemonId;");
                 $stmt->bind_param('iii',$order,$item, $codV);
                 $stmt->execute();
             }
-            
-            public function removeItem($itemId, $order){
-                $stmt = $this->db->prepare("DELETE FROM orders_item where itemId = ? AND orderId = ?
-                ");
-                $stmt->bind_param('ss',$itemId,$order);
-                $stmt->execute();
-            }
+
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
                 SELECT p.id, p.identifier, px.identifier as region
@@ -162,7 +169,7 @@ group by o.idOrder, op.pokemonId;");
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
-                    and p.id < 10008
+                    and p.id < 899
                     ORDER BY RAND()
                     LIMIT 1" 
                     );
