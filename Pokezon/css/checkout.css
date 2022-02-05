@@ -111,10 +111,10 @@ ul li:hover {
   right:0px;
   color:#4488dd;
 }
-.order-table td:first-of-type {
+.order-table td:first-of-type{
   width:25%;
 }
-.order-table {
+.order-table{
     position:relative;
 }
 .line {
@@ -124,10 +124,11 @@ ul li:hover {
   margin-bottom:10px;
   background:#ddd;
 }
-.order-table td:last-of-type {
+.order-table td:last-of-type{
   vertical-align:top;
   padding-left:25px;
 }
+
 .order-info-content {
   table-layout:fixed;
 

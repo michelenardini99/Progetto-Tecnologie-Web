@@ -53,39 +53,38 @@
             <?php       
                         $i = $i +1; 
                     }
-                }
+                
             ?>
                 <?php 
-                    if($result){
-                        $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
-                        foreach($itemOrderList as $itemOrder):
+                    $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
+                    foreach($itemOrderList as $itemOrder){
                 ?>
             <tr>
                 <td>
                     <div class="cart-info">
-
                         <?php 
                             if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
                                 <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" style="width:75px; height:75px;">
                             <?php } else { ?>
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" style="width:75px; height:75px;>
-                            <?php }?>
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" style="width:100px; height:100px;">
+                            <?php 
+                            } 
+                            ?>
                         <div>
-                            <p>
-                                <?php echo "".$itemOrder['itemId']?>
-                            </p>
-                            <p>
-                                <?php echo "".$itemOrder['identifier']?>
-                            </p>
-                            <p class="<?php echo "valuePokemon" ?>">$<?php echo $itemOrder['cost']?>.00</p> 
+                            <p><?php echo $itemOrder['itemId']?></p>
+                            <p><?php echo $itemOrder['identifier']?></p>
+                            <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $itemOrder['cost']?>.00</p>
+                            <br>
+                            <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removeItem(<?php echo $itemOrder['itemId'] ?>,<?php echo $itemOrder['orderId'] ?>);"> Remove</a>
                         </div>
                     </div>
                 </td>
-                <td>  </td>    <!-- aggiungere la roba del modificare quantity e remove -->
+                <td><input type="number" value="<?php echo $itemOrder['quantity'] ?>" class="<?php echo "quantity".$i ?>" onchange='updateQuantityItem(this.value, <?php echo $itemOrder['orderId'] ?>, <?php echo $itemOrder['itemId'] ?>, <?php echo "1" ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
             </tr>
                 <?php 
-                        endforeach;
+                             $i = $i +1;
+                        }
                     }
                 ?>
 
@@ -120,6 +119,22 @@
                 url: './updateQuantity.php',
                 type: 'POST',
                 data: {order: order, quantity: quantity, pokeid: pokeid, codV: codV},
+            });
+        }
+
+        function updateQuantityItem(quantity, orderId, itemId, codV){
+            var order = orderId;
+            var quantity = quantity;
+            var itemid = itemId;
+            var codV = codV;
+            console.log(order);
+            console.log(quantity);
+            console.log(itemid);
+            console.log(codV);
+            $.ajax({
+                url: './updateQuantityItem.php',
+                type: 'POST',
+                data: {order: order, quantity: quantity, itemid: itemid, codV: codV},
             });
         }
     </script>
