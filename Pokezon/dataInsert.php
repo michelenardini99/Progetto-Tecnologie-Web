@@ -27,7 +27,6 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 //$templateParams["name"] = "lista-articoli.php";
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
-
 require 'template/dataInsertTemplate.php';
 
 ?>

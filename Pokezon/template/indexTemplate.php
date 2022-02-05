@@ -121,10 +121,3 @@ for ($x = 0; $x <= 4; $x++) {
 <script src="./js/color.js" type="text/javascript"></script>
 </main>
 </body>
-
-<footer>
-
- <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- <script src="./js/mynotif.js"></script>
-
- --></footer>

@@ -1,3 +1,7 @@
+body{
+  margin: 0;
+}
+
 .pokemon, .pokemonBreak{
     display: inline-block;
     margin-left: 0px;

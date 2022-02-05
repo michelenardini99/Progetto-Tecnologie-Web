@@ -99,6 +99,18 @@
   border-bottom: 5px solid orange;
 }
 
+.nav-logout{
+  border-bottom: 5px solid yellow;
+}
+
+.nav-logout:hover{
+  background-color: yellow;
+}
+
+.nav-logout div img{
+  margin-bottom: 5px;
+}
+
 .nav-poke:hover{
   background-color: palegreen;
 }

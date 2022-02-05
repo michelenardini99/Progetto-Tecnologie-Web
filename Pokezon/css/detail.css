@@ -50,14 +50,17 @@ body{
 
 }
 
+#add{
+    border: none;
+    background: none;
+}
+
 .name {
     grid-column-start: 2;
     grid-column-end: 2;
-    
+    display: contents;  
     grid-row-start: 1;
     grid-row-end: 1; 
-
-
 }
 
 .price{

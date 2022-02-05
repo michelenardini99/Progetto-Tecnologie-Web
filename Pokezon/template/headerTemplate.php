@@ -71,6 +71,16 @@
                     </div>
                 </li>
             </a>
+            <a href="./logOut.php">
+                <li class="nav-logout">
+                    <div>
+                        <img src="../resources/logout.png" width="30" height="40" alt="gengar image to link pokemon list page">
+                    </div>
+                    <div>
+                        <p>LogOut</p>
+                    </div>
+                </li>
+            </a>
         </ul>
         </a>
         <a href="shop.php">
@@ -78,10 +88,5 @@
                 <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
             </button>
         </a>
-        <button>
-            <a href="./logOut.php">
-                LogOut
-            </a>
-        </button>
     </nav>
 <script src="./js/navScript.js"></script>

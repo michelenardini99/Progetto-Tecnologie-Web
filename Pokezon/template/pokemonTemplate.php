@@ -175,9 +175,12 @@
                                 </td>
                                 <td>
                                     <?php
-                                        $userId = $dbh->getUserId($templateParams['name']);
-                                        $orderId = $dbh->getCurrentOrder($userId[0]['id']);
-                                        $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+                                        $result = $dbh->getActiveUser();
+                                        if($result){
+                                            $userId = $dbh->getUserId($templateParams['name']);
+                                            $orderId = $dbh->getCurrentOrder($userId[0]['id']);
+                                            $pokeId = $dbh->getID($_GET['name'])[0]['id'];
+                                        }
                                     ?>
                                     <button id="add" type="button">
                                         <a class="addPokemon"  onClick="addPokemon(<?php echo $pokeId ?>, <?php echo $orderId[0]['idOrder'] ?>, <?php echo $m['codV'] ?>);" >Add to shopping-cart</button>

@@ -27,6 +27,5 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-
-require 'template/itemTemplate.php'
+require 'template/itemTemplate.php';
 ?>

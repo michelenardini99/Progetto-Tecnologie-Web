@@ -19,19 +19,20 @@
                 <th>Subtotal</th>
             </tr>
             <?php 
-
-                $userId = $dbh->getUserId($templateParams["nome"]);
-                $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
-                $i=0;
-                foreach($pokemonsOrder as $pokemon){
-                    $pokemonid=$pokemon['id'];
-                    $len = strlen($pokemon['id']);
-                    if ($len == "1") {
-                    $pokemon['id'] = "00" . $pokemon['id'];
-                } elseif ($len == "2") {
-                    $pokemon['id'] = "0" . $pokemon['id'];
-                }
-                $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
+                $result = $dbh->getActiveUser();
+                if($result){
+                    $userId = $dbh->getUserId($templateParams["nome"]);
+                    $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
+                    $i=0;
+                    foreach($pokemonsOrder as $pokemon){
+                        $pokemonid=$pokemon['id'];
+                        $len = strlen($pokemon['id']);
+                        if ($len == "1") {
+                        $pokemon['id'] = "00" . $pokemon['id'];
+                    } elseif ($len == "2") {
+                        $pokemon['id'] = "0" . $pokemon['id'];
+                    }
+                    $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
             ?>
             <tr>
                 <td>
@@ -50,13 +51,15 @@
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       
-                    $i = $i +1; 
+                        $i = $i +1; 
+                    }
                 }
             ?>
                 <?php 
-                    $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
-                    foreach($itemOrderList as $itemOrder):
-                    ?>
+                    if($result){
+                        $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
+                        foreach($itemOrderList as $itemOrder):
+                ?>
             <tr>
                 <td>
                     <div class="cart-info">
@@ -81,7 +84,10 @@
                 <td>  </td>    <!-- aggiungere la roba del modificare quantity e remove -->
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
             </tr>
-                <?php endforeach;?>
+                <?php 
+                        endforeach;
+                    }
+                ?>
 
 
 

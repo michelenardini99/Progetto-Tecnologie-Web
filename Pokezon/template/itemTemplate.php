@@ -42,8 +42,11 @@
         </div>
         <div class="buy">
             <?php 
-                $userId = $dbh->getUserId($templateParams['name']);
-                $orderId = $dbh->getCurrentOrder($userId[0]['id']);
+                $result = $dbh->getActiveUser();
+                if($result){
+                    $userId = $dbh->getUserId($templateParams['name']);
+                    $orderId = $dbh->getCurrentOrder($userId[0]['id']);
+                }
             ?>
             
         </div>
