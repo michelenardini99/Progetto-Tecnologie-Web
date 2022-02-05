@@ -9,6 +9,9 @@ if(isset($_POST['pokemonName'])){
     $dbh->saveNotif("Added an ".$_POST['itemName']." to your shopping cart", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
 }elseif (isset($_POST['checkout'])) {
     $dbh->saveNotif("Order completed, Omedetou !", date('Y-m-d H:i:s'),"1", "1", $dbh->getActiveUser()[0]['username']);
+}elseif (isset($_POST["clear"])) {
+    $dbh -> truncateNotif($dbh->getActiveUser()[0]['username']);
+    # code...
 }
 $listnotif = $sql->listNotifUser($sql -> getActiveUser()[0]['username']);
 foreach ($listnotif as $key) {

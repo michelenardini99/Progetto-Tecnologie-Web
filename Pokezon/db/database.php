@@ -556,7 +556,18 @@ group by o.idOrder, op.pokemonId;");
             public function getNotifAbout($username){
                 $stmt = $this->db->prepare("
                 SELECT n.notif_msg, n.notif_time FROM `notif` n 
-                WHERE n.username = ?;
+                WHERE n.username = ?
+                order by n.notif_time desc;
+                ");
+                $stmt->bind_param('s',$username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function truncateNotif($username){
+                $stmt = $this->db->prepare("
+                DELETE FROM `notif` WHERE `username` = ?;
                 ");
                 $stmt->bind_param('s',$username);
                 $stmt->execute();

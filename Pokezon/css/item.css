@@ -1,6 +1,6 @@
 body{
     margin: 0;
-  background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png");
+    background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png");
 }
 
 .addPokemon{
@@ -32,20 +32,12 @@ div{
     margin-left: 5%;
 }
 
-.image {
-}
-
-.name {
-
-
-}
-
-.price{
-
+.image img {
+    width: 75px;
+    height: 75px;
 }
 
 /* table stuff */
-
 
 table {
 	width: 900px;

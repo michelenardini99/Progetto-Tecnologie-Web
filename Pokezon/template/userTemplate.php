@@ -2,7 +2,11 @@
 <html lang="it">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $templateParams["titolo"]."of ".ucfirst($templateParams['name']); ?></title>
+    <title><?php echo $templateParams["titolo"]." of ".ucfirst($templateParams['name']); ?></title>
+    <script
+		src="https://code.jquery.com/jquery-3.5.1.min.js"
+		type="text/javascript">
+	</script>
     <link rel="stylesheet" type="text/css" href="./css/user.css" />
 </head>
 
@@ -93,5 +97,46 @@
                 </thead>
             </table>
         </div>
+            
+            <button type="button" style="height: fit-content; border-radius: 20px;" onclick=" window.location.reload();">
+                    Clear 
+            </button>
+                <script>
+                $(document).ready(function(){
+                                            $("button").click(function(){ 
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "./notification.php",
+                                                    data: {clear: ""},
+                                                    success: function(data, textStatus, jqXHR)
+			{
+                if(data[0] != "<"){ 
+				var data = jQuery.parseJSON(data);
+					var data_notif = data.notif;
+					for (var i = data_notif.length - 1; i >= 0; i--) {
+						var theurl = data_notif[i]['url'];
+						var notifikasi = new Notification(data_notif[i]['title'], {
+							icon: data_notif[i]['icon'],
+							body: data_notif[i]['msg'],
+						});
+						console.log(notifikasi);
+						notifikasi.onclick = function () {
+							window.open(theurl); 
+							notifikasi.close();     
+						};
+						setTimeout(function(){
+							notifikasi.close();
+						}, 5000);
+					};
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+
+			}
+                                                });
+                                            });
+                                        });
+                                    </script>
     </div>
 </body>
