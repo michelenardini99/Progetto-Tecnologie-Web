@@ -76,7 +76,7 @@ class DatabaseHelper{
             }
 
             public function getItemInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost, count(*) as quantity 
+                $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost,orders_item.quantity 
                     FROM items i, orders   JOIN orders_item ON orders.idOrder = orders_item.orderId
                     where orders.userId = ? AND orders.is_Active = 1
                     and i.id = orders_item.itemId

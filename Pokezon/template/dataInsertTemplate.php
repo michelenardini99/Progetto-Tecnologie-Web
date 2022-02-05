@@ -142,7 +142,6 @@
             <?php 
                 $userId = $dbh->getUserId($templateParams["name"]);
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
-                $i=0;
                 foreach($pokemonsOrder as $pokemon){
                     $pokemonid=$pokemon['id'];
                     $len = strlen($pokemon['id']);
@@ -152,7 +151,6 @@
                     $pokemon['id'] = "0" . $pokemon['id'];
                 }
                 $info = $dbh->getSinglePokemonFromMerchant($pokemon['codV'],$pokemonid);
-                echo $pokemon['quantity'];
             ?>
          <table class='order-table'>
           <tbody>
@@ -175,13 +173,11 @@
         </table>
         <div class='line'></div>
             <?php       
-                    $i = $i +1; 
                 }
             ?>
 
             <?php 
                 $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
-                $i=0;
                     foreach($itemOrderList as $itemOrder):
             ?>
          <table class='order-table'>
@@ -191,9 +187,9 @@
 
                                 <?php 
                                     if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" width="81.75">
                                 <?php } else { ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" width="81.75">
                                 <?php }?>
               </td>
               <td>
