@@ -2,8 +2,27 @@
 
 <body>
     <div class="box">
-        <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar" class="box-img">
-        <h1><?php 
+            <?php 
+                if(isset($_GET['filename'])){
+                    $dbh->updateAvatar($user[0]['id'],$_GET['filename']);
+                    header("Location: ./user.php");
+                }
+                if(isset($templateParams['name'])){
+                    $user = $dbh->getUserID($templateParams['name']);
+                }
+            ?>
+            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
+            <h2>
+                You can change your current avatar, choose another trainer
+            </h2>
+            <br>
+            <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
+            <input type="file" value="Choose a trainer" id="myFile" name="filename" >
+            <input type="submit" value="Customize"  placeholder="Customize">
+            </form>
+        <br>
+        <h1>
+            <?php 
             if(isset($_GET["name"])){
                 $mName = $_GET["name"];
                 echo "".$mName;
