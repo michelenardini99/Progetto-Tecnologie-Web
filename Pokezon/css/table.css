@@ -38,6 +38,20 @@ body{
    margin-top: 50px;
 }
 
+.item-motto {
+  /* padding: 0 25%; */
+  font-size: x-large;
+}
+
+.item-motto p {
+    animation: move 25s infinite;
+}
+
+
+@keyframes move {
+  from { margin-left: -30%; }
+  to { margin-left: 73%; }
+}
 
 * {box-sizing:border-box}
 

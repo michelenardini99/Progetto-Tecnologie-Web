@@ -133,7 +133,7 @@
   <input type="submit">
 </form>
     <section>
-        <div>
+        <div class="item-motto">
         <p>
         <?php 
             if (isset($_GET["category"])) {
