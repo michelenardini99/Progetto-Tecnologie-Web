@@ -10,25 +10,30 @@ body{
     display: flex;
 
 
-    gap: 10px; /* space between boxes */
+    gap: 5%; /* space between boxes */
 
-    padding: 10px 0; /* border to page top-bot*/
+    padding: 10% 0; /* border to page top-bot*/
     box-sizing: border-box;
+
 }
 
 .container div{
-    padding: 10px;
-    border: 1px solid black; 
+    padding: 3%;
     justify-self: center; /*center a div in grid */
+
 }
 
-.user-img {
+.container button {
+    margin-top: 20%;
+}
+
+.info {
+    display: inline;
     /* margin-top: 25%; */
 }
 
 
 .orderTable, .orders{
-  height: 800px;
   padding-left:25px;
   padding-right:25px;
   box-sizing:border-box;
@@ -49,7 +54,6 @@ body{
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -59,7 +63,6 @@ body{
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -104,4 +107,10 @@ body{
 
 .user-img img {
     width: 200px;
+}
+
+@media  screen and (max-width:1200px) {
+    .container{
+        display: table-cell;
+    }
 }

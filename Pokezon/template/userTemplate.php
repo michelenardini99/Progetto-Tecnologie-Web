@@ -15,6 +15,10 @@
         $user = $dbh->getUserID($templateParams['name']);
     ?>
     <div class="container">
+        <div class="info">
+        <h2>
+            <?php echo "".$templateParams['name']?>
+        </h2>
         <div class="user-img">
             <?php 
                 if(isset($_GET['filename'])){
@@ -23,11 +27,21 @@
                 }
             ?>
             <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
+            <p>
+                You can change your current avatar, choose another trainer
+            </p>
+            <br>
             <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
-            <input type="file" id="myFile" name="filename">
-                
-            <input type="submit">
+            <input type="file" value="Choose a trainer" id="myFile" name="filename" >
+            <input type="submit" value="Customize"  placeholder="Customize">
             </form>
+        </div>
+        <h2>
+            Email
+        </h2>
+        <h3>
+            <?php echo "".$user[0]['email']?>
+        </h3>
         </div>
         <div class="orders">
             <?php $orderList = ($dbh->getOrderFromId($user[0]['id']));?>
@@ -97,9 +111,8 @@
                 </thead>
             </table>
         </div>
-            
-            <button type="button" style="height: fit-content; border-radius: 20px;" onclick=" window.location.reload();">
-                    Clear 
+            <button type="button" style="height: 10%; border-radius: 20px;" onclick=" window.location.reload();">
+                    Clear Notification
             </button>
                 <script>
                 $(document).ready(function(){

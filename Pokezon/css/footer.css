@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+}
+
+footer{
+    background-color: blue;
+}
+
+.logoz img {
+    width:  150px;
+    height: 150px;
+
+    padding: 5%;
+}
+
+.socialInfo{
+    display: inline;
+    margin: auto;
+}
+
+.social {
+    display: flex;
+    margin-left: 20%;
+}
+
+.social > div > img {
+    margin-right: 5%;
+    width:  40px;
+    height: 40px;
+    padding-right: 30%;
+}
+
+.details {
+    padding-left: 10%;
+}

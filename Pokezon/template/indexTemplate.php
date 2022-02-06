@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/footer.css" />
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.min.js"
 		type="text/javascript">
@@ -121,3 +122,55 @@ for ($x = 0; $x <= 4; $x++) {
 <script src="./js/color.js" type="text/javascript"></script>
 </main>
 </body>
+
+<footer id="footer">
+    <div class="container">
+        <div class="logoz">
+            <img src="../resources/icon.png" alt="">
+        </div>
+        <div class="socialInfo">
+        <div class="social">
+            <div class="twitter">
+                <img src="https://www.clipartmax.com/png/small/222-2227861_home-about-menus-twitter-logo-for-footer.png" alt="">
+            </div>
+            <div class="facebook">
+                <img src="https://www.vhv.rs/dpng/d/15-150321_facebook-icon-for-footer-hd-png-download.png" alt="">
+            </div>
+            <div class="instagram">
+                <img src="https://w7.pngwing.com/pngs/417/75/png-transparent-instagram-sign-logo-earth-navy-federal-credit-union-instagram-text-signage-page-footer-thumbnail.png" alt="">
+            </div>
+        </div>
+        <div class="details">
+            <p>
+                INFO LEGALI 
+                BLA BLA BLA 
+                BLA BLA BLA 
+                BLA BLA BLA 
+                BLA BLA BLA 
+                BLA BLA BLA 
+            </p>
+        </div>
+        </div>
+        <div class="vendors">
+            <h1>
+                Our Supplier
+            </h1>
+            <ul>
+            <?php 
+                $vendorList = $dbh->getMerchants();
+                foreach($vendorList as $vendor):?>
+                    <li>
+                        <p>
+                            <a href= <?php echo "./user.php?name=".$vendor['name']?> >
+                                <?php echo "".$vendor['name']?>
+                            </a>
+                        </p>
+                    </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script>
+
+</script>

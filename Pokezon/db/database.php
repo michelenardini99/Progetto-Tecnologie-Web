@@ -474,6 +474,13 @@ group by o.idOrder, op.pokemonId;");
                  return $result->fetch_all(MYSQLI_ASSOC);
               }
 
+            public function getMerchants(){
+                $stmt = $this->db->prepare("SELECT * FROM merchant");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
               $stmt = $this->db->prepare("INSERT INTO used_pokemon(codV, pokemonId, quantity, price, description) VALUES (?, ?, ?, ?, ?)");
                $stmt->bind_param('iiiis', $merchantid, $id, $quantity, $price, $descr); 
