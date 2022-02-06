@@ -16,10 +16,6 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
             require 'template/druidHeaderTemplate.php';
             require 'template/userTemplate.php';
             break;
-        case 'Trader':
-            require 'template/druidHeaderTemplate.php';
-            require 'template/userTemplate.php';
-            break;
         case 'Merchant':
             require 'template/headerTemplate.php';
             require 'template/merchantTemplate.php';
