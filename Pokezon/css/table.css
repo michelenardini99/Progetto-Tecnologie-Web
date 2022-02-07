@@ -1,5 +1,10 @@
-body{
+html, body{
   margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100%;
 }
 
 .pokemon, .pokemonBreak{
@@ -25,12 +30,11 @@ body{
 
 .table{
    width: 50%;
-   height: 600px;
-   position: absolute;
    margin: 17% auto;
+   position: absolute;
+   top: 0;
    left: 0;
    right: 0;
-   top: 0;
    bottom: 0;
 }
 
@@ -53,7 +57,6 @@ body{
   to { margin-left: 73%; }
 }
 
-* {box-sizing:border-box}
 
 /* start of region nav */
 

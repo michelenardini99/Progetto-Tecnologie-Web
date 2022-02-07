@@ -132,7 +132,7 @@
   </div>
   <input type="submit">
 </form>
-    <section>
+    <section class="list">
         <div class="item-motto">
         <p>
         <?php 
@@ -195,8 +195,8 @@
                                 </h5>
                         </li>
               <?php   
-            endforeach; ?>
+            endforeach; }?>
         </ul>
-        </section>
-<?php }?>
-</body>
+    </section>
+    </body>
+</html>

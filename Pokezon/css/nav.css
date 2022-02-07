@@ -31,6 +31,7 @@
 
 .shop-button{
   position: absolute;
+  background: none;
     top: 20px;
     right: 30px;
     cursor: pointer;
@@ -156,23 +157,17 @@
     display: grid;
   }
 
-  .nav-home div img, .nav-item div img, .nav-poke div img, .nav-login div img{
+  .nav-home div img, .nav-item div img, .nav-poke div img, .nav-login div img, .nav-logout div img{
     display: none;
   }
 
   .navbar{
     background-color: white;
+    padding-bottom: 47px;
   }
 
   .logo{
     display: none;
-  }
-
-  .logoRestrinct{
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    cursor: pointer;
   }
 
   .shop-button{
@@ -183,6 +178,7 @@
       font-size: 25px;
       border-style: none;
       display: inline-block;
+      height: 70px;
   }
 
 
@@ -200,6 +196,7 @@
 
   .hb-button{
     position: absolute;
+    background: none;
     top: 0px;
     left: 0px;
     cursor: pointer;
