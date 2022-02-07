@@ -507,8 +507,8 @@ group by o.idOrder, op.pokemonId;");
               }
 
               public function getSinglePokemonFromMerchant($codV, $id){
-                $stmt = $this->db->prepare("SELECT * FROM used_pokemon               
-                 where  codV = ? AND pokemonId = ?");
+                $stmt = $this->db->prepare("SELECT * FROM used_pokemon up join merchant m on (m.codV = up.codV)
+                 where  up.codV = ? AND pokemonId = ?;");
                  $stmt->bind_param('ii', $codV, $id); 
                   $stmt->execute();
                   $result = $stmt->get_result();

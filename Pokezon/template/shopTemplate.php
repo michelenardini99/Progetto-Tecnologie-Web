@@ -37,12 +37,16 @@
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="">
+                        <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?> >
+                            <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="">
+                        </a>
                         <div>
-                            <p><?php echo $pokemon['id'] ?></p>
-                            <p><?php echo $pokemon['identifier'] ?></p>
+                            <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?> >
+                                <p><?php echo $pokemon['identifier'] ?></p>
+                            </a>
                             <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $info[0]['price']?>.00</p>
                             <br>
+                            <p id="sold-by"> Sold by: <?php echo "".$info[0]['name']?></p>
                             <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removePokemon(<?php echo $pokemonid ?>,<?php echo $pokemon['orderId'] ?>);"> Remove</a>
                         </div>
                     </div>
@@ -62,6 +66,7 @@
             <tr>
                 <td>
                     <div class="cart-info">
+                        <a href= <?php  echo "./item.php?name=".$itemOrder['identifier'] ?>>
                         <?php 
                             if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
                                 <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" style="width:75px; height:75px;">
@@ -70,9 +75,11 @@
                             <?php 
                             } 
                             ?>
+                        </a>
                         <div>
-                            <p><?php echo $itemOrder['itemId']?></p>
+                        <a href= <?php  echo "./item.php?name=".$itemOrder['identifier'] ?>>
                             <p><?php echo $itemOrder['identifier']?></p>
+                        </a>
                             <p class="<?php echo "valuePokemon".$i ?>">$<?php echo $itemOrder['cost']?>.00</p>
                             <br>
                             <a href="./shop.php" class="<?php echo 'remove'.$i ?>" onclick="removeItem(<?php echo $itemOrder['itemId'] ?>,<?php echo $itemOrder['orderId'] ?>);"> Remove</a>
@@ -87,10 +94,6 @@
                         }
                     }
                 ?>
-
-
-
-
         </table>
         <div class="total-price">
             <table>
@@ -102,7 +105,7 @@
         </div>
         <div>
             <form action="./dataInsert.php">
-                <button type="submit" style= "<?php if(!sizeof($pokemonsOrder)){echo "display:none";}?>" class="checkout">
+                <button type="submit" style= "<?php if(!sizeof($pokemonsOrder) && !sizeof($itemOrderList)){echo "display:none";}?>" class="checkout">
                     Go to checkout 
                 </button>
 

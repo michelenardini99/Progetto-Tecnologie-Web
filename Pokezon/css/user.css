@@ -104,9 +104,8 @@ body{
     grid-row-end: 3;
 }
 
-
 .user-img img {
-    width: 200px;
+    width: 69%;
 }
 
 @media  screen and (max-width:1200px) {
