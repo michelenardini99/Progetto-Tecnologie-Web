@@ -19,8 +19,8 @@ body{
    width: 180%;  /* some zoom on them */ 
 }
 
-.item > figure > img {
-  width: 120%;  /* some zoom on them */
+.item >  a > img {
+  width: 80%;  /* some zoom on them */
 }
 
 .table{

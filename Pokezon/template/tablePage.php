@@ -180,21 +180,19 @@
                     $cnt = 0;
                     foreach($itemList as $pokeItem):
             ?>
-                        <li class="item" id= <?php echo "".$pokeItem['identifier']?>>
-                            <figure>
+                        <li class="item" id=<?php echo "".$pokeItem['identifier']?>>
+                            <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>>
                                 <?php 
                                     if(str_starts_with($pokeItem['identifier'], "tm") || str_starts_with($pokeItem['identifier'], "hm") || str_starts_with($pokeItem['identifier'], "tr")){ ?>
                                         <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
                                 <?php } else { ?>
                                         <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
                                 <?php }?>
-                            </figure>
-                            <div>
-                                <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>></a>
+
+                            </a>
                                 <h5 style="text-align: center;">
                                 <?php echo "".$pokeItem['identifier']?>
                                 </h5>
-                            </div>
                         </li>
               <?php   
             endforeach; ?>
