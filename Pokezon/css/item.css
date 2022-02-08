@@ -26,6 +26,17 @@ body{
     background-color: rgb(204, 204, 204);
 }
 
+.btn{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.btn a:hover{
+    color: red;
+}
+
 div{
      /* border: 1px solid black; /* to see borders */
     margin: 5% 0;

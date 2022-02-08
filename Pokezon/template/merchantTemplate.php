@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="./css/merchant.css" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
+</script>
 <body>
     <div class="box">
             <?php 
@@ -62,6 +63,9 @@
                 <th>
                     description
                 </th>
+                <th>
+
+                </th>
             </thead>
             <tbody>
                 <?php 
@@ -69,10 +73,17 @@
                         $name = $dbh-> getName($pokmeon['pokemonId']);
                         $types = $dbh->getTypes($pokmeon['pokemonId']);
                         $color = $dbh->getColor($types[0]['identifier']);
+                        $quantity = $dbh->getQuantityFromPokemonMerchant($dbh -> getIdMerchant( $mName)[0]['codV'], $pokmeon['pokemonId']);
+                        if($quantity[0]['quantity'] != 0){
+                            $display = "display: none;";
+                        }
                         ?>
                     <tr style="background-color: <?php echo $color[0]['color'] ?>">
                         <td>
-                            <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> alt="">
+                            <div class="parent"></div>
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> class="imgPoke" alt="">
+                                <img src="../resources/sold-out.png" class="sold-out" style="<?php echo $display ?> alt="">
+                            </div>
                         </td>
                         <td>
                             <p>
@@ -94,6 +105,9 @@
                                 <?php echo "".$pokmeon['description']?>
                             </p>
                         </td>
+                        <td>
+                            <a href="user.php" class="removePokemon"  onClick="removePokemon(<?php echo $dbh -> getIdMerchant( $mName)[0]['codV'] ?>, <?php echo $pokmeon['pokemonId'] ?>, <?php echo $pokmeon['quantity'] ?>, <?php echo $pokmeon['price'] ?>)" >Remove Pokemon</button>
+                        </td>
                     </tr>
                         
                 <?php endforeach;?>
@@ -101,4 +115,5 @@
         </table>
     </div>
     </div>
+    <script src="./js/removePokemon.js" type="text/javascript"></script>
 </body>

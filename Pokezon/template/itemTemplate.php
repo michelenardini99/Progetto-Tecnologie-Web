@@ -56,7 +56,7 @@
             </p>
         </div>
         <div>
-               <button type="button">
+               <button type="button" class="btn">
                 <a class="addItem" onClick="addItem('<?php echo "".$item[0]['id']?>' , <?php echo $orderId[0]['idOrder']?>,1);">Add to shopping-cart</button>
                 </button>
                <script>
