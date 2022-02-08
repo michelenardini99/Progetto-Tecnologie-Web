@@ -249,6 +249,16 @@
                 </td>
               </tr>
             </table>
+            <table class='half-input-table'>
+              <tr>
+                <td> Address
+                  <input class='input-field'></input>
+                </td>
+                <td>CP
+                  <input class='input-field' inputmode="numeric" maxlength="5"></input>
+                </td>
+              </tr>
+            </table>
             <button type="button" class='pay-btn' onClick='removeQuantity(<?php echo json_encode($pokemonsOrder); ?>);'>Confirm</button>
             <script>
                                         $(document).ready(function(){
