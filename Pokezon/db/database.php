@@ -76,6 +76,22 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function removePokemonFromMerchant($codV, $pokeId, $quantity, $price){
+                $stmt = $this->db->prepare(" DELETE FROM used_pokemon WHERE codV = ? AND pokemonId = ? AND quantity = ? AND price = ?
+                ");
+                $stmt->bind_param('ssss',$codV, $pokeId, $quantity, $price);
+                $stmt->execute();
+            }
+
+            public function getQuantityFromPokemonMerchant($codV, $pokeId){
+                $stmt = $this->db->prepare("SELECT quantity from used_pokemon where codV = ? AND pokemonId = ?
+                ");
+                $stmt->bind_param('ss',$codV, $pokeId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function getItemInShop($id){
                 $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost,orders_item.quantity 
                     FROM items i, orders   JOIN orders_item ON orders.idOrder = orders_item.orderId
