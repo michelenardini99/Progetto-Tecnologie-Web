@@ -72,9 +72,9 @@
                 </li>
             </a>
             <a href="./logOut.php">
-                <li class="nav-logout">
+                <li class="nav-logout" style= <?php if(empty($dbh->getActiveUser()) == TRUE){echo "display:none;";}?>>
                     <div>
-                        <img src="../resources/logout.png" width="30" height="40" alt="gengar image to link pokemon list page">
+                        <img src="../resources/logout.png" width="30" height="40" alt="lucinda image to logout from pokeZone">
                     </div>
                     <div>
                         <p>LogOut</p>

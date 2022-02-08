@@ -15,6 +15,7 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+            
             public function logOut($username){
                $stmt = $this-> db ->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
                $stmt->bind_param('s', $username); 
