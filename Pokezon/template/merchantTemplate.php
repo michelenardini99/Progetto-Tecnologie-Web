@@ -84,7 +84,7 @@
                     <tr style="background-color: <?php echo $color[0]['color'] ?>">
                         <td>
                             <div class="parent"></div>
-                                <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> class="imgPoke" alt="">
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> class="imgPoke" alt=<?php echo "image of ".$name[0]['identifier']?>>
                                 <img src="../resources/sold-out.png" class="sold-out" style="<?php echo $display ?>" alt="sold-out">
                             </div>
                         </td>

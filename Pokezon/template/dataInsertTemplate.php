@@ -34,7 +34,7 @@
                   <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="<?php echo $pokemon['identifier'] ?>" class='full-width'></img>
               </td>
               <td>
-                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
+                <br> <p id="pokeName"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
                 <br> <p>Quantity: <?php echo $pokemon['quantity'] ?></p> <br>
               </td>
             </tr>
@@ -68,7 +68,7 @@
                                 <?php }?>
               </td>
               <td>
-                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
+                <br> <p id="itemName"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
                 <br> <p>Quantity: <?php echo $itemOrder['quantity'] ?></p> <br>
               </td>
             </tr>

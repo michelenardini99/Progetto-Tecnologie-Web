@@ -1,7 +1,5 @@
 <?php 
     require_once('handler/bootstrap.php');
-
-//Base Template
 $templateParams["titolo"] = "PokeZone Register";
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
@@ -22,13 +20,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-
-
-//$templateParams["name"] = "lista-articoli.php";
-// $templateParams["categorie"] = $dbh->getCategories();
-// $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 require 'template/registerTemplate.php';
 require 'template/footerTemplate.php';
-
 ?>
 

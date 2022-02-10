@@ -5,6 +5,4 @@
         $dbh->disableOrder($_POST['orderId']);
         $dbh->newOrder($id[0]['userId']);
     }
-
-    
 ?>

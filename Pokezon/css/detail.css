@@ -11,6 +11,10 @@ body{
     color: red;
 }
 
+.ability{
+text-align: center;
+}
+
 .container{
     width: 95%;
     display: grid;
@@ -79,6 +83,9 @@ body{
     margin-top: -10%;
 }
 
+.abilityTable > table > tr, .merchant > table > tr{
+    filter: brightness(25%);
+}
 
 
 /* table stuff */

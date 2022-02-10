@@ -21,7 +21,7 @@
         </div>
         <div class="wrapper">
             <div class="loginLogo">
-                <img src="./../resources/icon.png" alt="">
+                <img src="./../resources/icon.png" alt="logo of pokezone">
             </div>
             <div class="text-center mt-4 name"> PokeZone </div>
             <form method="post" action="handler/registerSession.php" class="p-3 mt-3">

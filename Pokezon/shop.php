@@ -1,15 +1,10 @@
 <?php 
     require_once('handler/bootstrap.php');
-
-
 $templateParams["titolo"] = "Shop";
 if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["nome"] = ($dbh -> getActiveUser()[0]['username']);
 }
-
-// $templateParams["categorie"] = $dbh->getCategories();
-// $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
-            if(isset($dbh -> getActiveUser()[0]['username'])){
+if(isset($dbh -> getActiveUser()[0]['username'])){
     $templateParams["name"] = ($dbh -> getActiveUser()[0]['username']);
     switch ($dbh -> getUserID($templateParams['name'])[0]['role']) {
         case 'Druid':
@@ -25,9 +20,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-
 require 'template/shopTemplate.php';
 require 'template/footerTemplate.php';
-
 ?>
 

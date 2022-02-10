@@ -23,11 +23,6 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
 
-
-//$templateParams["name"] = "lista-articoli.php";
-// $templateParams["categorie"] = $dbh->getCategories();
-// $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 require 'template/dataInsertTemplate.php';
-
 ?>
 

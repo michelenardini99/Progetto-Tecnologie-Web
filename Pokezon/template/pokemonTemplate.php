@@ -82,7 +82,7 @@
             <!-- evolution forward is complicated -->
             <?php
             foreach ($abilities as $abilty) : ?>
-                <p style="text-align: center;">
+                <p class="ability">
                     <strong>
                     <?php echo  ucfirst("" . $abilty['identifier']) ?>
                     </strong>
@@ -96,7 +96,7 @@
 
             <div class="abilityTable">
                 <table>
-                <tr style="filter: brightness(25%);">
+                <tr>
                         <th scope="col">          <!-- col for accessibility -->
                             Identifier
                         </th>
@@ -139,7 +139,7 @@
             </div>
             <div class="merchant">
                 <table>
-                <tr style="filter: brightness(25%);">
+                <tr>
                         <th scope="col">          <!-- col for accessibility -->
                             Merchant
                         </th>

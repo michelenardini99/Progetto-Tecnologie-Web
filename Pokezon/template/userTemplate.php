@@ -6,7 +6,6 @@
 	</script>
     <link rel="stylesheet" type="text/css" href="./css/user.css" />
 </head>
-
 <body>
     <?php 
         $user = $dbh->getUserID($templateParams['name']);
@@ -29,8 +28,8 @@
             </p>
             <br>
             <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
-            <input type="file" value="Choose a trainer" id="myFile" name="filename" >
-            <input type="submit" value="Customize"  placeholder="Customize">
+            <input type="file" value="Choose a trainer" id="myFile" name="filename" aria-label="press to choose a file" >
+            <input type="submit" value="Customize"  placeholder="Customize" aria-label="button to confirm new avatar image">
             </form>
         </div>
         <h2>
@@ -44,16 +43,16 @@
             <?php $orderList = ($dbh->getOrderFromId($user[0]['id']));?>
             <table>
                 <thead>
-                    <th>
+                    <th scope="col">
                         IdOrder
                     </th>
-                    <th> 
+                    <th scope="col"> 
                         PokemonId
                     </th>
-                    <th> 
+                    <th scope="col"> 
                         Name
                     </th>
-                    <th>
+                    <th scope="col">
                         Quantity
                     </th>
                     <tbody>
@@ -85,10 +84,10 @@
             ?>
             <table>
                 <thead>
-                    <th>
+                    <th scope="col">
                         Message
                     </th>
-                    <th> 
+                    <th scope="col"> 
                         Time
                     </th>
                     <tbody>

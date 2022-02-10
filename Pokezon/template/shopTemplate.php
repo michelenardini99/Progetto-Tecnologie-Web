@@ -11,9 +11,15 @@
         
         <table id="myTable">
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
+                <th scope="col">
+                    Product
+                </th>
+                <th scope="col">
+                    Quantity
+                </th>
+                <th scope="col">
+                    Subtotal
+                </th>
             </tr>
             <?php 
                 $result = $dbh->getActiveUser();
@@ -92,7 +98,7 @@
                     }
                 ?>
         </table>
-        <?php if(!sizeof($pokemonsOrder) && !sizeof($itemOrderList)){
+        <?php if( empty($dbh->getActiveUser()) || (!sizeof($pokemonsOrder) && !sizeof($itemOrderList))){
             echo "<h2 style=\" text-align: center; font-size: x-large; margin-bottom: 30%; \"> There is no order here </h2>";
         } ?>
         <div class="total-price">

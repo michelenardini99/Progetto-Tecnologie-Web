@@ -7,8 +7,6 @@
 	</script>
 </head>
 
-<!-- TODO usabilty on this page -->
-
 <body>
     <section>
 
@@ -79,7 +77,6 @@
                     foreach($pokeList as $pokemon):
             ?>
                 <li class="pokemon" id= <?php echo "".$pokemon['identifier']?> >
-                     <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?>>
                          <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="<?php echo $pokemon['identifier'] ?>">
@@ -98,10 +95,7 @@
             endforeach; ?>
         </ul>
         </section>
-
     <?php } elseif ($templateParams['titolo'] == "Item List"){  ?> <!-- Clicked on ITEM page -->
-
-
 <script src="./js/searchBar.js">
 </script>
 <form action="" method="get">
