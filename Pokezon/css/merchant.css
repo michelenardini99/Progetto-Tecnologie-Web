@@ -3,6 +3,11 @@ body{
     padding: 0;
     background-size: cover;
     background-image: url('../../resources/wallpaper.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
 }
 
 .box{
@@ -12,7 +17,6 @@ body{
     text-align: center;
     margin: auto;
     margin-top: 5%;
-    color: white;
     border-radius: 15px;
 }
 
@@ -100,4 +104,11 @@ body{
 .table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+
+@media  screen and (max-width:1200px) {
+    .box{
+        display: table-cell;
+        padding: 0;
+    }
 }
