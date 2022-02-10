@@ -32,22 +32,21 @@
 </nav>
 </form>
     <div class="slideshow-container" style="margin-top: 200px; margin-right: 43%">
-  <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
     <div class="numbertext"></div>
-    <img src="../resources/1.png" >
+    <img src="../resources/1.png" alt="trainer0">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/2.png" >
+    <img src="../resources/2.png" alt="trainer1">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/3.png" >
+    <img src="../resources/3.png" alt="trainer2">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/4.png">
+    <img src="../resources/4.png" alt="trainer3">
   </div>
                 <div>
                     <h2>
@@ -83,7 +82,7 @@
                      <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?>>
-                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
+                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="<?php echo $pokemon['identifier'] ?>">
                      </figure>
                      <div>
                          <p style="font-family: sans-serif; text-align: center; color: grey"> 
@@ -125,7 +124,9 @@
 </form>
 <form autocomplete="off" action="./item.php?" method="get">
   <div class="autocomplete" style="width:300px;">
-  <input id="elInput" type="text" name="name" placeholder="item name">
+    <label for="elInput">
+        <input id="elInput" type="text" name="name" placeholder="item name">
+    </label>
   </div>
   <input type="submit">
 </form>
