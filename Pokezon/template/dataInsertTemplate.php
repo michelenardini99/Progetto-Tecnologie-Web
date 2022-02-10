@@ -109,13 +109,14 @@
                 </div>
                </td></tr>
             </table>
+            <form id="form" action="#">
             <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' alt="credit-card" class='credit-card-image' id='credit-card-image'></img>
             <label for="cc">Card Number
               <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()" required></input>
             </label>
             <label for="holder">
             Card Holder
-              <input class='input-field' id="holder"></input>
+              <input class='input-field' id="holder" required></input>
             </label>
             <table class='half-input-table'>
               <tr>
@@ -144,10 +145,24 @@
                 </td>
               </tr>
             </table>
-            <button type="button" class='pay-btn' onClick='removeQuantity(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);'>Confirm</button>
+            <input type="submit" class="pay-btn" value="Confirm" onclick='/*removeQuantity(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);*/'>
+            </form>
             <script>
-                                        $(document).ready(function(){
-                                            $("button").click(function(){ 
+              
+                  $(document).ready(function(){
+                    var compiled = true;
+                    const inp = document.getElementsByTagName("input");
+                    let sub = document.getElementsByClassName("pay-btn");
+                    sub[0].addEventListener('click', function(){
+                      for (let index = 0; index < inp.length; index++) {
+                        if(inp[index].value.length == 0){
+                          compiled = false;
+                        }
+                      }
+                    });
+                                            $(".pay-btn").click(function(){ 
+                                              console.log("is " + compiled)
+                                                if(compiled){
                                                 $.ajax({
                                                     type: "POST",
                                                     url: "./notification.php",
@@ -179,6 +194,10 @@
 
 			}
                                                 });
+                                            } /* if */ else {
+                                              alert("Mandatory fields are empty");
+                                              location.reload();
+                                            }
                                             });
                                         });
                                     </script>
