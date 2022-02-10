@@ -1,6 +1,8 @@
 function removeQuantity(pokemonOrder){
     var order = pokemonOrder;
+    console.log(pokemonOrder);
     order.forEach(myFunction);
+    
     orderId = order[0].orderId
     $.ajax({
         url: './disableOrder.php',

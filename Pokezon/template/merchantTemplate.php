@@ -1,6 +1,9 @@
-<link rel="stylesheet" type="text/css" href="./css/merchant.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
-</script>
+<head>
+    <title><?php echo $templateParams["titolo"]." of ".ucfirst($templateParams['name']); ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/merchant.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
+    </script>
+</head>
 <body>
     <div class="box">
             <?php 

@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
-
 <body>
     <main>
              <!-- Slideshow container -->
