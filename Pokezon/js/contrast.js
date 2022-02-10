@@ -1,6 +1,11 @@
 $( document ).ready(function() {
-    
-    var textColor = getContrastYIQ(document.getElementsByClassName("container")[0].style.backgroundColor);
+    var rgb = document.getElementsByClassName("container")[0].style.backgroundColor;
+    rgbArr = rgb.substring(4, rgb.length-1).replace(/ /g, '').split(',');
+    if ((rgbArr[0]*0.299 + rgbArr[1]*0.587 + rgbArr[2]*0.114) > 130){
+        var textColor = '#000000';
+    }else{
+        var textColor = '#ffffff';
+    }
     document.getElementsByClassName("container")[0].style.color = textColor;
     var y = document.getElementsByTagName("td");
     var i;
@@ -11,12 +16,3 @@ $( document ).ready(function() {
     y.style.color = textColor;
 
 });
-
-function getContrastYIQ(hexcolor){
-    hexcolor = hexcolor.replace("#", "");
-    var r = parseInt(hexcolor.substr(0,2),16);
-    var g = parseInt(hexcolor.substr(2,2),16);
-    var b = parseInt(hexcolor.substr(4,2),16);
-    var yiq = ((r*299)+(g*587)+(b*114))/1000;
-    return (yiq >= 128) ? 'black' : 'white';
-}
