@@ -95,7 +95,11 @@ tbody > tr:hover {
     
 @media  screen and (max-width:1400px) {
     .container{
-        display: table-cell;
+        display: block;
+          margin: auto;
+        
+          width: 50%;
+          margin-top: 2%;
     }
 
     .price {

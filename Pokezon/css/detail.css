@@ -127,9 +127,11 @@ tbody > tr:hover {
 				z-index: -1;
 	}
     
-@media  screen and (max-width:1400px) {
+@media  screen and (max-width:1200px) {
     .container{
         display: table-cell;
+        margin: auto;
+        width: 50%;
     }
 
     .price {
