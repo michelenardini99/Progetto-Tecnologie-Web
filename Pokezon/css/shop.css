@@ -24,6 +24,7 @@ th{
 .checkout{
     float: right;
     margin-top: 10px;
+    margin-bottom: 44px;
     background-color: #ff523b;
     color: white;
     padding: 12px;
@@ -35,7 +36,7 @@ th{
 }
 
 td input{
-    width: 40px;
+    width: 67px;
     height: 30px;
     padding: 5px;
 }

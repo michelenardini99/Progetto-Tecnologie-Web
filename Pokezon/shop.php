@@ -27,6 +27,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 }
 
 require 'template/shopTemplate.php';
+require 'template/footerTemplate.php';
 
 ?>
 

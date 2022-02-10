@@ -34,7 +34,7 @@
                 <td>
                     <div class="cart-info">
                         <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?> >
-                            <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="">
+                            <img src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="<?php echo $pokemon['identifier'] ?>">
                         </a>
                         <div>
                             <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?> >
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'></td>
+                <td><label for="<?php echo "quantity".$i ?>">Insert quantity:<input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'> </label></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       
@@ -65,9 +65,9 @@
                         <a href= <?php  echo "./item.php?name=".$itemOrder['identifier'] ?>>
                         <?php 
                             if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
-                                <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" style="width:75px; height:75px;">
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="<?php echo $itemOrder['identifier'] ?>" style="width:75px; height:75px;">
                             <?php } else { ?>
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" style="width:100px; height:100px;">
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="<?php echo $itemOrder['identifier'] ?>" style="width:100px; height:100px;">
                             <?php 
                             } 
                             ?>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </td>
-                <td><input type="number" value="<?php echo $itemOrder['quantity'] ?>" class="<?php echo "quantity".$i ?>" onchange='updateQuantityItem(this.value, <?php echo $itemOrder['orderId'] ?>, <?php echo $itemOrder['itemId'] ?>, <?php echo "1" ?>)'></td>
+                <td><label for="<?php echo "quantity".$i ?>">Insert quantity:<input type="number" value="<?php echo $itemOrder['quantity'] ?>" class="<?php echo "quantity".$i ?>" onchange='updateQuantityItem(this.value, <?php echo $itemOrder['orderId'] ?>, <?php echo $itemOrder['itemId'] ?>, <?php echo "1" ?>)'></label></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
             </tr>
                 <?php 
