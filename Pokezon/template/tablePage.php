@@ -182,9 +182,9 @@
                             <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>>
                                 <?php 
                                     if(str_starts_with($pokeItem['identifier'], "tm") || str_starts_with($pokeItem['identifier'], "hm") || str_starts_with($pokeItem['identifier'], "tr")){ ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="<?php echo $pokeItem['identifier'] ?>">
                                 <?php } else { ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="<?php echo $pokeItem['identifier'] ?>">
                                 <?php }?>
 
                             </a>
