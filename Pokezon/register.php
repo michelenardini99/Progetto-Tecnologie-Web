@@ -28,6 +28,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 // $templateParams["categorie"] = $dbh->getCategories();
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 require 'template/registerTemplate.php';
+require 'template/footerTemplate.php';
 
 ?>
 

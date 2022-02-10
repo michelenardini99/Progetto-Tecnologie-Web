@@ -28,7 +28,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 // $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 
 require 'template/loginTemplate.php';
-
+require 'template/footerTemplate.php';
 
 
 ?>
