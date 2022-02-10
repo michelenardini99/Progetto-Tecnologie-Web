@@ -10,7 +10,6 @@
 		src="https://code.jquery.com/jquery-3.4.1.min.js"
 		type="text/javascript">
 	</script>
-    <title>Home</title>
 </head>
 <nav class="navbar">
         <a class="logo" href="index.php">
