@@ -21,6 +21,13 @@ th{
 
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+
+   opacity: 1;
+
+}
+
 .checkout{
     float: right;
     margin-top: 10px;
@@ -36,7 +43,7 @@ th{
 }
 
 td input{
-    width: 67px;
+    width: 60px;
     height: 30px;
     padding: 5px;
 }

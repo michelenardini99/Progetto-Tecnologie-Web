@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </td>
-                <td><label for="<?php echo "quantity".$i ?>">Insert quantity:<input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'> </label></td>
+                <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
             <?php       
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </td>
-                <td><label for="<?php echo "quantity".$i ?>">Insert quantity:<input type="number" value="<?php echo $itemOrder['quantity'] ?>" class="<?php echo "quantity".$i ?>" onchange='updateQuantityItem(this.value, <?php echo $itemOrder['orderId'] ?>, <?php echo $itemOrder['itemId'] ?>, <?php echo "1" ?>)'></label></td>
+                <td><input type="number" value="<?php echo $itemOrder['quantity'] ?>" class="<?php echo "quantity".$i ?>" onchange='updateQuantityItem(this.value, <?php echo $itemOrder['orderId'] ?>, <?php echo $itemOrder['itemId'] ?>, <?php echo "1" ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $itemOrder['cost']?></td>
             </tr>
                 <?php 

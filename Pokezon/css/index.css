@@ -26,7 +26,6 @@ body{
 .pokeList{
   margin-top: 174px;
     margin-bottom: 175px;
-    background-color: black;
     overflow-x: hidden;
     display: flex;
     white-space: nowrap;
@@ -205,4 +204,40 @@ body{
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.linkPok{
+  padding: 0px 0px;
+}
+
+@media screen and (max-width:800px){
+
+  .pokeList{
+    width: 100%;
+  }
+
+  .imgpok{
+    width: 200px;
+    height: 200px;
+  }
+
+  .types{
+    display: grid;
+  }
+
+  .pokeDescr{
+    font-size: 14px;
+  }
+
+  .types-name{
+    padding: 0;
+    margin-top: 9px;
+  }
+
+  .pokemon{
+    display: block;
+  }
+
+
+
 }

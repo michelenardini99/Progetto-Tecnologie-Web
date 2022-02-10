@@ -236,6 +236,5 @@
 
     </div>
     <script src="./js/addPokemon.js" type="text/javascript"></script> 
-    <script src="./js/contrast.js" type="text/javascript"></script> 
 </body>
 </html>
