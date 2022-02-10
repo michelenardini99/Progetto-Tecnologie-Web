@@ -1,7 +1,10 @@
-<link rel="stylesheet" type="text/css" href="./css/detail.css" />
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/detail.css" />
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
 	</script>
+
+</head>
 <body>
 <?php
             $pokemonID = $dbh->getID($_GET['name'])[0]['id'];
