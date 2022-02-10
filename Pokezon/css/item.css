@@ -99,7 +99,8 @@ tbody > tr:hover {
           margin: auto;
         
           width: 50%;
-          margin-top: 2%;
+          margin-top: 25%;
+          padding: 3%;
     }
 
     .price {
