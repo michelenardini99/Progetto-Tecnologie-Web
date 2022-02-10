@@ -31,7 +31,7 @@
           <tbody>
            <tr>
               <td>
-                  <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" class='full-width'></img>
+                  <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="<?php echo $pokemon['identifier'] ?>" class='full-width'></img>
               </td>
               <td>
                 <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
@@ -62,9 +62,9 @@
 
                                 <?php 
                                     if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="" width="81.75">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?>  alt="<?php echo $itemOrder['identifier'] ?>" width="81.75">
                                 <?php } else { ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="" width="81.75">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?>  alt="<?php echo $itemOrder['identifier'] ?>" width="81.75">
                                 <?php }?>
               </td>
               <td>
@@ -109,34 +109,41 @@
                 </div>
                </td></tr>
             </table>
-            <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
-            Card Number
-            <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()" required></input>
+            <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' alt="credit-card" class='credit-card-image' id='credit-card-image'></img>
+            <label for="cc">Card Number
+              <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()" required></input>
+            </label>
+            <label for="holder">
             Card Holder
-            <input class='input-field'></input>
+              <input class='input-field' id="holder"></input>
+            </label>
             <table class='half-input-table'>
               <tr>
-                <td> Expires
-                  <input class='input-field' type="month" required></input>
+                <td>
+                  <label for="exp"> Expires
+                    <input class='input-field' id="exp" type="month" required></input>
                 </td>
-                <td>CVC
-                  <input class='input-field' type="password" maxlength="3" required></input>
+                <td>
+                  <label for="psw">CVC
+                    <input class='input-field' id="psw" type="password" maxlength="3" required></input>
+                  </label>
                 </td>
               </tr>
             </table>
             <table class='half-input-table'>
               <tr>
-                <td> Address
-                  <input class='input-field' required></input>
+                <td>
+                  <label for="address"> Address
+                    <input class='input-field' id="address" required></input>
+                  </label>
                 </td>
-                <td>CP
-                  <input class='input-field' inputmode="numeric" maxlength="5" required></input>
+                <td>
+                  <label for="cp">CP
+                    <input class='input-field' id="cp" inputmode="numeric" maxlength="5" required></input>
+                  </label>
                 </td>
               </tr>
             </table>
-            <?php 
-                var_dump( empty($pokemonsOrder));
-            ?>
             <button type="button" class='pay-btn' onClick='removeQuantity(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);'>Confirm</button>
             <script>
                                         $(document).ready(function(){
