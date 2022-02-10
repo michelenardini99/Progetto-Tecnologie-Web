@@ -1,4 +1,4 @@
-.socials li a i img{
+.socials li a em img{
     width: 40px;
     height: 40px;
     border-radius: 60px;
@@ -54,12 +54,12 @@ footer{
     height: 40px;
     padding: 0;
 }
-.socials a i{
+.socials a em{
     font-size: 1.1rem;
     transition: color .4s ease;
 
 }
-.socials a:hover i img{
+.socials a:hover em img{
     background-color: white;
 }
 

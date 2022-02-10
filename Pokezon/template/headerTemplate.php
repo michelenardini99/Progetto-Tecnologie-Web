@@ -1,5 +1,17 @@
-<link rel="stylesheet" type="text/css" href="./css/nav.css" />
-<link rel="shortcut icon" type="image/x-icon" href="./../resources/favicon.png"/>
+<?xml version="1.0" codifica="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?php echo $templateParams["titolo"]; ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/nav.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="./../resources/favicon.png"/>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		type="text/javascript">
+	</script>
+    <title>Home</title>
+</head>
 <nav class="navbar">
         <a class="logo" href="index.php">
             <img src="../resources/logo.png" width="187.5" height="150" alt="logo picture of pokeZone">
@@ -83,7 +95,7 @@
             </a>
         </ul>
         </a>
-        <a href="shop.php">
+        <a href="shop.php" title="shop-link">
             <button class="shop-button" id="shop-btn">
                 <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
             </button>

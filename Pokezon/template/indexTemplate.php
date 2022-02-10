@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $templateParams["titolo"]; ?></title>
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
-    <link rel="stylesheet" type="text/css" href="./css/footer.css" />
-	<script
-		src="https://code.jquery.com/jquery-3.4.1.min.js"
-		type="text/javascript">
-	</script>
-</head>
+<link rel="stylesheet" type="text/css" href="./css/index.css" />
+
 <body>
     <main>
              <!-- Slideshow container -->
@@ -21,8 +11,8 @@
 <a href="pokemonDetail.php?name=zapdos">
 <img src="../resources/slide1.jpg" id="img1" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text1">
-      <h1>Zapdos is here!!!!</h1>
-      <p><span class="blink" >Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
+      <h1><big>Zapdos is here!!!!</big></h1>
+      <p><span class="blink" ><big>Zapdos the Legendary Electric / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</big></span></p>
   </div>
 </a>
 </div>
@@ -31,8 +21,8 @@
 <a href="pokemonDetail.php?name=moltres">
    <img src="../resources/slide2.jpg" id="img2" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text2">
-        <h1>Moltres is here!!!!</h1>
-      <p><span class="blink" >Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
+        <h1><big>Moltres is here!!!!</big></h1>
+      <p><span class="blink" ><big>Moltres the Legendary Fire / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</big></span></p>
   </div>
 </a>
 </div>
@@ -41,8 +31,8 @@
 <a href="pokemonDetail.php?name=articuno">
     <img src="../resources/slide1.jpg" id="img3" style="width:100%" alt="image of pokemon in sale">
   <div class="text" id="text3">
-  <h1>Articuno is here!!!!</h1>
-      <p><span class="blink">Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</span></p>
+  <h1><big>Articuno is here!!!!</big></h1>
+      <p><span class="blink"><big>Articuno the Legendary Ice / Flying Double-type Pokémon has arrived in the Kalos region, run to get it before it goes extinct</big></span></p>
   </div>
 </a>
 </div>
@@ -97,7 +87,7 @@ for ($x = 0; $x <= 4; $x++) {
                     foreach ($types as $type) {
                         $color = $dbh->getColor($type['identifier'])[0];
                 ?>
-                    <li class="types-name" style="list-style-type: none; background-color: <?php  echo $color['color'] ?>"><p><?php echo $type['identifier'] ?></p></li>
+                    <li class="types-name" style="list-style-type: none; background-color: <?php  echo $color['color'] ?>"><p><big><?php echo $type['identifier'] ?></big></p></li>
                 <?php
                     }
                 ?>
