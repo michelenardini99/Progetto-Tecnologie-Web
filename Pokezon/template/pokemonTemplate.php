@@ -48,34 +48,34 @@
         </div>
         <div class="mosseStats">
             <p>
-                <b>
+                <strong>
                     Height:
-                </b>
+                </strong>
                 <?php echo "" . toFloatDecim($pokemon['height']) ?> meters
             </p>
             <p>
-                <b>
+                <strong>
                     Weight:
-                </b> 
+                </strong> 
                 <?php echo "" . toFloatDecim($pokemon['weight']) ?> kilograms
             </p>
             <p>
-                <b>
+                <strong>
                     Base Exp:
-                </b>
+                </strong>
                 <?php echo "" . $pokemon['base_experience'] ?>
             </p>
             <p>
-                <b>
+                <strong>
                     Base Happiness:
-                </b>
+                </strong>
                 <?php echo "" . $pokemon['base_happiness'] ?>
             </p>
             <?php if (!is_null($pokemon['evolves_from_species_id'])) { ?>
                 <p>
                     Evolves from: 
                     <a href=<?php echo "./pokemonDetail.php?name=".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['identifier']?>>
-                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'].".png" ?> alt="">
+                        <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'].".png" ?> alt="<?php echo $dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['identifier'] ?>">
                     </a> <?php  echo ucfirst("".$dbh->getInfoAbout($pokemon['evolves_from_species_id'])[0]['name'])?>
                 </p>
             <?php } ?>
@@ -83,9 +83,9 @@
             <?php
             foreach ($abilities as $abilty) : ?>
                 <p style="text-align: center;">
-                    <b >
+                    <strong>
                     <?php echo  ucfirst("" . $abilty['identifier']) ?>
-                    </b>
+                    </strong>
                 </p>
                 <p>
                     <?php echo betterProse($abilty['effect']) ?>
