@@ -60,7 +60,7 @@
   <div class="autocomplete" style="width:300px;">
     <input id="elInput" type="text" name="name" placeholder="pokemon name">
   </div>
-  <input type="submit">
+  <input type="submit" value="Search">
 </form>
 <script src="./js/searchBar.js">
 </script>
@@ -128,7 +128,7 @@
         <input id="elInput" type="text" name="name" placeholder="item name">
     </label>
   </div>
-  <input type="submit">
+  <input type="submit" value="Search">
 </form>
     <section class="list">
         <div class="item-motto">

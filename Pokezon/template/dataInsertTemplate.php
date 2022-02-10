@@ -145,24 +145,27 @@
                 </td>
               </tr>
             </table>
-            <input type="submit" class="pay-btn" value="Confirm" onclick='/*removeQuantity(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);*/'>
+            <input type="submit" class="pay-btn" value="Confirm" onclick='myFunc(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);'>
             </form>
             <script>
-              
-                  $(document).ready(function(){
-                    var compiled = true;
-                    const inp = document.getElementsByTagName("input");
-                    let sub = document.getElementsByClassName("pay-btn");
-                    sub[0].addEventListener('click', function(){
+              function myFunc(data){
+                if(check() == true){
+                  removeQuantity(data);
+                }
+              }
+              function check(){
+                   const inp = document.getElementsByTagName("input");
+                   let sub = document.getElementsByClassName("pay-btn");
                       for (let index = 0; index < inp.length; index++) {
                         if(inp[index].value.length == 0){
-                          compiled = false;
+                          return false;
                         }
                       }
-                    });
-                                            $(".pay-btn").click(function(){ 
-                                              console.log("is " + compiled)
-                                                if(compiled){
+                      return true;
+              };
+                   $(document).ready(function(){
+                                           $(".pay-btn").click(function(){ 
+                                                if(check()){
                                                 $.ajax({
                                                     type: "POST",
                                                     url: "./notification.php",
@@ -187,6 +190,8 @@
 							notifikasi.close();
 						}, 5000);
 					};
+
+        window.location.replace("https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php");
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown)

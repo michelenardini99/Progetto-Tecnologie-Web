@@ -42,9 +42,9 @@
            <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?>>
         </div>
         <div class="name">
-            <h2>
+            <h1>
                 <?php echo "" . ucfirst($pokemon['name']) ?>
-            </h2>
+            </h1>
         </div>
         <div class="mosseStats">
             <p>

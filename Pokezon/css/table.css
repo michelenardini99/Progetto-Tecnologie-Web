@@ -21,7 +21,7 @@ body{
 }
 
 .pokemon > figure > img{
-   width: 180%;  /* some zoom on them */ 
+   width: 200%;  /* some zoom on them */ 
 }
 
 .item >  a > img {

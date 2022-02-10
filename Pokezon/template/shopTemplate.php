@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="small-container cart-page">
+        
         <table id="myTable">
             <tr>
                 <th>Product</th>
@@ -91,6 +92,9 @@
                     }
                 ?>
         </table>
+        <?php if(!sizeof($pokemonsOrder) && !sizeof($itemOrderList)){
+            echo "<h2 style=\" text-align: center; font-size: x-large; margin-bottom: 30%; \"> There is no order here </h2>";
+        } ?>
         <div class="total-price">
             <table>
                 <tr>
