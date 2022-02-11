@@ -10,6 +10,7 @@ body{
     background-image: url('../../resources/wallpaper.jpg');
     background-attachment: fixed;
     background-color: #464646;
+    color: white;
 }
 
 .avatar{
@@ -100,6 +101,7 @@ body{
 
 .table tbody tr {
     border-bottom: 1px solid #dddddd;
+    color: black;
 }
 
 .table tbody tr:nth-of-type(even) {
