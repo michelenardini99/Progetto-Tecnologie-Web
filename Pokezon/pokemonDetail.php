@@ -21,6 +21,7 @@ if(isset($dbh -> getActiveUser()[0]['username'])){
 } else {
     require 'template/headerTemplate.php'; /* not registered or logged yet */
 }
-require 'template/pokemonTemplate.php';
+require 'template/pokemonTemplateTest.php';
+require 'template/footerTemplate.php';
 ?>
 

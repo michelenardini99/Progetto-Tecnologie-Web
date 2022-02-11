@@ -153,20 +153,20 @@ group by o.idOrder, op.pokemonId;");
                 $stmt->execute();
             }
 
-            public function addPokemon($order, $pokemon, $merchant){
-                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity, codV) VALUES (?,?,1,?)
+            public function addPokemon($order, $pokemon, $merchant, $quantity){
+                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity, codV) VALUES (?,?,?,?)
                 ");
-                $stmt->bind_param('iii',$order,$pokemon,$merchant);
+                $stmt->bind_param('iiii',$order,$pokemon,$quantity,$merchant);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
 
-            public function addItem($order, $item, $codV ){
-                $stmt = $this->db->prepare("INSERT INTO orders_item(orderId, itemId , quantity, codV) VALUES (?,?,1, ?)
+            public function addItem($order, $item, $codV, $quantity){
+                $stmt = $this->db->prepare("INSERT INTO orders_item(orderId, itemId , quantity, codV) VALUES (?,?,?, ?)
                 ");
-                $stmt->bind_param('iii',$order,$item, $codV);
+                $stmt->bind_param('iiii',$order,$item, $quantity, $codV);
                 $stmt->execute();
             }
 

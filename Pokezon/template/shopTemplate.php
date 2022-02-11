@@ -54,6 +54,11 @@
                         </div>
                     </div>
                 </td>
+                <?php 
+                    if($pokemon['quantity'] > $info[0]['quantity']){
+                        $pokemon['quantity'] = $info[0]['quantity'];
+                    }
+                ?>
                 <td><input type="number" value="<?php echo $pokemon['quantity'] ?>" class="<?php echo "quantity".$i ?>" max="<?php echo $info[0]['quantity'] ?>" onchange='updateQuantity(this.value, <?php echo $pokemon['orderId'] ?>, <?php echo $pokemonid ?>, <?php echo $pokemon['codV'] ?>)'></td>
                 <td class="<?php echo "totalPokemon".$i ?>"><?php echo $pokemon['value']?></td>
             </tr>
