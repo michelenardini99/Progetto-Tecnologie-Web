@@ -15,7 +15,7 @@
                     $user = $dbh->getUserID($templateParams['name']);
                 }
             ?>
-            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar">
+            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar" class="avatar">
             <h2>
                 You can change your current avatar, choose another trainer
             </h2>
