@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .navbar{
@@ -31,6 +32,7 @@
 
 .shop-button{
   position: absolute;
+  background: none;
     top: 20px;
     right: 30px;
     cursor: pointer;
@@ -99,6 +101,18 @@
   border-bottom: 5px solid orange;
 }
 
+.nav-logout{
+  border-bottom: 5px solid yellow;
+}
+
+.nav-logout:hover{
+  background-color: yellow;
+}
+
+.nav-logout div img{
+  margin-bottom: 5px;
+}
+
 .nav-poke:hover{
   background-color: palegreen;
 }
@@ -144,23 +158,17 @@
     display: grid;
   }
 
-  .nav-home div img, .nav-item div img, .nav-poke div img, .nav-login div img{
+  .nav-home div img, .nav-item div img, .nav-poke div img, .nav-login div img, .nav-logout div img{
     display: none;
   }
 
   .navbar{
     background-color: white;
+    padding-bottom: 47px;
   }
 
   .logo{
     display: none;
-  }
-
-  .logoRestrinct{
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    cursor: pointer;
   }
 
   .shop-button{
@@ -171,6 +179,7 @@
       font-size: 25px;
       border-style: none;
       display: inline-block;
+      height: 70px;
   }
 
 
@@ -188,6 +197,7 @@
 
   .hb-button{
     position: absolute;
+    background: none;
     top: 0px;
     left: 0px;
     cursor: pointer;

@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/table.css" />
 	<script
@@ -9,8 +6,6 @@
 		type="text/javascript">
 	</script>
 </head>
-
-<!-- TODO usabilty on this page -->
 
 <body>
     <section>
@@ -35,22 +30,21 @@
 </nav>
 </form>
     <div class="slideshow-container" style="margin-top: 200px; margin-right: 43%">
-  <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
     <div class="numbertext"></div>
-    <img src="../resources/1.png" >
+    <img src="../resources/1.png" alt="trainer0">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/2.png" >
+    <img src="../resources/2.png" alt="trainer1">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/3.png" >
+    <img src="../resources/3.png" alt="trainer2">
   </div>
 
   <div class="mySlides fade">
-    <img src="../resources/4.png">
+    <img src="../resources/4.png" alt="trainer3">
   </div>
                 <div>
                     <h2>
@@ -64,7 +58,7 @@
   <div class="autocomplete" style="width:300px;">
     <input id="elInput" type="text" name="name" placeholder="pokemon name">
   </div>
-  <input type="submit">
+  <input type="submit" value="Search">
 </form>
 <script src="./js/searchBar.js">
 </script>
@@ -83,10 +77,9 @@
                     foreach($pokeList as $pokemon):
             ?>
                 <li class="pokemon" id= <?php echo "".$pokemon['identifier']?> >
-                     <!-- qui l href funziona ma rende il nome orribile il nome -->
                      <figure>
                          <a href=<?php echo "./pokemonDetail.php?name=".$pokemon['identifier']?>>
-                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="">
+                         <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$pokemon['identifier'].".png" ?> alt="<?php echo $pokemon['identifier'] ?>">
                      </figure>
                      <div>
                          <p style="font-family: sans-serif; text-align: center; color: grey"> 
@@ -102,10 +95,7 @@
             endforeach; ?>
         </ul>
         </section>
-
     <?php } elseif ($templateParams['titolo'] == "Item List"){  ?> <!-- Clicked on ITEM page -->
-
-
 <script src="./js/searchBar.js">
 </script>
 <form action="" method="get">
@@ -128,12 +118,14 @@
 </form>
 <form autocomplete="off" action="./item.php?" method="get">
   <div class="autocomplete" style="width:300px;">
-  <input id="elInput" type="text" name="name" placeholder="item name">
+    <label for="elInput">
+        <input id="elInput" type="text" name="name" placeholder="item name">
+    </label>
   </div>
-  <input type="submit">
+  <input type="submit" value="Search">
 </form>
-    <section>
-        <div>
+    <section class="list">
+        <div class="item-motto">
         <p>
         <?php 
             if (isset($_GET["category"])) {
@@ -180,25 +172,23 @@
                     $cnt = 0;
                     foreach($itemList as $pokeItem):
             ?>
-                        <li class="item" id= <?php echo "".$pokeItem['identifier']?>>
-                            <figure>
+                        <li class="item" id=<?php echo "".$pokeItem['identifier']?>>
+                            <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>>
                                 <?php 
                                     if(str_starts_with($pokeItem['identifier'], "tm") || str_starts_with($pokeItem['identifier'], "hm") || str_starts_with($pokeItem['identifier'], "tr")){ ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="<?php echo $pokeItem['identifier'] ?>">
                                 <?php } else { ?>
-                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="">
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$pokeItem['identifier'].".png" ?> alt="<?php echo $pokeItem['identifier'] ?>">
                                 <?php }?>
-                            </figure>
-                            <div>
-                                <a href= <?php echo "./item.php?name=".$pokeItem['identifier']?>></a>
+
+                            </a>
                                 <h5 style="text-align: center;">
                                 <?php echo "".$pokeItem['identifier']?>
                                 </h5>
-                            </div>
                         </li>
               <?php   
-            endforeach; ?>
+            endforeach; }?>
         </ul>
-        </section>
-<?php }?>
-</body>
+    </section>
+    </body>
+</html>

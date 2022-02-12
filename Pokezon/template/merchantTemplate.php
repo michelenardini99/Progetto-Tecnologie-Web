@@ -1,9 +1,32 @@
-<link rel="stylesheet" type="text/css" href="./css/merchant.css" />
-
+<head>
+    <title><?php echo $templateParams["titolo"]." of ".ucfirst($templateParams['name']); ?></title>
+    <link rel="stylesheet" type="text/css" href="./css/merchant.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
+    </script>
+</head>
 <body>
     <div class="box">
-        <img src=<?php echo "../resources/Trainers/trainer0".strval(random_int(1, 76)).".png"?> alt="avatar" class="box-img">
-        <h1><?php 
+            <?php 
+                if(isset($_GET['filename'])){
+                    $dbh->updateAvatar($user[0]['id'],$_GET['filename']);
+                    header("Location: ./user.php");
+                }
+                if(isset($templateParams['name'])){
+                    $user = $dbh->getUserID($templateParams['name']);
+                }
+            ?>
+            <img src= <?php echo "".$user[0]['avatar']?> alt="avatar" class="avatar">
+            <h2>
+                You can change your current avatar, choose another trainer
+            </h2>
+            <br>
+            <form action="./user.php" onSubmit="if(document.getElementById('myFile').value == '') return false;">
+            <input type="file" value="Choose a trainer" id="myFile" name="filename" >
+            <input type="submit" value="Customize"  placeholder="Customize">
+            </form>
+        <br>
+        <h1>
+            <?php 
             if(isset($_GET["name"])){
                 $mName = $_GET["name"];
                 echo "".$mName;
@@ -43,6 +66,9 @@
                 <th>
                     description
                 </th>
+                <th>
+
+                </th>
             </thead>
             <tbody>
                 <?php 
@@ -50,10 +76,17 @@
                         $name = $dbh-> getName($pokmeon['pokemonId']);
                         $types = $dbh->getTypes($pokmeon['pokemonId']);
                         $color = $dbh->getColor($types[0]['identifier']);
+                        $quantity = $dbh->getQuantityFromPokemonMerchant($dbh -> getIdMerchant( $mName)[0]['codV'], $pokmeon['pokemonId']);
+                        if($quantity[0]['quantity'] != 0){
+                            $display = "display: none;";
+                        }
                         ?>
                     <tr style="background-color: <?php echo $color[0]['color'] ?>">
                         <td>
-                            <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> alt="">
+                            <div class="parent"></div>
+                                <img src=<?php echo "https://img.pokemondb.net/sprites/sword-shield/icon/".$name[0]['identifier'].".png" ?> class="imgPoke" alt=<?php echo "image of ".$name[0]['identifier']?>>
+                                <img src="../resources/sold-out.png" class="sold-out" style="<?php echo $display ?>" alt="sold-out">
+                            </div>
                         </td>
                         <td>
                             <p>
@@ -75,6 +108,9 @@
                                 <?php echo "".$pokmeon['description']?>
                             </p>
                         </td>
+                        <td>
+                            <a href="user.php" class="removePokemon"  onClick="removePokemon(<?php echo $dbh -> getIdMerchant( $mName)[0]['codV'] ?>, <?php echo $pokmeon['pokemonId'] ?>, <?php echo $pokmeon['quantity'] ?>, <?php echo $pokmeon['price'] ?>)" >Remove Pokemon</button>
+                        </td>
                     </tr>
                         
                 <?php endforeach;?>
@@ -82,4 +118,6 @@
         </table>
     </div>
     </div>
+    <script src="./js/removePokemon.js" type="text/javascript"></script>
 </body>
+</html>

@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png");
 }
 
 .addPokemon{
@@ -20,26 +21,34 @@ body{
     margin: auto;
 }
 
+.container {
+    margin-top: 10%;
+    background-color: rgb(204, 204, 204);
+}
+
+.btn{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.btn a:hover{
+    color: red;
+}
+
 div{
      /* border: 1px solid black; /* to see borders */
-    margin-top: 15%;
+    margin: 5% 0;
     margin-left: 5%;
 }
 
-.image {
-}
-
-.name {
-
-
-}
-
-.price{
-
+.image img {
+    width: 75px;
+    height: 75px;
 }
 
 /* table stuff */
-
 
 table {
 	width: 900px;
@@ -86,7 +95,12 @@ tbody > tr:hover {
     
 @media  screen and (max-width:1400px) {
     .container{
-        display: table-cell;
+        display: block;
+          margin: auto;
+        
+          width: 50%;
+          margin-top: 25%;
+          padding: 3%;
     }
 
     .price {

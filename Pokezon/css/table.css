@@ -1,3 +1,12 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100%;
+}
+
 .pokemon, .pokemonBreak{
     display: inline-block;
     margin-left: 0px;
@@ -12,21 +21,20 @@
 }
 
 .pokemon > figure > img{
-   width: 180%;  /* some zoom on them */ 
+   width: 200%;  /* some zoom on them */ 
 }
 
-.item > figure > img {
-  width: 120%;  /* some zoom on them */
+.item >  a > img {
+  width: 80%;  /* some zoom on them */
 }
 
 .table{
    width: 50%;
-   height: 600px;
+   margin: 25% auto;
    position: absolute;
-   margin: 17% auto;
+   top: 0;
    left: 0;
    right: 0;
-   top: 0;
    bottom: 0;
 }
 
@@ -34,8 +42,21 @@
    margin-top: 50px;
 }
 
+.item-motto {
+  /* padding: 0 25%; */
+  font-size: x-large;
+}
 
-* {box-sizing:border-box}
+.item-motto p {
+    animation: move 25s infinite;
+}
+
+
+@keyframes move {
+  from { margin-left: -30%; }
+  to { margin-left: 73%; }
+}
+
 
 /* start of region nav */
 
@@ -268,7 +289,7 @@ input[type=submit] {
 }
 
 .table{
-  display: inline-block ;
+  display: contents;
   margin: 510px auto 0 auto;
 }
 

@@ -1,130 +1,5 @@
-<!-- <?php SESSION_START();?>
-<body> 
-	<script
-		src="https://code.jquery.com/jquery-3.4.1.min.js"
-		type="text/javascript">
-	</script>
-    <div class="container">
-        <div class="anagrafics">
-            <table id="head">
-                <thead>
-                   <th>
-                        Name
-                    </th>
-                    <th>
-                        Surname
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        CellPhone
-                    </th>
-                    
-                </thead>
-                <tbody id="tbody">
-                    <tr>
-                       <td>
-                        <form action="">
-                            <input type="text" name="name" id="name">
-                        </form>
-                       </td>
-                       <td>
-                           <form action="">
-                               <input type="text" name="surname" id="surname">
-                           </form>
-                       </td>
-                       <td>
-                        <form action="">
-                            <input type="email" name="email" id="email">
-                        </form>
- 
-                       </td>
-                       <td>
-                       <form action="">
-                            <input type="tel" name="phone" id="phone">
-                        </form>
-                       </td>
-                   </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="address">
-            <table>
-                <thead>
-                    <th>
-                        City
-                    </th>
-                    <th>
-                        Address
-                    </th>
-                    <th>
-                        Civic N.
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <form action="">
-                                <input type="text" name="city" id="city" placeholder="Cesena">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="">
-                                <input type="text" name="address" id="address" placeholder="via Universita'">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="">
-                                <input type="number" name="civic" id="civic" placeholder="50">
-                            </form>
-                        </td>
-                    </tr>             
-                </tbody>
-            </table>
-        </div>
-        <div class="cardNumber">
-            <table>
-                <thead>
-                    <th>
-                        Card-Number
-                    </th>
-                    <th>
-                        Expiration Date
-                    </th>
-                    <th>
-                        Secret Number
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <form action="">
-                                <input type="text" name="c number" id="cr_number" placeholder="XXXX-XXXX-XXXX-XXXX">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="">
-                                <input type="date" name="expDate" id="expDate" placeholder="MM/YY">
-                            </form>
-                        </td>
-                        <td>
-                            <form action="">
-                                <input type="password" name="secr" id="numbe3" maxlength="3">
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <script src="./js/recap.js"></script>
-</body> -->
-
-<!DOCTYPE html>
-<html lang="it">
+<?php SESSION_START();?>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/checkout.css" />
     <script
@@ -142,7 +17,6 @@
             <?php 
                 $userId = $dbh->getUserId($templateParams["name"]);
                 $pokemonsOrder = $dbh->getPokemonInShop($userId[0]['id']);
-                $i=0;
                 foreach($pokemonsOrder as $pokemon){
                     $pokemonid=$pokemon['id'];
                     $len = strlen($pokemon['id']);
@@ -157,10 +31,10 @@
           <tbody>
            <tr>
               <td>
-                  <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" class='full-width'></img>
+                  <img  src="<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/". $pokemon['id'].".png" ?>" alt="<?php echo $pokemon['identifier'] ?>" class='full-width'></img>
               </td>
               <td>
-                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
+                <br> <p id="pokeName"> <?php echo ucfirst($pokemon['identifier']) ?> </p> <br> 
                 <br> <p>Quantity: <?php echo $pokemon['quantity'] ?></p> <br>
               </td>
             </tr>
@@ -174,23 +48,27 @@
         </table>
         <div class='line'></div>
             <?php       
-                    $i = $i +1; 
                 }
             ?>
 
             <?php 
                 $itemOrderList = $dbh->getItemInShop($userId[0]['id']);
-                $i=0;
                     foreach($itemOrderList as $itemOrder):
             ?>
          <table class='order-table'>
           <tbody>
            <tr>
               <td>
-                    <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?> alt="">
+
+                                <?php 
+                                    if(str_starts_with($itemOrder['identifier'], "tm") || str_starts_with($itemOrder['identifier'], "hm") || str_starts_with($itemOrder['identifier'], "tr")){ ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?>  alt="<?php echo $itemOrder['identifier'] ?>" width="81.75">
+                                <?php } else { ?>
+                                        <img src=<?php echo "https://img.pokemondb.net/sprites/items/".$itemOrder['identifier'].".png"?>  alt="<?php echo $itemOrder['identifier'] ?>" width="81.75">
+                                <?php }?>
               </td>
               <td>
-                <br> <p style="font-weight: bold; font-size: 18;"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
+                <br> <p id="itemName"> <?php echo ucfirst($itemOrder['identifier']) ?> </p> <br> 
                 <br> <p>Quantity: <?php echo $itemOrder['quantity'] ?></p> <br>
               </td>
             </tr>
@@ -231,26 +109,109 @@
                 </div>
                </td></tr>
             </table>
-            <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
-            Card Number
-            <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()"></input>
+            <form id="form" action="#">
+            <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' alt="credit-card" class='credit-card-image' id='credit-card-image'></img>
+            <label for="cc">Card Number
+              <input class='input-field' id="cc" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" onclick="$()" required></input>
+            </label>
+            <label for="holder">
             Card Holder
-            <input class='input-field'></input>
+              <input class='input-field' id="holder" required></input>
+            </label>
             <table class='half-input-table'>
               <tr>
-                <td> Expires
-                  <input class='input-field' type="month"></input>
+                <td>
+                  <label for="exp"> Expires
+                    <input class='input-field' id="exp" type="month" required></input>
                 </td>
-                <td>CVC
-                  <input class='input-field' type="password" maxlength="3"></input>
+                <td>
+                  <label for="psw">CVC
+                    <input class='input-field' id="psw" type="password" maxlength="3" required></input>
+                  </label>
                 </td>
               </tr>
             </table>
-            <button class='pay-btn'>Confirm</button>
+            <table class='half-input-table'>
+              <tr>
+                <td>
+                  <label for="address"> Address
+                    <input class='input-field' id="address" required></input>
+                  </label>
+                </td>
+                <td>
+                  <label for="cp">CP
+                    <input class='input-field' id="cp" inputmode="numeric" maxlength="5" required></input>
+                  </label>
+                </td>
+              </tr>
+            </table>
+            <input type="submit" class="pay-btn" value="Confirm" onclick='myFunc(<?php if(!empty($pokemonsOrder)){echo json_encode($pokemonsOrder);} else {echo json_encode($itemOrderList);} ?>);'>
+            </form>
+            <script>
+              function myFunc(data){
+                if(check() == true){
+                  removeQuantity(data);
+                }
+              }
+              function check(){
+                   const inp = document.getElementsByTagName("input");
+                   let sub = document.getElementsByClassName("pay-btn");
+                      for (let index = 0; index < inp.length; index++) {
+                        if(inp[index].value.length == 0){
+                          return false;
+                        }
+                      }
+                      return true;
+              };
+                   $(document).ready(function(){
+                                           $(".pay-btn").click(function(){ 
+                                                if(check()){
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "./notification.php",
+                                                    data: {checkout: "check"},
+                                                    success: function(data, textStatus, jqXHR)
+			{
+                if(data[0] != "<"){ 
+				var data = jQuery.parseJSON(data);
+					var data_notif = data.notif;
+					for (var i = data_notif.length - 1; i >= 0; i--) {
+						var theurl = data_notif[i]['url'];
+						var notifikasi = new Notification(data_notif[i]['title'], {
+							icon: data_notif[i]['icon'],
+							body: data_notif[i]['msg'],
+						});
+						console.log(notifikasi);
+						notifikasi.onclick = function () {
+							window.open(theurl); 
+							notifikasi.close();     
+						};
+						setTimeout(function(){
+							notifikasi.close();
+						}, 5000);
+					};
+
+        window.location.replace("https://localhost/Progetto-Tecnologie-Web/Pokezon/index.php");
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+
+			}
+                                                });
+                                            } /* if */ else {
+                                              alert("Mandatory fields are empty");
+                                              location.reload();
+                                            }
+                                            });
+                                        });
+                                    </script>
           </div>
         </div>
       </div>
 </div>
 <script src="./js/recap.js"></script>
 <script src="./js/dataInsert.js"></script>
+<script src="./js/removeQuantity.js"></script>
 </body>
+</html>

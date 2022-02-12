@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="./css/nav.css" />
+<link rel="shortcut icon" type="image/x-icon" href="./../resources/favicon.png"/>
 <nav class="navbar">
         <a class="logo" href="index.php">
             <img src="../resources/logo.png" width="187.5" height="150" alt="logo picture of pokeZone">
@@ -20,7 +21,7 @@
                     </div>
                 </li>
             </a>
-           <a href="tableItem.php">
+            <a href="tableItem.php">
                 <li class="nav-item">
                 <div>
                         <img src="../resources/item.png" width="50" height="50" alt="ampoule image to link items list page">
@@ -39,7 +40,13 @@
                             ?>
                 <li class="nav-login">
                 <div>
-                        <img src="../resources/vera.png" width="75" height="75" alt="trainer image to link login page">
+                        <?php 
+                            if($user = $dbh->getActiveUser()){ ?>
+                                <img src= <?php echo "".$user[0]['avatar'] ?>  width="75" height="75" alt="trainer image to link login page">
+                                <?php
+                            }else{ ?>
+                                <img src="../resources/login1.png" width="75" height="75" alt="trainer image to link login page">
+                            <?php }?>
                     </div>
                     <div>
                         <p>
@@ -54,15 +61,22 @@
                     </div>
                 </li>
             </a>
+            <a href="./logOut.php">
+                <li class="nav-logout">
+                    <div>
+                        <img src="../resources/logout.png" width="30" height="40" alt="gengar image to link pokemon list page">
+                    </div>
+                    <div>
+                        <p>LogOut</p>
+                    </div>
+                </li>
+            </a>
         </ul>
         </a>
-        <button class="shop-button" id="shop-btn">
-            <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
-        </button>
-        <button>
-            <a href="./logOut.php">
-                LogOut
-            </a>
-        </button>
+        <a href="shop.php">
+            <button class="shop-button" id="shop-btn">
+                <img src="../resources/shopping.png" width="75" height="75" alt="cart button to check adedd objects">
+            </button>
+        </a>
     </nav>
 <script src="./js/navScript.js"></script>
