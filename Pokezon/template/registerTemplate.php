@@ -49,11 +49,25 @@
                 </div>
                 <div class="form-field d-flex align-items-center" id="hidden">
                     <span class="fas fa-iban"></span> 
-                    <input name="iban" id="iban" placeholder="Iban(for merchant)" aria-label="iban placeholder">
+                    <input name="iban" id="iban" placeholder="Iban" aria-label="iban placeholder">
                 </div>
                     <input class="btn mt-3" type="button" value="Register" aria-label="register button" onclick="formhash(this.form, this.form.pwd);" >
             </form>
         </div>
     </main>
+    <script>
+        $(document).ready(function (){
+            $("#iban").hide();
+            $("#role")[0].addEventListener('input', function(){
+                console.log('input changed to: ', $(this)[0].value);
+                if($(this)[0].value == "Merchant"){
+                    $("#iban").show().slideDown();        
+                } else {
+                    $("#iban").hide();
+                }
+            });
+
+        })
+    </script>
 </body>
 </html>
