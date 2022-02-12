@@ -19,6 +19,7 @@ CREATE TABLE `pokedb`.`orders`(
   `idOrder` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `userId` INT,
   `is_active` boolean,
+  `status` VARCHAR(50) NOT NULL check (`status` in ('Received', 'Shipped', 'Delivered')),
   FOREIGN KEY (`userId`) REFERENCES `pokedb`.`members`(`id`)
 ) ENGINE=InnoDB;
 
@@ -76,7 +77,7 @@ VALUES ("normal", "#f2f2f2"),
 
 CREATE TABLE `pokedb`.`pokemon_value` (
   `name` CHAR(60) NOT NULL PRIMARY KEY, 
-  `value` INT NOT NULL
+  `value` FLOAT NOT NULL
 ) ENGINE = InnoDB; 
 
 INSERT INTO `pokedb`.`pokemon_value` 
@@ -1436,7 +1437,7 @@ CREATE TABLE `used_pokemon` (
   `codV` int(11) NOT NULL,
   `pokemonId` int(11) NOT NULL,
   `quantity` int(4) NOT NULL,
-  `price` int(5) NOT NULL,
+  `price` FLOAT NOT NULL,
   `description` char(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

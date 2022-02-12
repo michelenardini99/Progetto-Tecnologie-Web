@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/login.css" />
 
@@ -12,7 +8,6 @@
     <script type="text/javascript" src="js/sha512.js"></script>
     <script type="text/javascript" src="js/forms.js"></script>
 </head>
-
 <body>
     <main>
         <div>
@@ -26,7 +21,7 @@
         </div>
         <div class="wrapper">
             <div class="loginLogo">
-                <img src="./../resources/icon.png" alt="">
+                <img src="./../resources/icon.png" alt="logo of pokezone">
             </div>
             <div class="text-center mt-4 name"> PokeZone </div>
             <form method="post" action="handler/registerSession.php" class="p-3 mt-3">
@@ -46,7 +41,7 @@
                     <input class="submit" list="roles" name="role" id="role" placeholder="Role" aria-label="role placeholder">
                         <datalist id="roles">
                             <option value="Trainer"></option>
-                            <option value="Trader"></option>
+
                             <option value="Merchant"></option>
                             <option value="Druid"></option>
                         </datalist>
@@ -54,10 +49,25 @@
                 </div>
                 <div class="form-field d-flex align-items-center" id="hidden">
                     <span class="fas fa-iban"></span> 
-                    <input name="iban" id="iban" placeholder="Iban(for merchant)" aria-label="iban placeholder">
+                    <input name="iban" id="iban" placeholder="Iban" aria-label="iban placeholder">
                 </div>
                     <input class="btn mt-3" type="button" value="Register" aria-label="register button" onclick="formhash(this.form, this.form.pwd);" >
             </form>
         </div>
     </main>
+    <script>
+        $(document).ready(function (){
+            $("#iban").hide();
+            $("#role")[0].addEventListener('input', function(){
+                console.log('input changed to: ', $(this)[0].value);
+                if($(this)[0].value == "Merchant"){
+                    $("#iban").show().slideDown();        
+                } else {
+                    $("#iban").hide();
+                }
+            });
+
+        })
+    </script>
 </body>
+</html>

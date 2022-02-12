@@ -15,6 +15,7 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+            
             public function logOut($username){
                $stmt = $this-> db ->prepare(" UPDATE `members` SET `logged` = '0' WHERE `members`.`username` = ?;");
                $stmt->bind_param('s', $username); 
@@ -53,8 +54,16 @@ class DatabaseHelper{
                 $stmt->execute();
             }
 
+            public function updateQuantityItem($order, $quantity, $itemId, $codV){
+                $stmt = $this->db->prepare("UPDATE orders_item
+                                            SET quantity = ?
+                                            WHERE orderId = ? AND itemId = ? AND codV = ?");
+                $stmt->bind_param('ssss', $quantity, $order, $itemId, $codV); 
+                $stmt->execute();
+            }
+
             public function getPokemonInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV, pokemon.id, pokemon.identifier,pokemon_value.value,count(*) as quantity FROM orders
+                $stmt = $this->db->prepare("SELECT orders_pokemon.orderId,orders_pokemon.codV,orders_pokemon.quantity, pokemon.id, pokemon.identifier,pokemon_value.value FROM orders
                                             INNER JOIN orders_pokemon ON orders.idOrder = orders_pokemon.orderId
                                             INNER JOIN pokemon ON orders_pokemon.pokemonId = pokemon.id
                                             INNER JOIN pokemon_value ON pokemon.identifier = pokemon_value.name
@@ -67,8 +76,24 @@ class DatabaseHelper{
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
 
+            public function removePokemonFromMerchant($codV, $pokeId, $quantity, $price){
+                $stmt = $this->db->prepare(" DELETE FROM used_pokemon WHERE codV = ? AND pokemonId = ? AND quantity = ? AND price = ?
+                ");
+                $stmt->bind_param('ssss',$codV, $pokeId, $quantity, $price);
+                $stmt->execute();
+            }
+
+            public function getQuantityFromPokemonMerchant($codV, $pokeId){
+                $stmt = $this->db->prepare("SELECT quantity from used_pokemon where codV = ? AND pokemonId = ?
+                ");
+                $stmt->bind_param('ss',$codV, $pokeId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function getItemInShop($id){
-                $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost, count(*) as quantity 
+                $stmt = $this->db->prepare("SELECT orders_item.orderId, orders_item.itemId, i.identifier, i.cost,orders_item.quantity 
                     FROM items i, orders   JOIN orders_item ON orders.idOrder = orders_item.orderId
                     where orders.userId = ? AND orders.is_Active = 1
                     and i.id = orders_item.itemId
@@ -79,11 +104,33 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            
+            
+
+
+        public function getItemOrderFromId($id){
+            $stmt = $this->db->prepare("SELECT oi.orderId, i.identifier, o.status
+            FROM `orders` o 
+            join orders_item oi on (o.idOrder = oi.orderId)
+            join items i on (oi.itemId = i.id)
+            where o.userId = ?
+            and o.is_active = 0;
+            ");
+            $stmt->bind_param('s', $id); 
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+
         public function getOrderFromId($id){
-                $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier ,count(*) as quantity FROM `orders` o 
+                $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier, o.status
+                FROM `orders` o 
 join orders_pokemon op on (o.idOrder = op.orderId)
 join pokemon p on (op.pokemonId = p.id)
 where o.userId = ?
+and o.is_active = 0
 group by o.idOrder, op.pokemonId;");
                 $stmt->bind_param('s', $id); 
                 $stmt->execute();
@@ -119,33 +166,32 @@ group by o.idOrder, op.pokemonId;");
                 ");
                 $stmt->bind_param('ss',$pokemon,$order);
                 $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
             }
 
-            public function addPokemon($order, $pokemon, $merchant){
-                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity, codV) VALUES (?,?,1,?)
-                ");
-                $stmt->bind_param('iii',$order,$pokemon,$merchant);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
-            }
-
-
-            public function addItem($order, $item, $codV ){
-                $stmt = $this->db->prepare("INSERT INTO orders_item(orderId, itemId , quantity, codV) VALUES (?,?,1, ?)
-                ");
-                $stmt->bind_param('iii',$order,$item, $codV);
-                $stmt->execute();
-            }
-            
             public function removeItem($itemId, $order){
-                $stmt = $this->db->prepare("DELETE FROM orders_item where itemId = ? AND orderId = ?
+                $stmt = $this->db->prepare("DELETE FROM orders_item where orders_item.itemId = ? AND orders_item.orderId = ?
                 ");
                 $stmt->bind_param('ss',$itemId,$order);
                 $stmt->execute();
             }
+
+            public function addPokemon($order, $pokemon, $merchant, $quantity){
+                $stmt = $this->db->prepare("INSERT INTO orders_pokemon(orderId, pokemonId, quantity, codV) VALUES (?,?,?,?)
+                ");
+                $stmt->bind_param('iiii',$order,$pokemon,$quantity,$merchant);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+
+            public function addItem($order, $item, $codV, $quantity){
+                $stmt = $this->db->prepare("INSERT INTO orders_item(orderId, itemId , quantity, codV) VALUES (?,?,?, ?)
+                ");
+                $stmt->bind_param('iiii',$order,$item, $quantity, $codV);
+                $stmt->execute();
+            }
+
             public function getRandomPokemon(){
                 $stmt = $this->db->prepare("
                 SELECT p.id, p.identifier, px.identifier as region
@@ -162,7 +208,7 @@ group by o.idOrder, op.pokemonId;");
                     and p.identifier not like 'pikachu-%'
                     and p.identifier not like 'eevee-starter'
                     and p.identifier not like 'marowak-totem'
-                    and p.id < 10008
+                    and p.id < 899
                     ORDER BY RAND()
                     LIMIT 1" 
                     );
@@ -198,6 +244,44 @@ group by o.idOrder, op.pokemonId;");
                     where pokemon_types.pokemon_id = ?;
                 ");
                 $stmt->bind_param('s',$id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function removeQuantity($pokemonId, $quantity, $codV){
+                $stmt = $this->db->prepare("
+                    update used_pokemon
+                    set quantity = quantity - ?
+                    where codV = ? AND pokemonId = ?
+                ");
+                $stmt->bind_param('sss',$quantity, $codV, $pokemonId);
+                $stmt->execute();
+            }
+
+            public function disableOrder($orderId){
+                $stmt = $this->db->prepare("
+                    UPDATE orders
+                    SET orders.is_active = 0
+                    where orders.idOrder = ?;
+                ");
+                $stmt->bind_param('s',$orderId);
+                $stmt->execute();
+            }
+
+            public function newOrder($userId){
+                $stmt = $this->db->prepare("
+                    INSERT INTO orders(userId,is_active, status) VALUES(?,1, \"Received\")
+                ");
+                $stmt->bind_param('s',$userId);
+                $stmt->execute();
+            }
+
+            public function getIdFromOrder($orderId){
+                $stmt = $this->db->prepare("
+                    select userId from orders where idOrder = ?
+                ");
+                $stmt->bind_param('s',$orderId);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
@@ -324,8 +408,8 @@ group by o.idOrder, op.pokemonId;");
             public function getRegionNames(){
                 $stmt = $this->db->prepare("
                 SELECT identifier FROM `pokedexes`
-                where identifier not like 'original%'
-                LIMIT 10;
+                  where identifier not like 'original%'
+                  LIMIT 10;
                 ");
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -429,6 +513,13 @@ group by o.idOrder, op.pokemonId;");
                  return $result->fetch_all(MYSQLI_ASSOC);
               }
 
+            public function getMerchants(){
+                $stmt = $this->db->prepare("SELECT * FROM merchant");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
             public function insertUsedPokemon($merchantid, $id, $quantity, $price, $descr){
               $stmt = $this->db->prepare("INSERT INTO used_pokemon(codV, pokemonId, quantity, price, description) VALUES (?, ?, ?, ?, ?)");
                $stmt->bind_param('iiiis', $merchantid, $id, $quantity, $price, $descr); 
@@ -455,8 +546,8 @@ group by o.idOrder, op.pokemonId;");
               }
 
               public function getSinglePokemonFromMerchant($codV, $id){
-                $stmt = $this->db->prepare("SELECT * FROM used_pokemon               
-                 where  codV = ? AND pokemonId = ?");
+                $stmt = $this->db->prepare("SELECT * FROM used_pokemon up join merchant m on (m.codV = up.codV)
+                 where  up.codV = ? AND pokemonId = ?;");
                  $stmt->bind_param('ii', $codV, $id); 
                   $stmt->execute();
                   $result = $stmt->get_result();
@@ -511,7 +602,18 @@ group by o.idOrder, op.pokemonId;");
             public function getNotifAbout($username){
                 $stmt = $this->db->prepare("
                 SELECT n.notif_msg, n.notif_time FROM `notif` n 
-                WHERE n.username = ?;
+                WHERE n.username = ?
+                order by n.notif_time desc;
+                ");
+                $stmt->bind_param('s',$username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+
+            public function truncateNotif($username){
+                $stmt = $this->db->prepare("
+                DELETE FROM `notif` WHERE `username` = ?;
                 ");
                 $stmt->bind_param('s',$username);
                 $stmt->execute();

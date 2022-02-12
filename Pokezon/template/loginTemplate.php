@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="it">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <link rel="stylesheet" type="text/css" href="./css/login.css" />
 
@@ -38,8 +34,25 @@
                     <span class="fas fa-key"></span> 
                     <input type="password" name="p" id="pwd" placeholder="Password" aria-label="password placeholder"> <!-- aria label is for accessability form -->
                 </div>
-                    <input class="btn mt-3" type="button" value="Login"  aria-label="login button" onclick="formhash(this.form, this.form.pwd);"> <!-- aria label is for accessability form -->
+                    <input id="login" class="btn mt-3" type="button" value="Login"  aria-label="login button" onclick="formhash(this.form, this.form.pwd);"> <!-- aria label is for accessability form -->
             </form>
+                  <script>
+                        // Get the input field
+
+                        var input = document.getElementById("login");
+
+                        // Execute a function when the user releases a key on the keyboard
+                        input.addEventListener("keyup", function(event) {
+                            console.log("heiiii")
+                          // Number 13 is the "Enter" key on the keyboard
+                          if (event.keyCode === 13) {
+                            // Cancel the default action, if needed
+                            event.preventDefault();
+                            // Trigger the button element with a click
+                            document.getElementById("myBtn").click();
+                          }
+                        }); 
+                    </script>
                 <div>
                     <br>
                     <p>
@@ -50,3 +63,4 @@
         </div>
     </main>
 </body>
+</html>

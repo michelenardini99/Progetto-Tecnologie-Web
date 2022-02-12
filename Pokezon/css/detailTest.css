@@ -1,0 +1,111 @@
+.single-pokemon{
+    margin-top: 80px;
+}
+
+.single-pokemon .col-1 img{
+    padding: 0;
+}
+
+p, h4, h1, select, input[type=number]{
+    margin-top: 10px;
+}
+
+.single-pokemon .col-1, .single-pokemon .col-2{
+    padding: 20px;
+}
+
+.single-pokemon .col-1{
+    width: 30%;
+}
+
+#add{
+    background-color: transparent;
+    border: none;
+}
+
+.pokeimg{
+    border-radius: 200px;
+}
+
+.single-pokemon .col-2{
+    width: 70%;
+    margin-bottom: 150px;
+}
+
+.single-pokemon h4{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.single-pokemon select{
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.single-pokemon input{
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid #ff523b;
+}
+
+input:focus{
+    outline: none;
+}
+
+.btn{
+    background-color: #ff523b;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: white;
+}
+
+.types-name{
+    display: inline-block;
+    padding-right: 100px;
+    border-radius: 10px;
+}
+
+.types-name p{
+    margin: 0px -36px 0px 58px;
+}
+
+.types{
+    margin-top: 10px;
+}
+
+@media only screen and (min-width: 1600px){
+    .single-pokemon .col-1, .single-pokemon .col-2{
+        float: left;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .row{
+        text-align: center;
+    }
+
+    .col-1, .col-2{
+        flex-basis: 100%;
+    }
+
+    .col-1, .col-2{
+        width: 48%;
+    }
+
+    .single-pokemon .row{
+        text-align: left;
+    }
+
+    .single-pokemon .col-1, .single-pokemon .col-2{
+        padding: 20px 0;;
+    }
+
+}

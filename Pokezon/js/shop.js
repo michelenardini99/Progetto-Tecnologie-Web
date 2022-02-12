@@ -34,3 +34,18 @@ function removePokemon(pokemonId, orderId){
     });
 }
 
+function removeItem(itemId, orderId){
+
+    var order = orderId;
+    var item = itemId;
+
+    $.ajax({
+        url: './removeItem.php',
+        type: 'POST',
+        data: {order: order, item: item},
+        success: function(data) {
+            console.log(data); // Inspect this in your console
+        }
+    });
+}
+
