@@ -104,11 +104,33 @@ class DatabaseHelper{
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
+
+            
+            
+
+
+        public function getItemOrderFromId($id){
+            $stmt = $this->db->prepare("SELECT oi.orderId, i.identifier, o.status
+            FROM `orders` o 
+            join orders_item oi on (o.idOrder = oi.orderId)
+            join items i on (oi.itemId = i.id)
+            where o.userId = ?
+            and o.is_active = 0;
+            ");
+            $stmt->bind_param('s', $id); 
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+
         public function getOrderFromId($id){
-                $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier ,count(*) as quantity FROM `orders` o 
+                $stmt = $this->db->prepare("SELECT o.idOrder, op.pokemonId, p.identifier, o.status
+                FROM `orders` o 
 join orders_pokemon op on (o.idOrder = op.orderId)
 join pokemon p on (op.pokemonId = p.id)
 where o.userId = ?
+and o.is_active = 0
 group by o.idOrder, op.pokemonId;");
                 $stmt->bind_param('s', $id); 
                 $stmt->execute();
@@ -249,7 +271,7 @@ group by o.idOrder, op.pokemonId;");
 
             public function newOrder($userId){
                 $stmt = $this->db->prepare("
-                    INSERT INTO orders(userId,is_active) VALUES(?,1)
+                    INSERT INTO orders(userId,is_active, status) VALUES(?,1, \"Received\")
                 ");
                 $stmt->bind_param('s',$userId);
                 $stmt->execute();

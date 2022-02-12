@@ -47,13 +47,10 @@
                         IdOrder
                     </th>
                     <th scope="col"> 
-                        PokemonId
-                    </th>
-                    <th scope="col"> 
                         Name
                     </th>
-                    <th scope="col">
-                        Quantity
+                    <th scope="col"> 
+                        Status
                     </th>
                     <tbody>
                         <?php 
@@ -64,13 +61,26 @@
                                     <?php echo "".$order['idOrder']?>
                                </td>
                                 <td>
-                                    <?php echo "".$order['pokemonId']?>
+                                    <?php echo "".$order['identifier']?>
+                               </td>
+                               <td>
+                                    <?php echo "".$order['status']?>
+                               </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php 
+                            $itemOrderList = $dbh->getItemOrderFromId($user[0]['id']);
+                            foreach($itemOrderList as $order):
+                        ?>
+                            <tr>
+                               <td>
+                                    <?php echo "".$order['orderId']?>
                                </td>
                                 <td>
                                     <?php echo "".$order['identifier']?>
                                </td>
-                                <td>
-                                    <?php echo "".$order['quantity']?>
+                               <td>
+                                    <?php echo "".$order['status']?>
                                </td>
                             </tr>
                         <?php endforeach; ?>
