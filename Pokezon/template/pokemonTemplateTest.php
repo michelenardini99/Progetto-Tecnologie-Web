@@ -45,7 +45,7 @@
     <div class="small-container single-pokemon">
         <div class="row">
             <div class="col-1">
-                <img src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?> style=<?php echo "background-color:".$color[0]['color']?>>
+                <img class="pokeimg" src=<?php echo "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" . $pokemonID . ".png" ?> alt="image of " <?php echo $pokemon['name']?> style=<?php echo "background-color:".$color[0]['color']?>>
             </div>
             <div class="col-2">
                 <p>Home / Pokemon</p>

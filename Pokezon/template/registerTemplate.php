@@ -41,7 +41,7 @@
                     <input class="submit" list="roles" name="role" id="role" placeholder="Role" aria-label="role placeholder">
                         <datalist id="roles">
                             <option value="Trainer"></option>
-                            <option value="Trader"></option>
+
                             <option value="Merchant"></option>
                             <option value="Druid"></option>
                         </datalist>

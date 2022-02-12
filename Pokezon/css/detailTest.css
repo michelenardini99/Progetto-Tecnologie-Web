@@ -23,7 +23,7 @@ p, h4, h1, select, input[type=number]{
     border: none;
 }
 
-img{
+.pokeimg{
     border-radius: 200px;
 }
 

@@ -408,9 +408,8 @@ group by o.idOrder, op.pokemonId;");
             public function getRegionNames(){
                 $stmt = $this->db->prepare("
                 SELECT identifier FROM `pokedexes`
-                 -- where identifier not like 'original%'
-                 -- LIMIT 10;
-
+                  where identifier not like 'original%'
+                  LIMIT 10;
                 ");
                 $stmt->execute();
                 $result = $stmt->get_result();

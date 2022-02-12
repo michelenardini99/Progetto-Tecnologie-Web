@@ -14,9 +14,9 @@
             <div class="col-1">
             <?php 
                 if(str_starts_with($item[0]['identifier'], "tm") || str_starts_with($item[0]['identifier'], "hm") || str_starts_with($item[0]['identifier'], "tr")){ ?>
-                    <img src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="image of item" width="100px" height="100px">
+                    <img class="item-img" src=<?php echo "https://img.pokemondb.net/sprites/items/tm-normal.png" ?> alt="image of item" width="100px" height="100px">
                 <?php } else { ?>
-                    <img src= <?php echo "https://img.pokemondb.net/sprites/items/".$item[0]['identifier'].".png"?> alt="image of item" width="100px" height="100px">
+                    <img class="item-img" src= <?php echo "https://img.pokemondb.net/sprites/items/".$item[0]['identifier'].".png"?> alt="image of item" width="100px" height="100px">
                 <?php }?>
             </div>
             <div class="col-2">

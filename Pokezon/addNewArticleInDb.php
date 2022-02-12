@@ -1,5 +1,7 @@
 <?php
     require_once('handler/bootstrap.php');
+    var_dump($_GET["pokemon"]);
+    var_dump($dbh->getID($_GET["pokemon"]));
     $pokeId = $dbh->getID($_GET["pokemon"]);
     $user = $dbh -> getActiveUser()[0]['username'];
     $user=$dbh ->getIdMerchant($user);
